@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- CUSTOME CSS  -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- BOOTSTRAP CSS  -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- FONT CSS  -->
+  <link rel="stylesheet" href="assets/css/stylesheet.css">
+  <!-- GOGGLE ICON-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- FLATICON-->
+  <link rel="stylesheet" href="assets/css/uicons-bold-rounded.css">
+  <link rel="stylesheet" href="assets/css/uicons-regular-straight.css">
+  <link rel="stylesheet" href="assets/css/uicons-solid-rounded.css">
+  <link rel="stylesheet" href="assets/css/uicons-solid-straight.css">
+  <link rel="stylesheet" href="assets/css/uicons-regular-rounded.css">
+  <!-- Pie chart in verifications reports -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <title>AIG VERIFICATION</title>
+</head>
+<body>
+  <app-root></app-root>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
+
+
+    <!-- upload profile script -->
+    <script>
+        var loadFile = function (event) {
+            var image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+    </script>
+
+    <script>
+        var loadFile = function (event1) {
+            var image = document.getElementById("output1");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dtHorizontalExample').DataTable({
+                "scrollX": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+    
+ <!-- Pie chart in verifications reports -->
+ <script>
+  $(document).ready(function(){
+
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+var data = google.visualization.arrayToDataTable([
+['Task', 'Hours per Day'],
+['Verified', 3],
+['Pending', 2],
+['Rejected', 2]
+]);
+
+
+
+var options = {
+pieHole: 0.5,
+};
+
+
+var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+chart.draw(data, options);
+}
+
+});
+</script>
+
+<!-- VIEW DETAILS BOX CHANGE SCRIPT -->
+<script>
+    // BOX1
+
+    var button1 = false;
+    var button2 = false;
+    function btn1_controller() {
+        // opening fresh box1
+        if (button1 == false && button2 == false) {
+            console.log(button1);
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "block";
+
+            button1 = true;
+        }
+        else if (button1 == false && button2 == true)
+        //   close box2 open box1
+        {
+            console.log(button1);
+            console.log(button2);
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("btn1").style.display = "block";
+            button1 = false;
+            button2 = ture;
+        }
+        else if (button1 == true && button2 == false)
+        //   close box1
+        {
+            console.log(button1);
+            document.getElementById("btn2").style.transform = "block";
+            document.getElementById("btn1").style.display = "none";
+            button1 = true;
+        }
+        else if (button1 == false && button2 == false)
+        //   close box1
+        {
+            console.log(button1);
+            document.getElementById("btn1").style.display = "none";
+            button1 = false;
+        }
+    }
+
+
+    // BOX2
+    function btn2_controller() {
+        if (button1 == false && button2 == false) {
+            console.log(button2);
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "block";
+
+            button2 = true;
+        }
+        else if (button1 == true && button2 == false) {
+            console.log(button1);
+            console.log(button2);
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("btn1").style.display = "block";
+
+            button1 = false;
+            button2 = true;
+
+        }
+        else if (button1 == false && button2 == true) {
+            console.log(button2);
+            document.getElementById("btn2").style.display = "block";
+            document.getElementById("btn1").style.display = "none";
+
+            button2 = false;
+        }
+    }
+</script>
+<!-- VIEW DETAILS BOX CHANGE SCRIPT END -->
+
+</body>
+</html>

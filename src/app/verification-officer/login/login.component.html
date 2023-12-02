@@ -1,0 +1,147 @@
+<div class="login">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="login_img bg_secondary">
+                    <img src="assets/images/temp_img/login.png">
+                    <h2 class="fs-32 fw-600 white">Verification Officer Portal</h2>
+                </div>
+            </div>
+            <div class="col-md-4 m-auto">
+                <form [formGroup]="loginForm">
+                 <div class="login_form">
+                    <h3 class="dark fs-22 fw-600 mb-4">Nice to see you again</h3>
+                    <div class="mb-4">
+                        <input type="text" formControlName="userId" name="userId" class="form-control profile_input" [(ngModel)]="authRequest.userId" placeholder="Email or phone number">
+                        <div *ngIf="isFieldInvalidForLoginForm('userId')"
+                        class="text-danger ms-2"><b>Email is required</b></div>
+                    </div>
+                    
+                    <div class="position-relative mb_20">
+                        <input type="text" formControlName="password" name="password" class="form-control  profile_input px_41" [(ngModel)]="authRequest.password"  placeholder="Enter Password">
+                        <i class="fi fi-rr-eye eye_icon2 lh-1 mb-2"></i>
+                        <div *ngIf="isFieldInvalidForLoginForm('password')"
+                        class="text-danger ms-2"><b>Password is required</b></div>
+                    </div>
+                    <h4 class="forgot mb-4" data-bs-target="#forgot-password" data-bs-toggle="modal">Forgot password?
+                    </h4>
+                    <a class="btn btn_primary fs-15 fw-600 w-100 m-0" type="submit" (click)="loginOfficer()">Log in</a>
+                  </div>
+                
+               </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="modal fade" id="forgot-password" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-0">
+                    <div>
+                        <h1 class="fs-22 fw-600 text_small mb_10" id="exampleModalToggleLabel2">Forgot password</h1>
+                        <h3 class="fs-16 fw-500 info mb-0">Get access to your password by verifying your identity
+                            through otp with the help of your email address</h3>
+                    </div>
+                    <button type="button" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fi fi-rr-cross-small lh-0"></i>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="mb-4 mt-4">
+                        <div>
+                            <div class="position-relative">
+                                <img src="assets/images/svg_img/user.svg" class="user_icon">
+                                <input type="text" class="form-control profile_input px_44"
+                                    placeholder="Enter email address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer p-0">
+                    <button class="btn_primary fs-16 fw-500 w-100 m-0" data-bs-target="#send-otp"
+                        data-bs-toggle="modal">Send OTP </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FORGOT PASSWORD MODAL END -->
+
+    <!-- SEND OTP MODAL -->
+    <div class="modal fade" id="send-otp" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-0">
+                    <div>
+                        <h1 class="fs-22 fw-600 text_small mb_10" id="exampleModalToggleLabel2">Verify OTP </h1>
+                        <h3 class="fs-16 fw-500 info mb-1">Enter the verification code sent on </h3>
+                        <div class="d-flex align-items-center">
+                            <h3 class="mb-0 fs-15 fw-500 text_small">aiggmail.com</h3>
+                            <h5 class="mb-0 fs-13 fw-500 primary mx-0 ms-2">Edit <img
+                                    src="assets/images/svg_img/edit.svg"></h5>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fi fi-rr-cross-small lh-0"></i>
+                    </button>
+                </div>
+                <div class="modal-body p-0 mt-4 mb-4">
+                    <div class="d-flex gap_16">
+
+                        <input type="text" class="otp_number_input" placeholder="5">
+                        <input type="text" class="otp_number_input" placeholder="5">
+                        <input type="text" class="otp_number_input" placeholder="5">
+                        <input type="text" class="otp_number_input" placeholder="5">
+
+                    </div>
+                </div>
+                <div class="modal-footer p-0">
+                    <button class="btn_primary fs-16 fw-500 w-100 m-0" data-bs-target="#new-password"
+                        data-bs-toggle="modal">Verify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SEND OTP MODAL END -->
+
+    <!-- NEW PASSWORD MODAL -->
+    <div class="modal fade" id="new-password" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header p-0">
+                    <div>
+                        <h1 class="fs-22 fw-600 text_small mb_10" id="exampleModalToggleLabel2">New password</h1>
+                        <h3 class="fs-16 fw-500 info mb-0">Set a new login password for your account</h3>
+                    </div>
+                    <button type="button" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fi fi-rr-cross-small lh-0"></i>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="mb-4 mt-4">
+                            <div class="position-relative mb_20">
+                                <i class="fi fi-br-lock lock_icon info"></i>
+                                <input type="text" class="form-control profile_input px_44" placeholder="New Password">
+                                <i class="fi fi-rr-eye eye_icon info"></i>
+                            </div>
+                        <div class="position-relative">
+                            <i class="fi fi-br-lock lock_icon info"></i>
+                            <input type="text" class="form-control profile_input px_44" placeholder="Confirm Password">
+                            <i class="fi fi-rr-eye-crossed eye_icon info"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer p-0">
+                    <button class="btn_primary fs-16 fw-500 w-100 m-0">Set Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NEW PASSWORD MODAL END -->
+
+

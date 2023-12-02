@@ -1,0 +1,23 @@
+<!-- SIDEBAR START -->
+<div class="sidebar bg_primary">
+    <div class="logo">
+        <img src="assets/images/temp_img/logo.png">
+    </div>
+    <div class="sidebar_navbar">
+        <ul>
+            <li [ngClass]="checkEndpoint == 'dashboard' ? 'nav_item active':''"><a routerLink="/verify" class="fs-18 fw-500 white"  (click)="getByValue(id1.value)">
+                <input type="hidden" #id1 value="dashboard">
+                <img src="assets/images/svg_img/dashboard.svg"><span>Dashboard</span></a></li>
+            <li [ngClass]="checkEndpoint == 'address-officer' ? 'nav_item active':''"><a routerLink="/verify/address-officer" class="fs-18 fw-500 white" (click)="getByValue(id2.value)">
+                <input type="hidden" #id2 value="address-officer">
+                <img src="assets/images/svg_img/address.svg"><span>Address Officer</span></a></li>
+            <li [ngClass]="checkEndpoint == 'verification' ? 'nav_item active':''"><a routerLink="/verify/verification" class="fs-18 fw-500 white" (click)="getByValue(id3.value)">
+                <input type="hidden" #id3 value="verification">
+                <img src="assets/images/svg_img/varification.svg"><span>Verification</span></a></li>
+            <li [ngClass]="checkEndpoint == 'reports' ? 'nav_item active':''"><a routerLink="/verify/reports" class="fs-18 fw-500 white" (click)="getByValue(id4.value)">
+                <input type="hidden" #id4 value="reports">
+                <img src="assets/images/svg_img/report.svg"><span>Reports</span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- SIDEBAR END -->

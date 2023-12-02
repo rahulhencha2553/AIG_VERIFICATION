@@ -1,0 +1,72 @@
+<nav class="topnavbar d-flex align-items-center justify-content-between">
+    <h4 class="primary mb-0 fs-26 fw-600">Dashboard</h4>
+    <app-profile-bar></app-profile-bar>
+</nav>
+<div class="main_content">
+    <div class="row verification-cards">
+        <div class="col-md-3 mb-4">
+            <div class="dashboard_card d-flex gap_20 bg_verification">
+                <img src="assets/images/svg_img/verification1.svg">
+                <div>
+                    <h3 class="fs-18 fw-500 secondary mb-1">Pending Verification</h3>
+                    <h5 class="fs-30 fw-600 black mb-0">{{officerDashboard.pendingVerification}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="dashboard_card d-flex gap_20 bg_address">
+                <img src="assets/images/svg_img/address1.svg">
+                <div>
+                    <h3 class="fs-18 fw-500 secondary mb-1">Verified Address</h3>
+                    <h5 class="fs-30 fw-600 black mb-0">{{officerDashboard.verifiedAddress}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="dashboard_card d-flex gap_20 bg_rejected">
+                <img src="assets/images/svg_img/Reject.svg">
+                <div>
+                    <h3 class="fs-18 fw-500 secondary mb-1">Rejected Verifications</h3>
+                    <h5 class="fs-30 fw-600 black mb-0">{{officerDashboard.rejectedVerifications}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="dashboard_card d-flex gap_20 bg_officer">
+                <img src="assets/images/svg_img/officers.svg">
+                <div>
+                    <h3 class="fs-18 fw-500 secondary mb-1">Verification Officers </h3>
+                    <h5 class="fs-30 fw-600 black mb-0">{{officerDashboard.verificationOfficers}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="primary fs-26 fw-600 mb_20">Pending request</h4>
+    <div class="pending_request mb_29">
+        <a routerLink="/verify/verification" class="d-flex justify-content-end">
+            <h5 class="fs-14 fw-500 secondary mb_10 ms-auto">View All</h5>
+        </a>
+        <div class="row pending-request-cards">
+            <div class="col-md-4 mb-4 " *ngFor = "let request of officerDashboard.pendingVerifications" >
+                <div class="card">
+                    <img [src]="request.requestorData.profilePic" class="mb-2">
+                    <h3 class="mb-2 fs-16 fw-600 text_small"> {{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h3>
+                    <h4 class="black fs-14 fw-500 mb-1">Address : <span class="info"> {{request.addressData.address}} <span
+                                class="black">({{request.addressData.addressType}})</span> </span></h4>
+                    <h6 class="black fs-14 fw-500">Date : <span class="info">{{request.date | date : 'd/M/yyyy'}}</span></h6>
+                    <div class="d-flex justify-content-end">
+                        <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="primary fs-26 fw-600 mb_20">Verifications Graph</h4>
+    <div class="pending_request mb_29 p_50">
+        <img src="assets/images/temp_img/chart.png" class="img-fluid mb_30">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fs-14 fw-500 grey">Total Verifications</h5>
+            <h5 class="fs-14 fw-500 success">350.00 / 600</h5>
+        </div>
+    </div>
+</div>

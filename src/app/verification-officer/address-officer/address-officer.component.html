@@ -1,0 +1,562 @@
+<nav class="topnavbar d-flex align-items-center justify-content-between">
+    <h4 class="primary mb-0 fs-26 fw-600">Address Officer</h4>
+    <app-profile-bar></app-profile-bar>
+</nav>
+<div class="main_content">
+
+    <div class="table_container">
+        <div class="d-flex Officer_table justify-content-between align-items-center">
+            <div class="d-flex">
+                <h4 class="fs-18 fw-500 primary mb-0">Recent Officers</h4>
+                <span class="Officer  mx-0 ms-2 fs-12 fw-400 primary">100 officers</span>
+            </div>
+            <button class="add_officer white fs-12 fw-500" data-bs-target="#addofficer"
+                data-bs-toggle="modal">+ Add Officer</button>
+        </div>
+        <div style="overflow-x:auto;">
+            <table class="table mb-0 admin-table"  id="dtHorizontalExample" cellspacing="0"
+            width="100%">
+                <thead style="background:#EDF9FB;">
+                    <tr class="table_heading">
+                        <th scope="col" class="fs-14 fw-500 theading">Name</th>
+                        <th scope="col" class="fs-14 fw-500 theading">Email address</th>
+                        <th scope="col" class="fs-14 fw-500 theading">Password</th>
+                        <th scope="col" class="fs-14 fw-500 theading">User ID</th>
+                        <th scope="col" class="fs-14 fw-500 theading">Action</th>
+                        <th scope="col" class="fs-14 fw-500 theading">Status <img
+                                src="assets/images/temp_img/down-arrow.png"></th>
+                    </tr>
+                </thead>
+                <tbody class="bg_light">
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="Officer gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Active
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="Officer gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Active
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="Officer gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Active
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="Officer gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Active
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="d-flex align-items-center">
+                            <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                            <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                        </td>
+                        <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                        <td class="fs-14 fw-400 theading">******** <i
+                                class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                        <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                        <td>
+                            <i class="fi fi-br-trash add_icons danger" data-bs-target="#delete-modal"
+                                data-bs-toggle="modal"></i>
+                            <i class="fi fi-sr-pencil add_icons theading" data-bs-target="#EditProfile"
+                                data-bs-toggle="modal"></i>
+                            <a routerLink="/verify/address-officer-details"><i
+                                    class="fi fi-br-search-alt add_icons theading "></i></a>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button
+                                    class="Officer bg_grey grey2 gap_6 dropdown-toggle fs-14 fw-500 primary p_6"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Deactivate
+                                    <i class="fi fi-sr-angle-small-down lh-0"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Officer MODAL -->
+<div class="modal fade" id="addofficer" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header p-0 justify-content-center">
+                <div>
+                    <h1 class="fs-22 fw-600 text_small mb-20" id="exampleModalToggleLabel2">Add Officer profile
+                    </h1>
+                    <div class="mb-4 position-relative  d-flex justify-content-center">
+
+                        <input id="file" type="file" onchange="loadFile(event1)" class="d-none">
+                        <img class="modal_profile" id="output1" src="assets/images/temp_img/profile-modal.png">
+                        <label class="-label" for="file">
+                            <a
+                                class="secondary fs-16 fw-500  edit_img d-flex justify-content-center align-items-center">
+                                <i class="fi fi-sr-pencil white lh-0 fs-12"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body p-0">
+                <div class="mb-4">
+                    <div class="">
+                        <div class="col-md-12 mb-3 ps-0 px-2">
+                            <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
+                            <input type="text" class="form-control profile_input" placeholder="Vijay">
+                        </div>
+                        <div class="col-md-12 mb-3 ps-0 px-2">
+                            <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
+                            <input type="text" class="form-control profile_input" placeholder="Hencha">
+                        </div>
+                        <div class="col-md-12 mb-3 ps-0 px-2">
+                            <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
+                            <input type="text" class="form-control profile_input" placeholder="@hgfghf">
+                        </div>
+                        <div class="col-md-12 mb-3 ps-0 px-2">
+                            <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
+                            <input type="email" class="form-control profile_input"
+                                placeholder="vijayhencha@gmail.com">
+                        </div>
+                        <div class="position-relative">
+                            <label for="" class="black fs-15 fw-400 mb-2">Password</label>
+
+                            <input type="text" class="form-control  profile_input" placeholder="Confirm Password">
+                            <i class="fi fi-rr-eye-crossed eye_icon2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-0">
+                <div class="gap_20 d-flex">
+                    <button class="btn_lg2 fs-16 fw-500 br_10" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    <button class="btn_lg fs-16 fw-500 br_10">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Officer MODAL END -->
+
+
+<!-- Edit Profile MODAL -->
+<div class="modal fade" id="EditProfile" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header p-0 justify-content-center">
+            <div>
+                <h1 class="fs-22 fw-600 text_small mb-20" id="exampleModalToggleLabel2">Edit Officer profile
+                </h1>
+                <div class="mb-4 position-relative  d-flex justify-content-center">
+
+                    <input id="file" type="file" onchange="loadFile(event1)" class="d-none">
+                    <img class="modal_profile" id="output1" src="assets/images/temp_img/profile-modal.png">
+                    <label class="-label" for="file">
+                        <a
+                            class="secondary fs-16 fw-500  edit_img d-flex justify-content-center align-items-center">
+                            <i class="fi fi-sr-pencil white lh-0 fs-12"></i>
+                        </a>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body p-0">
+            <div class="mb-4">
+                <div class="">
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
+                        <input type="text" class="form-control profile_input" placeholder="Vijay">
+                    </div>
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
+                        <input type="text" class="form-control profile_input" placeholder="Hencha">
+                    </div>
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
+                        <input type="text" class="form-control profile_input" placeholder="@hgfghf">
+                    </div>
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
+                        <input type="email" class="form-control profile_input"
+                            placeholder="vijayhencha@gmail.com">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer p-0">
+            <div class="gap_20 d-flex">
+                <button class="btn_lg2 fs-16 fw-500 br_10" data-bs-dismiss="modal"
+                    aria-label="Close">Cancel</button>
+                <button class="btn_lg fs-16 fw-500 br_10">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Edit Profile MODAL END -->

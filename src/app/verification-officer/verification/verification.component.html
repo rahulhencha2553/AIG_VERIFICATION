@@ -1,0 +1,165 @@
+<nav class="topnavbar d-flex align-items-center justify-content-between">
+    <h4 class="primary mb-0 fs-26 fw-600">Verification</h4>
+    <app-profile-bar></app-profile-bar>
+</nav>
+<div class="main_content">
+    <ul class="nav nav-pills mb-4 gap_12" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="tabs_btn active fs-16 fw-600" id="Pendings" data-bs-toggle="pill" data-bs-target="#Pending"
+                type="button" role="tab" aria-controls="pills-Pending" aria-selected="true" (click)="getVerificationRequests(status.Pending)">Pending</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="tabs_btn fs-16 fw-600" id="Verifieds" data-bs-toggle="pill" data-bs-target="#Verified"
+                type="button" role="tab" aria-controls="pills-Verified"
+                aria-selected="false"  (click)="getVerificationRequests(status.Verified)">Verified</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="tabs_btn fs-16 fw-600" id="Rejecteds" data-bs-toggle="pill" data-bs-target="#Rejected"
+                type="button" role="tab" aria-controls="pills-Rejected"
+                aria-selected="false"  (click)="getVerificationRequests(status.Rejected)">Rejected</button>
+        </li>
+
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+
+        <!-- Pending verification -->
+        <div class="tab-pane fade show active" id="Pending" role="tabpanel"
+            aria-labelledby="pills-Pending-tab" tabindex="0">
+            <div class="verification">
+                <div class="mb_20 d-flex justify-content-between align-items-center">
+                    <h2 class="fs-18 fw-500 secondary mb-0">Pending verification</h2>
+                    <div class="position-relative">
+                        <i class="fi fi-br-search search_icon light2"></i>
+                        <input type="search" class="search2 w-100 fs-16 fw-500 light2"
+                            placeholder="search...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
+                        <div class="verification_card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center  gap_10">
+                                    <img src="assets/images/temp_img/verification.png"
+                                        class="verification_icon">
+                                    <div>
+                                        <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
+                                        <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
+                                    </div>
+                                </div>
+                                <a class="verification_btn fs-15 fw-500 text_small"><i
+                                        class="fi fi-rr-home mx-1 ms-0 text_small fw-500"></i>{{request.addressData.addressType}}</a>
+                            </div>
+                            <div class="d-flex gap_24 mb-3">
+                                <div class="aig_border">
+                                    <h4 class="fs-14 fw-500 grey mb-0">AIG Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.aigCode}}</h5>
+                                </div>
+                                <div>
+                                    <h4 class="fs-14 fw-500 grey mb-0">Block Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.blockCode}}</h5>
+                                </div>
+                            </div>
+                            <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <!-- Pending verification end-->
+
+        <!-- Verified verification -->
+        <div class="tab-pane fade" id="Verified" role="tabpanel" aria-labelledby="pills-Verified-tab"
+            tabindex="0">
+            <div class="verification">
+                <div class="mb_20 d-flex justify-content-between align-items-center">
+                    <h2 class="fs-18 fw-500 secondary mb-0">Verified verification</h2>
+                    <div class="position-relative">
+                        <i class="fi fi-br-search search_icon light2"></i>
+                        <input type="search" class="search2 w-100 fs-16 fw-500 light2"
+                            placeholder="search...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
+                        <div class="verification_card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center  gap_10">
+                                    <img src="assets/images/temp_img/verification.png"
+                                        class="verification_icon">
+                                    <div>
+                                        <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
+                                        <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
+                                    </div>
+                                </div>
+                                <a class="verification_btn fs-15 fw-500 text_small"><i
+                                        class="fi fi-rr-home mx-1 ms-0 text_small fw-500"></i>{{request.addressData.addressType}}</a>
+                            </div>
+                            <div class="d-flex gap_24 mb-3">
+                                <div class="aig_border">
+                                    <h4 class="fs-14 fw-500 grey mb-0">AIG Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.aigCode}}</h5>
+                                </div>
+                                <div>
+                                    <h4 class="fs-14 fw-500 grey mb-0">Block Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.blockCode}}</h5>
+                                </div>
+                            </div>
+                            <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <!-- Verified verification end-->
+
+        <!-- Rejected verification -->
+        <div class="tab-pane fade" id="Rejected" role="tabpanel" aria-labelledby="pills-Rejected-tab"
+            tabindex="0">
+            <div class="verification">
+                <div class="mb_20 d-flex justify-content-between align-items-center">
+                    <h2 class="fs-18 fw-500 secondary mb-0">Rejected verification</h2>
+                    <div class="position-relative">
+                        <i class="fi fi-br-search search_icon light2"></i>
+                        <input type="search" class="search2 w-100 fs-16 fw-500 light2"
+                            placeholder="search...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
+                        <div class="verification_card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center  gap_10">
+                                    <img src="assets/images/temp_img/verification.png"
+                                        class="verification_icon">
+                                    <div>
+                                        <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
+                                        <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
+                                    </div>
+                                </div>
+                                <a class="verification_btn fs-15 fw-500 text_small"><i
+                                        class="fi fi-rr-home mx-1 ms-0 text_small fw-500"></i>{{request.addressData.addressType}}</a>
+                            </div>
+                            <div class="d-flex gap_24 mb-3">
+                                <div class="aig_border">
+                                    <h4 class="fs-14 fw-500 grey mb-0">AIG Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.aigCode}}</h5>
+                                </div>
+                                <div>
+                                    <h4 class="fs-14 fw-500 grey mb-0">Block Code</h4>
+                                    <h5 class="fs-16 fw-500 text_small mb-0">{{request.blockCode}}</h5>
+                                </div>
+                            </div>
+                            <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                        </div>
+                    </div>
+                
+                  
+                </div>
+            </div>
+        </div>
+        <!-- Rejected verification end-->
+
+    </div>
+</div>

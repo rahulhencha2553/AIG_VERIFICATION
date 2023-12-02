@@ -1,0 +1,151 @@
+<nav class="topnavbar d-flex align-items-center justify-content-between">
+    <h4 class="primary mb-0 fs-26 fw-600">Reports</h4>
+    <app-profile-bar></app-profile-bar>
+</nav>
+<div class="main_content">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <h4 class="mb-4 fs-20 fw-600 primary report_heading">Total Verifications</h4>
+            <div class="report_card">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h4 class="fs-16 fw-600 primary mb-0">Verifications</h4>
+                    <div class="dropdown report">
+                        <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                            6 Month
+                        </a>
+                        <ul class="dropdown-menu" data-popper-placement="bottom-start"
+                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-62px, 34px);">
+                            <li><a class="dropdown-item" href="#">January</a></li>
+                            <li><a class="dropdown-item" href="#">February</a></li>
+                            <li><a class="dropdown-item" href="#">March</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <img src="assets/images/temp_img/verification-chart.png" class="img-fluid w-100">
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="mb-4 d-flex gap_50 report_heading">
+                <h4 class="fs-20 fw-600 primary mb-0">Verified</h4>
+                <h4 class="fs-20 fw-600 primary mb-0">Pending</h4>
+                <h4 class="fs-20 fw-600 primary mb-0">Verifications</h4>
+            </div>
+            <div class="report_card">
+                <!-- <img src="assets/images/temp_img/report-chat.png" class="img-fluid w-100"> -->
+             
+                            <div id="donutchart" style="width:700px; height:340px;">
+                                
+                            </div>
+                  
+            </div>
+        </div>
+    </div>
+    <div class="report_card mb_30">
+        <div class="dropdown report mb-4">
+            <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0" href="#"
+                role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                6 Month
+            </a>
+            <ul class="dropdown-menu" data-popper-placement="bottom-start"
+                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(3px, 34px);">
+                <li><a class="dropdown-item" href="#">January</a></li>
+                <li><a class="dropdown-item" href="#">February</a></li>
+                <li><a class="dropdown-item" href="#">March</a></li>
+            </ul>
+        </div>
+        <img src="assets/images/temp_img/officerchart.png" class="img-fluid w-100">
+    </div>
+    <div class="table_container">
+        <div class="d-flex Officer_table justify-content-between align-items-center">
+            <div class="d-flex">
+                <h4 class="fs-18 fw-500 primary">Top Verification Officers</h4>
+                <span class="Officer  mx-0 ms-2 fs-12 fw-400 primary">100 officers</span>
+            </div>
+
+        </div>
+        <table class="table mb-0 admin-table">
+            <thead style="background:#EDF9FB;">
+                <tr class="table_heading">
+                    <th scope="col" class="fs-14 fw-500 theading">Name</th>
+                    <th scope="col" class="fs-14 fw-500 theading">Email address</th>
+                    <th scope="col" class="fs-14 fw-500 theading">Password</th>
+                    <th scope="col" class="fs-14 fw-500 theading">User ID</th>
+                </tr>
+            </thead>
+            <tbody class="bg_light">
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                    </td>
+                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
+                    <td class="fs-14 fw-400 theading">******** <i
+                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
+                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
