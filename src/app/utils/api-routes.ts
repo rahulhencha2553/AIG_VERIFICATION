@@ -14,6 +14,7 @@ export class ApiRoutes {
     public static PORTAL_OFFICER_DASHBOARD = this.BASE_URL + '/addressVerification/portalOfficerDashboard-web';
     
     public static PORTAL_OFFICER_VERIFICATION_REQUESTS = this.BASE_URL + '/addressVerification/portalOfficerByStatus-web?status=';
+    public static PORTAL_OFFICER_VERIFICATION_REQUEST_DETAILS = this.BASE_URL + '/addressVerification/requestDetails?uuid=';
     
 
 }
