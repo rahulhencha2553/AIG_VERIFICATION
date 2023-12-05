@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+// to hide the eye icon from input tag type password
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear
+{
+    display: none;
+}

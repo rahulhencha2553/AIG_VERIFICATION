@@ -40,7 +40,7 @@ export class AuthService {
     formData.append('firstName', portalOfficer.firstName);
     formData.append('lastName', portalOfficer.lastName);
     formData.append('email', portalOfficer.email);
-    formData.append('password', portalOfficer.phoneNumber);
+    formData.append('phoneNumber', portalOfficer.phoneNumber);
 
     return this.httpClient.put<any>(ApiRoutes.PORTAL_OFFICER_UPDATE,formData);
   }

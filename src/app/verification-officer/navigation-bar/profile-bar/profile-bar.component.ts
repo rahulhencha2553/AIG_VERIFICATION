@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalOfficer } from 'src/app/models/portal-officer';
 import { ChangePasswordRequest } from 'src/app/payload/change-password-request';
 import { UpdateOfficerRequest } from 'src/app/payload/update-officer-request';
 import { AuthService } from 'src/app/services/auth.service';
+import { AppUtils } from 'src/app/utils/app-utils';
 
 @Component({
   selector: 'app-profile-bar',
@@ -17,11 +19,44 @@ export class ProfileBarComponent implements OnInit {
   imagePreview: string = '';
   changePasswordRequest:ChangePasswordRequest = new ChangePasswordRequest();
   confirmPassword:string='';
-  constructor(private authService: AuthService, private router: Router) {}
+  @ViewChild('i1', { static: true }) icon1!: ElementRef;
+  editForm!: FormGroup;
+
+  constructor(private authService: AuthService, private router: Router,
+  ) {
+    this.editForm = new FormGroup({
+      firstName: new FormControl("", [Validators.required]),
+      lastName: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required,Validators.email]),
+      phoneNumber: new FormControl("", [Validators.required, Validators.pattern(/^[0-9]{10}$/)])
+    })
+
+  }
+
+
+  
+
+
+  public firstTaskFormControl() {
+    Object.keys(this.editForm.controls).forEach(key => {
+      const control = this.editForm.get(key) ;
+      if (control) {
+        control.markAsTouched();
+      }
+    });
+    const firstInvalidControl = document.querySelector('input.ng-invalid');
+    if (firstInvalidControl) {
+      firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+
 
   ngOnInit(): void {
     this.getOfficer();
   }
+
+  iconClass='fi fi-rr-eye eye_icon';
 
    // get officer 
   public getOfficer() {
@@ -33,12 +68,14 @@ export class ProfileBarComponent implements OnInit {
 
   // setting officer details to update request officer
   setOfficer() {
+    if(this.officer){
     this.updateOffier.firstName = this.officer.firstName;
     this.updateOffier.lastName = this.officer.lastName;
     this.updateOffier.email = this.officer.email;
     this.updateOffier.phoneNumber = this.officer.phoneNumber;
     this.updateOffier.profilePicture = this.officer.profilePicture;
     this.imagePreview = this.updateOffier.profilePicture;
+    }
   }
 
   // setting image to officer
@@ -56,6 +93,8 @@ export class ProfileBarComponent implements OnInit {
 
   // update officer
   public updatePortalOfficer() {
+    this.firstTaskFormControl();
+  if(this.editForm.valid )
     this.authService.updateOfficer(this.updateOffier).subscribe(
       (data: any) => {
         this.officer = data.officer;
@@ -71,7 +110,7 @@ export class ProfileBarComponent implements OnInit {
      if(this.changePasswordRequest.newPassword===this.confirmPassword){
             
       this.authService.changePassword(this.changePasswordRequest).subscribe((data:any)=>{
-               
+        this.clearData();
       })
 
      }else{
@@ -79,11 +118,20 @@ export class ProfileBarComponent implements OnInit {
      }
   }
 
+  clearData(){
+    this.changePasswordRequest.currentPassword = '';
+    this.changePasswordRequest.newPassword = '';
+
+    this.confirmPassword='';
+  }
 
   // logout officer 
   public logOut() {
     this.authService.logOut();
   }
 
+ changePasswordIcon(element:any){
+   AppUtils.changePassowrdIcon(element);
+ }
 
 }

@@ -17,11 +17,12 @@
                     </div>
                     
                     <div class="position-relative mb_20">
-                        <input type="text" formControlName="password" name="password" class="form-control  profile_input px_41" [(ngModel)]="authRequest.password"  placeholder="Enter Password">
-                        <i class="fi fi-rr-eye eye_icon2 lh-1 mb-2"></i>
-                        <div *ngIf="isFieldInvalidForLoginForm('password')"
-                        class="text-danger ms-2"><b>Password is required</b></div>
+                        <input  type="text" #i1  formControlName="password" name="password" class="form-control  profile_input px_41" [(ngModel)]="authRequest.password"  placeholder="Enter Password">
+                        <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
+                      
                     </div>
+                    <div *ngIf="isFieldInvalidForLoginForm('password')"
+                    class="text-danger ms-2"><b>Password is required</b></div>
                     <h4 class="forgot mb-4" data-bs-target="#forgot-password" data-bs-toggle="modal">Forgot password?
                     </h4>
                     <a class="btn btn_primary fs-15 fw-600 w-100 m-0" type="submit" (click)="loginOfficer()">Log in</a>
