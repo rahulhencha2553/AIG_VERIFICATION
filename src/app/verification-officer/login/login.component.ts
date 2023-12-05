@@ -65,5 +65,8 @@ export class LoginComponent implements OnInit {
 
  
 
+  changePasswordIcon(element:any){
+    AppUtils.changePassowrdIcon(element);
+  }
 
 }

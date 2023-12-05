@@ -18,30 +18,31 @@
             </div>
             <div class="modal-body p-0">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <img class="modal_profile" src="assets/images/temp_img/profile-modal.png">
+                    <img class="modal_profile" [src]="addressOfficer.profilePicture">
                     <button class="edit_btn fs-16 f-500 right_menu_toggle" onclick="btn1_controller()">
                         <i class="fi fi-sr-pencil fs-12 mx-2 ms-0"></i>Edit
                     </button>
                 </div>
+                
             </div>
-            <div c>
+            <div >
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="black fs-15 fw-400 mb-2">First Name</label>
-                        <input type="text" class="form-control profile_input" placeholder="Vijay">
+                        <input type="text"  class="form-control profile_input" [(ngModel)]="addressOfficer.firstName" name="firstName" disabled placeholder="Vijay">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="black fs-15 fw-400 mb-2">Last Name</label>
-                        <input type="text" class="form-control profile_input" placeholder="Hencha">
+                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName" disabled placeholder="Hencha">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="black fs-15 fw-400 mb-2">Email Address</label>
                         <input type="text" class="form-control profile_input"
-                            placeholder="vijayhencha@gmail.com">
+                            [(ngModel)]="addressOfficer.email" name="email" disabled placeholder="vijayhencha@gmail.com">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="black fs-15 fw-400 mb-2">Phone Number</label>
-                        <input type="text" class="form-control profile_input" placeholder="9577562472">
+                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" disabled placeholder="9577562472">
                     </div>
                 </div>
             </div>
@@ -55,9 +56,9 @@
             <div class="modal-body p-0">
                 <div class="d-flex  align-items-center mb-4">
 
-                    <input id="file" type="file" onchange="loadFile(event)" class="d-none">
-                    <img class="modal_profile" id="output" src="assets/images/temp_img/profile-modal.png">
-                    <label class="-label" for="file">
+                    <input id="file3" type="file" (change)="setImage($event)" class="d-none">
+                    <img class="modal_profile" id="output" [src]="imagePreview">
+                    <label class="-label" for="file3">
                         <a class="secondary fs-16 fw-500 mx-0 ms-4 change_img d-flex">
                             <img class="mx-2 ms-0" src="assets/images/svg_img/album.svg">Change Image
                         </a>
@@ -67,25 +68,25 @@
             <div class="row mb-2">
                 <div class="col-md-6 mb-3">
                     <label class="black fs-15 fw-400 mb-2">First Name</label>
-                    <input type="text" class="form-control profile_input" placeholder="Vijay">
+                    <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  placeholder="Vijay">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="black fs-15 fw-400 mb-2">Last Name</label>
-                    <input type="text" class="form-control profile_input" placeholder="Hencha">
+                    <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"   placeholder="Hencha">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="black fs-15 fw-400 mb-2">Email Address</label>
                     <input type="text" class="form-control profile_input"
-                        placeholder="vijayhencha@gmail.com">
+                        [(ngModel)]="addressOfficer.email" name="email"    placeholder="vijayhencha@gmail.com">
                 </div>
                 <div class="col-md-6 mb">
                     <label class="black fs-15 fw-400 mb-2">Phone Number</label>
-                    <input type="text" class="form-control profile_input" placeholder="9577562472">
+                    <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber"  placeholder="9577562472">
                 </div>
             </div>
             <div class="gap_20 d-flex justify-content-end">
-                <button class="btn_secondary fs-16 fw-500">Cancel</button>
-                <button class="btn_primary fs-16 fw-500 right_menu_toggle" onclick="btn2_controller()">Save
+                <button class="btn_secondary fs-16 fw-500" (click)="getOfficerById(addressOfficer.userId)">Cancel</button>
+                <button class="btn_primary fs-16 fw-500 right_menu_toggle" onclick="btn2_controller()" (click)="updateOfficer()">Save
                     changes</button>
 
             </div>
@@ -115,7 +116,7 @@
             <!-- Pending verification -->
             <div class="tab-pane fade show active" id="Pending" role="tabpanel"
                 aria-labelledby="pills-Pending-tab" tabindex="0">
-                <div c>
+                <div >
 
                     <div class="row">
                         <div class="col-md-6 mb-4">

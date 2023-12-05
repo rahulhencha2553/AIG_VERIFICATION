@@ -32,4 +32,14 @@ export class AppUtils {
     }
     return true;
   }
+
+
+  // change icons 
+  public static changePassowrdIcon(element:any){
+    if(element.type==='text')
+    element.type ='password'
+  else
+  element.type ='text'
+    
+  }
 }
