@@ -20,6 +20,7 @@ import { AssignOfficerComponent } from './verification-officer/assign-officer/as
 import { AddressOfficerDetailsComponent } from './verification-officer/address-officer-details/address-officer-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VerificationInterceptor, authInterceptorProvider } from './interceptor/verification.interceptor';
+import { NumberFormatPipe } from './pipes/number-format.pipe';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { VerificationInterceptor, authInterceptorProvider } from './interceptor/
     RequestDetailsComponent,
     AssignOfficerComponent,
     AddressOfficerDetailsComponent,
-
+    NumberFormatPipe,
+    
   ],
   imports: [
     BrowserModule,
