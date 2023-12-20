@@ -29,6 +29,8 @@ export class VerificationInterceptor implements HttpInterceptor {
       if(error.status==401){ 
         this.authService.logOut();
       }
+      console.log(error);
+      
       return throwError(error);
     }));
   }

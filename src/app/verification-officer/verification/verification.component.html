@@ -46,8 +46,7 @@
                                         <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
                                     </div>
                                 </div>
-                                <a class="verification_btn fs-15 fw-500 text_small"><i
-                                        class="fi fi-rr-home mx-1 ms-0 text_small fw-500"></i>{{request.addressData.addressType}}</a>
+                                <a class="verification_btn fs-15 fw-500 text_small"><img [src]="request.addressData.addressTypeImage">{{request.addressData.addressType}}</a>
                             </div>
                             <div class="d-flex gap_24 mb-3">
                                 <div class="aig_border">
@@ -60,6 +59,9 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                            <div class="d-flex justify-content-end">
+                                <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
+                            </div>
                         </div>
                     </div>
                 
@@ -92,8 +94,7 @@
                                         <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
                                     </div>
                                 </div>
-                                <a class="verification_btn fs-15 fw-500 text_small"><i
-                                        class="fi fi-rr-home mx-1 ms-0 text_small fw-500"></i>{{request.addressData.addressType}}</a>
+                                <a class="verification_btn fs-15 fw-500 text_small"><img [src]="request.addressData.addressTypeImage">{{request.addressData.addressType}}</a>
                             </div>
                             <div class="d-flex gap_24 mb-3">
                                 <div class="aig_border">
@@ -106,6 +107,9 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                            <div class="d-flex justify-content-end">
+                                <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
+                            </div>
                         </div>
                     </div>
                 
@@ -152,6 +156,9 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
+                            <div class="d-flex justify-content-end">
+                                <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
+                            </div>
                         </div>
                     </div>
                 

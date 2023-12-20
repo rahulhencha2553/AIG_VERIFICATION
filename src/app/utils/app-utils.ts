@@ -5,6 +5,14 @@ export class AppUtils {
 
    public  emailPattern = /^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
 
+
+// dismiss modal
+public static modalDismiss(id:string){
+const button = document.getElementById(id);
+button?.click();
+}
+
+
   //           password matcher
   static match(control: AbstractControl): void | null {
     const passwordControl = control.get('password');
@@ -20,6 +28,9 @@ export class AppUtils {
 
     confirmPasswordControl!.setErrors({ match: true });
   }
+
+
+
 
   //  check is email
 

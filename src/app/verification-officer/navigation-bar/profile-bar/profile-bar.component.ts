@@ -26,9 +26,7 @@ export class ProfileBarComponent implements OnInit {
   ) {
     this.editForm = new FormGroup({
       firstName: new FormControl("", [Validators.required]),
-      lastName: new FormControl("", [Validators.required]),
-      email: new FormControl("", [Validators.required,Validators.email]),
-      phoneNumber: new FormControl("", [Validators.required, Validators.pattern(/^[0-9]{10}$/)])
+      lastName: new FormControl("", [Validators.required])
     })
 
   }
@@ -92,12 +90,14 @@ export class ProfileBarComponent implements OnInit {
   }
 
   // update officer
-  public updatePortalOfficer() {
+  public updatePortalOfficer(id:string) {
     this.firstTaskFormControl();
   if(this.editForm.valid )
     this.authService.updateOfficer(this.updateOffier).subscribe(
       (data: any) => {
         this.officer = data.officer;
+        this.authService.portalOfficer.next(this.officer);
+        AppUtils.modalDismiss(id);
       },
       (err: any) => {
         console.log(err);
@@ -123,6 +123,7 @@ export class ProfileBarComponent implements OnInit {
     this.changePasswordRequest.newPassword = '';
 
     this.confirmPassword='';
+   this.setOfficer();
   }
 
   // logout officer 

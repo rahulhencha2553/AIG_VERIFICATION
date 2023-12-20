@@ -794,6 +794,8 @@ ul li a {
 }
 
 .verification_image {
+  height: 283px;
+  object-fit: fill;
   width: 100%;
   border-radius: 12px;
 }
@@ -895,6 +897,8 @@ tbody tr:last-child {
 }
 
 .verification_btn {
+  display: flex;
+  align-items: center;
   padding: 12px;
   border-radius: 12px;
   background: #F7F7F7;
@@ -1369,4 +1373,251 @@ td{
 .login_img h2{
   font-size: 26px;
 }
+}
+
+
+
+/* add css in 18/12 */
+.fs-17 {
+  font-size: 17px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.mb_36 {
+  margin-bottom: 36px;
+}
+
+.voice_card {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--StrokeColor, #D5DEEB);
+}
+
+.request_details {
+  max-width: 648px !important;
+}
+
+.mb_16 {
+  margin-bottom: 16px;
+}
+
+.videos_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  width: 52px;
+  border-radius: 12px;
+  background: var(--Theme-Gradient, linear-gradient(102deg, #05143D 5.55%, #2B417D 100.99%));
+}
+
+.btn_close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -13%;
+  right: 0;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* PAGINATION CSS */
+.booking_search:focus {
+  background-color: #fff;
+  border-color: #f67e2b;
+  outline: 0;
+}
+
+/* .form-select {
+  height: 46px;
+} */
+
+.table>:not(caption)>*>* {
+  padding: 15px 22px;
+}
+
+.show_entries {
+  padding: 22px;
+}
+
+.nav-pills .nav-link {
+  padding: 8px;
+}
+
+.nav-pills {
+  gap: 10px;
+}
+
+.table_hover tr:hover {
+  background-color: #F4F5F6;
+}
+
+.form-control:focus {
+  border: 1px solid #f68229;
+}
+
+.page-link:focus {
+  color: #fff !important;
+  background-color: #2b417d !important;
+  outline: 0;
+  box-shadow: none !important;
+  border-radius: 6px;
+
+}
+
+.pagination {
+  align-items: center;
+  --bs-pagination-border-color: none;
+  --bs-pagination-bg: #fbefe9;
+  --bs-pagination-border-radius: 6px !important;
+}
+
+.page-link {
+  color: #2B417D !important;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 17px;
+}
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px;
+}
+
+.pagination {
+  align-items: center;
+  --bs-pagination-border-color: none !important;
+  --bs-pagination-bg: #e6ecfd !important;
+  --bs-pagination-border-radius: 6px !important;
+}
+
+ul li a {
+  padding: 13px 15px 13px 20px;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: var(--bs-pagination-hover-color);
+  background-color: var(--bs-pagination-hover-bg);
+  border-color: var(--bs-pagination-hover-border-color);
+}
+
+/*Snackbar / Toast  */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  min-width: 250px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  z-index: 1;
+  top: 10px;
+  right: 2%;
+  height:48px;
+  padding: 12px;
+  background: #A0E1B0;
+  font-size: 17px;
+  font-weight: 500;
+  box-shadow: 0px 0px 10px #d7d7d7; 
+}
+.dark2{
+  color: #383838;
+}
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#success.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  min-width: 250px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  z-index: 1;
+  top: 10px;
+  right: 2%;
+  height:48px;
+  padding: 12px;
+  background: #FFEFEF;
+  color: #FC0005;
+  font-size: 17px;
+  font-weight: 500;
+  box-shadow: 0px 0px 10px #d7d7d7;
+}
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#error.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+.verification_btn img{
+  height: 15px;
+  width: 15px;
+  margin-right: 6px;
+}
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
