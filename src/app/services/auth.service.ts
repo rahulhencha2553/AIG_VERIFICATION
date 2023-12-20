@@ -8,6 +8,8 @@ import { PortalOfficer } from '../models/portal-officer';
 import { Router } from '@angular/router';
 import { UpdateOfficerRequest } from '../payload/update-officer-request';
 import { ChangePasswordRequest } from '../payload/change-password-request';
+import { ForgetPasswordRequest } from '../payload/forget-password-request';
+//import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -50,8 +52,20 @@ export class AuthService {
      return this.httpClient.post<any>(ApiRoutes.PORTAL_OFFICER_CHANGE_PASS,changePasswordRequest);
   }
 
+  // send top to email for forget password
+  public sendEmail(forgetPasswordRequest:ForgetPasswordRequest){
+    return this.httpClient.post<any>(ApiRoutes.PORTAL_OFFICER_SEND_OTP_TO_EMAIL,forgetPasswordRequest);
+  }
 
+  // verify otp
+  public verifyOtp(forgetPasswordRequest:ForgetPasswordRequest){
+    return this.httpClient.post<any>(ApiRoutes.PORTAL_OFFICER_VERIFY_OTP,forgetPasswordRequest);
+  }
 
+ // set new password
+  public setNewPassword(forgetPasswordRequest:ForgetPasswordRequest){
+    return this.httpClient.post<any>(ApiRoutes.PORTAL_OFFICER_NEW_PASSWORD,forgetPasswordRequest);
+  }
 
   // setting tokent to localStorage
   public setToken(token: string) {
@@ -61,10 +75,17 @@ export class AuthService {
   // get token from localStorage
   public getToken() {
     let token = localStorage.getItem('accessToken');
-    console.log(token);
-
     if (token === undefined) return null;
     return token;
+  }
+
+  public getDecodeAccessToken(token:string):any{
+ // return jwt_decode(token);
+}
+  // check token expiration time
+  public isTokenExpired() {
+    const expiry = (JSON.parse(atob(this.getToken()!.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 
   public logOut() {

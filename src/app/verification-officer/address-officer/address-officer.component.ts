@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AddressOfficer } from 'src/app/models/address-officer';
 import { AddressOfficerResponse } from 'src/app/payload/address-officer-response';
 import { OfficerUpdateStatus } from 'src/app/payload/officer-update-status';
@@ -10,10 +15,9 @@ import { AppUtils } from 'src/app/utils/app-utils';
 @Component({
   selector: 'app-address-officer',
   templateUrl: './address-officer.component.html',
-  styleUrls: ['./address-officer.component.scss']
+  styleUrls: ['./address-officer.component.scss'],
 })
 export class AddressOfficerComponent implements OnInit {
-
   pageRequests: PageRequests = new PageRequests();
   addressOfficers: AddressOfficerResponse[] = [];
   addressOfficer: AddressOfficer = new AddressOfficer();
@@ -21,66 +25,64 @@ export class AddressOfficerComponent implements OnInit {
   deleteOfficerId = 0;
   addForm!: FormGroup;
 
-  constructor(private addressOfficerService: AddressOfficerService, private fb: FormBuilder) {
+  constructor(
+    private addressOfficerService: AddressOfficerService,
+    private fb: FormBuilder
+  ) {
     this.pageRequests.pageSize = 100;
 
     this.addForm = new FormGroup({
-      firstName: new FormControl("", [Validators.required]),
-      lastName: new FormControl("", [Validators.required]),
-      email: new FormControl("", [Validators.email]),
-      userName: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
-      phoneNumber: new FormControl("", [Validators.required, Validators.pattern(/^[0-9]{10}$/)])
-    })
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.email]),
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[0-9]{10}$/),
+      ]),
+    });
   }
   ngOnInit(): void {
-
     this.getAddressOfficers();
   }
 
-
-
-
-
-
-
-
-
-
-
-
   public firstTaskFormControl() {
-    Object.keys(this.addForm.controls).forEach(key => {
-      const control = this.addForm.get(key) ;
+    Object.keys(this.addForm.controls).forEach((key) => {
+      const control = this.addForm.get(key);
       if (control) {
         control.markAsTouched();
       }
     });
     const firstInvalidControl = document.querySelector('input.ng-invalid');
     if (firstInvalidControl) {
-      firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstInvalidControl.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
     }
   }
 
-
-
-
-
   // get address officers
-  public  getAddressOfficers() {
-    this.addressOfficerService.getAllOfficers(this.pageRequests).subscribe((data: any) => {
-      console.log(data);
-      this.addressOfficers = data.data.content;
-    })
+  public getAddressOfficers() {
+    this.addressOfficerService
+      .getAllOfficers(this.pageRequests)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.addressOfficers = data.data.content;
+      });
   }
 
   // add address officer
-  public addOfficer() {
-this.firstTaskFormControl();
+  public addOfficer(id:string) {
+    this.firstTaskFormControl();
 
-      this.addressOfficerService.addOfficer(this.addressOfficer).subscribe((data: any) => {
+    this.addressOfficerService
+      .addOfficer(this.addressOfficer)
+      .subscribe((data: any) => {
         this.getAddressOfficers();
-      })
+        AppUtils.modalDismiss(id);
+      });
   }
 
   public clearData() {
@@ -93,21 +95,26 @@ this.firstTaskFormControl();
 
   // get officer by id
   public getOfficerById(userId: any) {
-    this.addressOfficerService.getAddressOfficerById(userId).subscribe((data: any) => {
-      this.addressOfficer = data.data;
-      console.log(this.addressOfficer);
-      this.imagePreview = this.addressOfficer.profilePicture
-    })
+    this.addressOfficerService
+      .getAddressOfficerById(userId)
+      .subscribe((data: any) => {
+        this.addressOfficer = data.data;
+        console.log(this.addressOfficer);
+        this.imagePreview = this.addressOfficer.profilePicture;
+      });
   }
 
   // update officer
 
-  public updateOfficer() {
-    this.addressOfficerService.updateOfficer(this.addressOfficer).subscribe((data: any) => {
-      this.getAddressOfficers();
-    })
+  public updateOfficer(id:string) {  
+     
+    this.addressOfficerService
+      .updateOfficer(this.addressOfficer)
+      .subscribe((data: any) => {
+        this.getAddressOfficers();
+           AppUtils.modalDismiss(id);
+      });
   }
-
 
   // setting image to officer
   public setImage(event: any) {
@@ -128,9 +135,11 @@ this.firstTaskFormControl();
   public updateOfficerStatus(userId: any, isActive: Boolean) {
     this.officerUpdateStatus.userId = userId;
     this.officerUpdateStatus.isActive = isActive;
-    this.addressOfficerService.updateOfficerStatus(this.officerUpdateStatus).subscribe((data: any) => {
-      this.getAddressOfficers()
-    })
+    this.addressOfficerService
+      .updateOfficerStatus(this.officerUpdateStatus)
+      .subscribe((data: any) => {
+        this.getAddressOfficers();
+      });
   }
 
   // setting data before confirmation
@@ -140,10 +149,12 @@ this.firstTaskFormControl();
 
   // delete officer by id
   public deleteOfficer() {
-    this.addressOfficerService.deleteOfficer(this.deleteOfficerId).subscribe((data: any) => {
-      this.clearDeleteData();
-      this.getAddressOfficers()
-    })
+    this.addressOfficerService
+      .deleteOfficer(this.deleteOfficerId)
+      .subscribe((data: any) => {
+        this.clearDeleteData();
+        this.getAddressOfficers();
+      });
   }
 
   public changePasswordIcon(element: any) {
@@ -151,11 +162,10 @@ this.firstTaskFormControl();
   }
 
   check(t1: any, password: any) {
-    alert("helo")
+    alert('helo');
 
     console.log(t1);
     console.log(password);
-
   }
 
   passwordVisibilityMap = new Map<any, boolean>();
@@ -168,5 +178,4 @@ this.firstTaskFormControl();
   public isPasswordVisible(password: any): boolean {
     return this.passwordVisibilityMap.get(password) || false;
   }
-
 }

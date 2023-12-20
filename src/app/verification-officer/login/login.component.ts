@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthRequest } from 'src/app/payload/auth-request';
+import { ForgetPasswordRequest } from 'src/app/payload/forget-password-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppUtils } from 'src/app/utils/app-utils';
 
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   authRequest: AuthRequest = new AuthRequest();
   loginForm: FormGroup;
 
+  forgetPasswordRequest: ForgetPasswordRequest = new ForgetPasswordRequest();
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -26,7 +28,36 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.otpModelManger()
+    this.checkIsAlreadyLoggedIn();
+  }
+
+  otp1 = '';
+  otp2 = '';
+  otp3 = '';
+  otp4 = '';
+  confimPassword = '';
+
+
+
+
+
+
+// send to dashobard if didn't logout
+checkIsAlreadyLoggedIn(){
+  console.log(this.authService.isTokenExpired());
+  
+  if(!this.authService.isTokenExpired()){
+    this.router.navigate(['verify'])
+  }
+}
+
+
+
+
+
+
 
   // validation checking
   isFieldInvalidForLoginForm(fieldName: string): boolean {
@@ -44,6 +75,8 @@ export class LoginComponent implements OnInit {
     const firstInvalidControl = document.querySelector('input.ng-invalid');
   }
 
+
+
   // login
   public loginOfficer() {
     this.loginFormSubmition();
@@ -51,9 +84,9 @@ export class LoginComponent implements OnInit {
       this.authService.officerLogin(this.authRequest).subscribe({
         next: (data: any) => {
           console.log(data);
-          
+
           this.authService.setToken(data.officer.accessToken);
-      
+
           this.router.navigate(['verify']);
         },
         error: (err: any) => {
@@ -63,10 +96,81 @@ export class LoginComponent implements OnInit {
     }
   }
 
- 
+  // send otp to email
+  public sendEmail() {
+    this.authService.sendEmail(this.forgetPasswordRequest).subscribe(
+      (data: any) => {
+        console.log(data.message);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
-  changePasswordIcon(element:any){
+  // verify otp
+  public verifyOtp() {
+    this.forgetPasswordRequest.otp =
+      this.otp1 + this.otp2 + this.otp3 + this.otp4;
+    this.authService.verifyOtp(this.forgetPasswordRequest).subscribe(
+      (data: any) => {
+        console.log(data.message);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  // set new password
+  public setNewPassword() {
+    if (this.confimPassword === this.forgetPasswordRequest.newPassword) {
+      this.authService.setNewPassword(this.forgetPasswordRequest).subscribe(
+        (data: any) => {
+          console.log(data.message);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else alert("confirm password didn't match");
+  }
+
+  changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
   }
 
+
+  otpModelManger(){
+    const inputs = document.getElementById("inputs") as HTMLInputElement;
+    inputs.addEventListener("keyup", function (e) {
+      const target = e.target as HTMLInputElement;
+      const val = target.value;
+      if (isNaN(Number(val))) {
+        target.value = "";
+        return;
+      }
+      if (val != "") {
+        const next = target.nextElementSibling as HTMLInputElement;
+        if (next) {
+          next.focus();
+        }
+      }
+    });
+    inputs.addEventListener("keyup", function (e) {
+      const target = e.target as HTMLInputElement;
+      const key = e.key.toLowerCase();
+      if (key == "backspace" || key == "delete") {
+        target.value = "";
+        const prev = target.previousElementSibling as HTMLInputElement;
+        if (prev) {
+          prev.focus();
+        }
+        return;
+      }
+    });
+    
+    
+    
+  }
 }

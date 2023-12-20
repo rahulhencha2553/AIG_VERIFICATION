@@ -74,76 +74,17 @@
                 </tr>
             </thead>
             <tbody class="bg_light">
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
+                <tr *ngFor="let officer of addressOfficers">
+                    <td class="d-flex align-items-center" >
+                        <img [src]="officer.profilePicture" class="address_icon">
+                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">{{officer.firstName +" "+officer.lastName}}</h5>
                     </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
+                    <td class="fs-14 fw-400 theading">{{officer.email}}</td>
+                    <td class="fs-14 fw-400 theading">{{isPasswordVisible(officer.password)?officer.password:"********"}} <i
+                        [ngClass]=" isPasswordVisible(officer.password)?'fi fi-ss-eye mx-0 ms-1':'fi fi-ss-eye-crossed mx-0 ms-1'" (click)="togglePasswordVisibility(officer.password)" ></i></td>
+                    <td class="fs-14 fw-400 theading">{{officer.userName}}</td>
                 </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
-                <tr>
-                    <td class="d-flex align-items-center">
-                        <img src="assets/images/temp_img/address-icon.png" class="address_icon">
-                        <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">John Smith</h5>
-                    </td>
-                    <td class="fs-14 fw-400 theading">oliviauntitledui.com</td>
-                    <td class="fs-14 fw-400 theading">******** <i
-                            class="fi fi-ss-eye-crossed mx-0 ms-1"></i></td>
-                    <td class="fs-14 fw-400 theading">vijay_hencha</td>
-                </tr>
+            
             </tbody>
         </table>
 
