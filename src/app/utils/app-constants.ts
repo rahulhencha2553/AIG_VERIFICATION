@@ -2,6 +2,7 @@ export class AppConstants {
 
     public static USER_NAME_INVALID ='';
 
+    
 
     
 // Provide all set of validation messages here

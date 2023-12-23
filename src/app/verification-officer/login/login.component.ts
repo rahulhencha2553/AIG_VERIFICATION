@@ -15,8 +15,13 @@ import { AppUtils } from 'src/app/utils/app-utils';
 export class LoginComponent implements OnInit {
   authRequest: AuthRequest = new AuthRequest();
   loginForm: FormGroup;
+  otpForm: FormGroup ;
+  passwordForm:FormGroup;
 
+  isValid = false;
+  submitted = false;
   forgetPasswordRequest: ForgetPasswordRequest = new ForgetPasswordRequest();
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -27,9 +32,21 @@ export class LoginComponent implements OnInit {
       userId: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    this.otpForm = this.formBuilder.group({
+      otp1: ['', Validators.required],
+      otp2: ['', Validators.required],
+      otp3: ['', Validators.required],
+      otp4: ['', Validators.required],
+    });
+
+    this.passwordForm = this.formBuilder.group({
+      newPassword: ['',Validators.required],
+      confimPassword: ['',Validators.required]
+    })
   }
   ngOnInit(): void {
-    this.otpModelManger()
+    this.otpModelManger();
     this.checkIsAlreadyLoggedIn();
   }
 
@@ -39,28 +56,17 @@ export class LoginComponent implements OnInit {
   otp4 = '';
   confimPassword = '';
 
+  // send to dashobard if didn't logout
+  checkIsAlreadyLoggedIn() {
+    console.log(this.authService.isTokenExpired());
 
-
-
-
-
-// send to dashobard if didn't logout
-checkIsAlreadyLoggedIn(){
-  console.log(this.authService.isTokenExpired());
-  
-  if(!this.authService.isTokenExpired()){
-    this.router.navigate(['verify'])
+    if (!this.authService.isTokenExpired()) {
+      this.router.navigate(['verify']);
+    }
   }
-}
-
-
-
-
-
-
 
   // validation checking
-  isFieldInvalidForLoginForm(fieldName: string): boolean {
+  isFieldInvalidFormField(fieldName: string): boolean {
     const field = this.loginForm.get(fieldName);
     return field ? field.invalid && field.touched : false;
   }
@@ -75,7 +81,25 @@ checkIsAlreadyLoggedIn(){
     const firstInvalidControl = document.querySelector('input.ng-invalid');
   }
 
+  public otpFormSubmition() {
+    Object.keys(this.otpForm.controls).forEach((key) => {
+      const control = this.otpForm.get(key);
+      if (control) {
+        control.markAsTouched();
+      }
+    });
+    const firstInvalidControl = document.querySelector('input.ng-invalid');
+  }
 
+  public passwordFormSubmition() {
+    Object.keys(this.passwordForm.controls).forEach((key) => {
+      const control = this.passwordForm.get(key);
+      if (control) {
+        control.markAsTouched();
+      }
+    });
+    const firstInvalidControl = document.querySelector('input.ng-invalid');
+  }
 
   // login
   public loginOfficer() {
@@ -90,7 +114,7 @@ checkIsAlreadyLoggedIn(){
           this.router.navigate(['verify']);
         },
         error: (err: any) => {
-          console.log(err);
+          AppUtils.openToast('error', err.error.message, 'Error');
         },
       });
     }
@@ -98,70 +122,94 @@ checkIsAlreadyLoggedIn(){
 
   // send otp to email
   public sendEmail() {
-    this.authService.sendEmail(this.forgetPasswordRequest).subscribe(
-      (data: any) => {
-        console.log(data.message);
-      },
-      (err) => {
-        console.log(err);
+    this.submitted = false
+    if (this.forgetPasswordRequest.email.trim() !== '') {
+      if (this.isValid) {
+        this.authService.sendEmail(this.forgetPasswordRequest).subscribe({
+          next: (data: any) => {
+            AppUtils.openToast('success', data.message, 'Success');
+            this.otp1 = '';
+            this.otp2 = '';
+            this.otp3 = '';
+            this.otp4 = '';
+            AppUtils.modalDismiss('sendOtp');
+          },
+          error: (err) => {
+            AppUtils.openToast('error', err.error.message, 'Error');
+          },
+        });
+      } else {
+        AppUtils.openToast('error', 'Please enter vaild email', 'Error');
       }
-    );
+    } else {
+      AppUtils.openToast('error', 'Email is required', 'Error');
+    }
   }
 
   // verify otp
   public verifyOtp() {
-    this.forgetPasswordRequest.otp =
-      this.otp1 + this.otp2 + this.otp3 + this.otp4;
-    this.authService.verifyOtp(this.forgetPasswordRequest).subscribe(
-      (data: any) => {
-        console.log(data.message);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.otpFormSubmition();
+    this.submitted = true
+      if (this.otpForm.valid) {
+        this.forgetPasswordRequest.otp =
+          this.otp1 + this.otp2 + this.otp3 + this.otp4;
+        this.authService.verifyOtp(this.forgetPasswordRequest).subscribe({
+          next: (data: any) => {
+            AppUtils.openToast('success', data.message, 'Success');
+            AppUtils.modalDismiss('verifyOtp');
+            this.submitted = false
+          },
+          error: (err) => {
+            AppUtils.openToast('error', err.error.message, 'Error');
+          },
+        });
+    }else AppUtils.openToast('error', "OTP required", 'Error');
   }
 
   // set new password
   public setNewPassword() {
-    if (this.confimPassword === this.forgetPasswordRequest.newPassword) {
-      this.authService.setNewPassword(this.forgetPasswordRequest).subscribe(
-        (data: any) => {
-          console.log(data.message);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } else alert("confirm password didn't match");
+    this.passwordFormSubmition();
+    this.submitted = true;
+    if(this.passwordForm.valid){
+      if (this.confimPassword === this.forgetPasswordRequest.newPassword) {
+        this.authService.setNewPassword(this.forgetPasswordRequest).subscribe({
+          next: (data: any) => {
+            AppUtils.openToast('success', data.message, 'Success');
+            AppUtils.modalDismiss('passwordModelClose');
+          },
+          error: (err) => {
+            AppUtils.openToast('error', err.error.message, 'Error');
+          },
+        });
+      } else AppUtils.openToast('error', "passowrd doesn't match", 'Error');
+    }else AppUtils.openToast('error', "Password required", 'Error');
   }
 
   changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
   }
 
-
-  otpModelManger(){
-    const inputs = document.getElementById("inputs") as HTMLInputElement;
-    inputs.addEventListener("keyup", function (e) {
+  otpModelManger() {
+    const inputs = document.getElementById('inputs') as HTMLInputElement;
+    inputs.addEventListener('keyup', function (e) {
       const target = e.target as HTMLInputElement;
       const val = target.value;
       if (isNaN(Number(val))) {
-        target.value = "";
+        target.value = '';
         return;
       }
-      if (val != "") {
+      if (val != '') {
         const next = target.nextElementSibling as HTMLInputElement;
         if (next) {
           next.focus();
         }
       }
     });
-    inputs.addEventListener("keyup", function (e) {
+    inputs.addEventListener('keyup', function (e) {
       const target = e.target as HTMLInputElement;
       const key = e.key.toLowerCase();
-      if (key == "backspace" || key == "delete") {
-        target.value = "";
+      if (key == 'backspace' || key == 'delete') {
+        target.value = '';
         const prev = target.previousElementSibling as HTMLInputElement;
         if (prev) {
           prev.focus();
@@ -169,8 +217,13 @@ checkIsAlreadyLoggedIn(){
         return;
       }
     });
-    
-    
-    
+  }
+
+  public checkEmailValidation() {
+    this.isValid = this.appUtils.isEmail(this.forgetPasswordRequest.email);
+  }
+
+  public clearData() {
+    this.forgetPasswordRequest.email = '';
   }
 }

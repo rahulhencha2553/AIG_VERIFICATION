@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PortalOfficerDashBoard } from 'src/app/payload/portal-officer-dash-board';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { AppUtils } from 'src/app/utils/app-utils';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit{
           this.officerDashboard = data.dashboard
         },
         error:(err:any)=>{
-          console.log(err);
+          AppUtils.openToast('error',err.error.message,'Error')   
           
         }
       })

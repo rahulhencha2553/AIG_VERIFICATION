@@ -1,9 +1,7 @@
 import { AbstractControl } from '@angular/forms';
-
+declare var butterup: any;
 export class AppUtils {
 
-
-   public  emailPattern = /^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
 
 
 // dismiss modal
@@ -35,13 +33,10 @@ button?.click();
   //  check is email
 
   public isEmail(email: any) {
-    if (!isNaN(email)) {
-      if (!email.match(this.emailPattern)) {
-        alert('Please enter valid email');
-        return false;
-      }
-    }
-    return true;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+    
   }
 
 
@@ -53,4 +48,18 @@ button?.click();
   element.type ='text'
     
   }
+
+  public static openToast(type:string='success',message:string='',title:string='Success'){
+    butterup.toast({
+      title: title,
+      message: message,
+      location: 'top-center',
+      icon: true,
+      dismissable: false,
+      type: type,
+ 
+     });
+  }
+
+  
 }

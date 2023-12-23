@@ -72,16 +72,16 @@
                 </tbody>
             </table>
             <nav aria-label="Page navigation example" class="table-pagination">
-                <p class="text_dark fs-16 fw-600">Showing 1 to 1 of 1 entries</p>
+                <p class="text_dark fs-16 fw-600">Showing {{pageManager.pageNumber*pageManager.pageSize+1}} to {{(pageManager.pageNumber*pageManager.pageSize)+pageManager.noOfCurrentPageElements}} of {{pageManager.totalElements}} entries</p>
                 <ul class="pagination">
-                    <li class="p-2  mx-2 ms-0"><a class="fs-16 fw-500 secondary" href="#">Previous</a></li>
-                    <li class="page-item "><a class="page-link text_orange" href="#">1</a>
+                    <li class="p-2  mx-2 ms-0 "><a class="fs-16 fw-500 secondary "  [ngClass]="pageManager.first?'theading ':' cur-point'"  (click)="manageNextPrev(false)">Previous</a></li>
+                    <li class="page-item cur-point" *ngFor="let b of pageManager.showButtoons ;"  (click)="getOfficersPage(b-1)"><a class="page-link text_orange " [ngClass]="pageRequests.pageNo==b-1?'active':''" id="{{b}}" href="javascript:void(0)">{{b}}</a>
                     </li>
-                    <li class="page-item "><a class="page-link" href="">2</a></li>
-                    <li class="page-item "><a class="page-link" href="">3</a></li>
-                    <li class="page-item "><a class="page-link" href="">4</a></li>
-                    <li class="page-item "><a class="page-link" href="">5</a></li>
-                    <li class="p-2  mx-0 ms-2"><a class="fs-16 fw-500 secondary" href="">Next</a></li>
+                    <!-- <li class="page-item "><a class="page-link" >2</a></li>
+                    <li class="page-item "><a class="page-link" >3</a></li>
+                    <li class="page-item "><a class="page-link" >4</a></li>
+                    <li class="page-item "><a class="page-link" >5</a></li> -->
+                    <li class="p-2  mx-0 ms-2"><a class="fs-16 fw-500 secondary"  [ngClass]="pageManager.last?'theading':' cur-point'"   (click)="manageNextPrev(true)">Next</a></li>
                 </ul>
             </nav>
         </div>
@@ -113,36 +113,50 @@
             </div>
             <div class="modal-body p-0">
                 <div class="mb-4">
-                    <div class="">
-                        <div class="col-md-12 mb-3 ps-0 px-2">
-                            <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
-                            <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Vijay">
-                            
-                        </div>
-                        <div class="col-md-12 mb-3 ps-0 px-2">
-                            <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
-                            <input type="text" class="form-control profile_input"   [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Hencha">
-                        </div>
-                        <div class="col-md-12 mb-3 ps-0 px-2">
-                            <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
-                            <input type="text" class="form-control profile_input"   [(ngModel)]="addressOfficer.userName" name="userName" placeholder="@hgfghf">
-                        </div>
-                        <div class="col-md-12 mb-3 ps-0 px-2">
-                            <label for="" class="black fs-15 fw-400 mb-2">Phone Number</label>
-                            <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" placeholder="9126372748">
-                        </div>
-                        <div class="col-md-12 mb-3 ps-0 px-2">
-                            <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
-                            <input type="email" class="form-control profile_input"
-                                 [(ngModel)]="addressOfficer.email" name="email" placeholder="vijayhencha@gmail.com">
-                        </div>
-                        <div class="position-relative">
-                            <label for="" class="black fs-15 fw-400 mb-2">Password</label>
+                    <form [formGroup]="addForm">
+                        <div class="">
+                            <div class="col-md-12 mb-3 ps-0 px-2">
+                                <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
+                                <input type="text" class="form-control profile_input" formControlName="firstName" [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Vijay">
+                                <div *ngIf="addFormValidCheck('firstName',addForm)"
+                                    class="text-danger error-font  ms-2"><b>firstName is required</b></div>
+                                
+                            </div>
+                            <div class="col-md-12 mb-3 ps-0 px-2">
+                                <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
+                                <input type="text" class="form-control profile_input"   formControlName="lastName" [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Hencha">
+                                <div *ngIf="addFormValidCheck('lastName',addForm)"
+                                    class="text-danger error-font  ms-2"><b>lastName is required</b></div>
+                            </div>
+                            <div class="col-md-12 mb-3 ps-0 px-2">
+                                <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
+                                <input type="text" class="form-control profile_input"   formControlName="userName" [(ngModel)]="addressOfficer.userName" name="userName" placeholder="@hgfghf">
+                                <div *ngIf="addFormValidCheck('userName',addForm)"
+                                    class="text-danger error-font  ms-2"><b>userName is required</b></div>
+                            </div>
+                            <div class="col-md-12 mb-3 ps-0 px-2">
+                                <label for="" class="black fs-15 fw-400 mb-2">Phone Number</label>
+                                <input type="text" class="form-control profile_input"  formControlName="phoneNumber" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" placeholder="9126372748">
+                                <div *ngIf="addFormValidCheck('phoneNumber',addForm)"
+                                    class="text-danger error-font  ms-2"><b>phoneNumber is required</b></div>
+                            </div>
+                            <div class="col-md-12 mb-3 ps-0 px-2">
+                                <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
+                                <input type="email" class="form-control profile_input"
+                                    formControlName="email" [(ngModel)]="addressOfficer.email" name="email" placeholder="vijayhencha@gmail.com">
+                                    <div *ngIf="addFormValidCheck('email',addForm)"
+                                    class="text-danger error-font  ms-2"><b>email is required</b></div>
+                            </div>
+                            <div class="position-relative">
+                                <label for="" class="black fs-15 fw-400 mb-2">Password</label>
 
-                            <input type="text" #i1  class="form-control  profile_input"  [(ngModel)]="addressOfficer.password" name="password" placeholder="Confirm Password">
-                            <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
+                                <input type="text" #i1  class="form-control  profile_input" formControlName="password" [(ngModel)]="addressOfficer.password" name="password" placeholder="Confirm Password">
+                                <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
+                            </div>
+                            <div *ngIf="addFormValidCheck('password',addForm)"
+                                    class="text-danger error-font  ms-2"><b>password is required</b></div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer p-0">
@@ -182,25 +196,31 @@ tabindex="-1">
         </div>
         <div class="modal-body p-0">
             <div class="mb-4">
-                <div class="">
+                <form class="" [formGroup]="editForm">
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
-                        <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Vijay">
+                        <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  formControlName="firstName" placeholder="Vijay">
+                          <div *ngIf="addFormValidCheck('firstName',editForm)"
+                                    class="text-danger error-font  ms-2"><b>firstName is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
-                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Hencha">
+                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"  formControlName="lastName" placeholder="Hencha">
+                          <div *ngIf="addFormValidCheck('lastName',editForm)"
+                                    class="text-danger error-font  ms-2"><b>lastName is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
-                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.userName" name="userName" placeholder="@hgfghf">
+                        <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.userName" name="userName"  formControlName="userName" placeholder="@hgfghf">
+                          <div *ngIf="addFormValidCheck('userName',editForm)"
+                                    class="text-danger error-font  ms-2"><b>userName is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
-                        <input type="email" class="form-control profile_input"
-                            [(ngModel)]="addressOfficer.email" name="email" placeholder="vijayhencha@gmail.com">
+                        <input type="email" class="form-control profile_input" disabled
+                           name="email"  [placeholder]="addressOfficer.email">
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="modal-footer p-0">

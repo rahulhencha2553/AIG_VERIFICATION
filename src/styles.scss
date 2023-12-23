@@ -6,3 +6,11 @@ input[type=password]::-ms-clear
 {
     display: none;
 }
+
+.error-font {
+    font-size: smaller;
+}
+
+.cur-point{
+    cursor: pointer;
+}

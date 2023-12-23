@@ -3,6 +3,7 @@ import { Status } from 'src/app/models/status';
 import { PageRequests } from 'src/app/payload/page-requests';
 import { VerificationRequestsDetailsWeb } from 'src/app/payload/verification-requests-details-web';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { AppUtils } from 'src/app/utils/app-utils';
 
 @Component({
   selector: 'app-verification',
@@ -29,7 +30,7 @@ export class VerificationComponent implements OnInit {
           this.verificationRequests = data.requests.content;
         },
         error: (err: any) => {
-          console.log(err);
+          AppUtils.openToast('error', err.error.message, 'Error');
         },
       });
   }

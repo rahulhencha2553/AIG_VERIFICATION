@@ -39,8 +39,8 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img src="assets/images/temp_img/verification.png"
-                                        class="verification_icon">
+                                    <img [src]="request.requestorData.profilePic"
+                                        class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
                                         <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
@@ -87,8 +87,8 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img src="assets/images/temp_img/verification.png"
-                                        class="verification_icon">
+                                    <img [src]="request.requestorData.profilePic"
+                                        class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
                                         <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>
@@ -135,8 +135,8 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img src="assets/images/temp_img/verification.png"
-                                        class="verification_icon">
+                                    <img [src]="request.requestorData.profilePic"
+                                        class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
                                         <h5 class="fs-15 fw-500 theading mb-0">{{request.date | date:'d/M/yyyy'}}</h5>

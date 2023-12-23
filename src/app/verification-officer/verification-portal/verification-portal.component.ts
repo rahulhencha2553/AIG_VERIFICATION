@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { AppUtils } from 'src/app/utils/app-utils';
 
 @Component({
   selector: 'app-verification-portal',
@@ -7,18 +8,20 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./verification-portal.component.scss'],
 })
 export class VerificationPortalComponent implements OnInit {
-  constructor(private authService:AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getOfficer();
-    
   }
 
-  getOfficer(){
+  getOfficer() {
     this.authService.getLoggedInOfficer().subscribe({
-      next:(data:any)=>{
+      next: (data: any) => {
         this.authService.portalOfficer.next(data.officer);
-      }
-    })
+      },
+      error: (err: any) => {
+        AppUtils.openToast('error', err.error.message, 'Error');
+      },
+    });
   }
 }

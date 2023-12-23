@@ -13,50 +13,44 @@ import { AppUtils } from 'src/app/utils/app-utils';
   styleUrls: ['./profile-bar.component.scss'],
 })
 export class ProfileBarComponent implements OnInit {
-
   officer: PortalOfficer = new PortalOfficer();
   updateOffier: UpdateOfficerRequest = new UpdateOfficerRequest();
   imagePreview: string = '';
-  changePasswordRequest:ChangePasswordRequest = new ChangePasswordRequest();
-  confirmPassword:string='';
+  changePasswordRequest: ChangePasswordRequest = new ChangePasswordRequest();
+  confirmPassword: string = '';
   @ViewChild('i1', { static: true }) icon1!: ElementRef;
   editForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router,
-  ) {
+  constructor(private authService: AuthService, private router: Router) {
     this.editForm = new FormGroup({
-      firstName: new FormControl("", [Validators.required]),
-      lastName: new FormControl("", [Validators.required])
-    })
-
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+    });
   }
 
-
-  
-
+  ngOnInit(): void {
+    this.getOfficer();
+  }
 
   public firstTaskFormControl() {
-    Object.keys(this.editForm.controls).forEach(key => {
-      const control = this.editForm.get(key) ;
+    Object.keys(this.editForm.controls).forEach((key) => {
+      const control = this.editForm.get(key);
       if (control) {
         control.markAsTouched();
       }
     });
     const firstInvalidControl = document.querySelector('input.ng-invalid');
     if (firstInvalidControl) {
-      firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstInvalidControl.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
     }
   }
 
+  iconClass = 'fi fi-rr-eye eye_icon';
 
-
-  ngOnInit(): void {
-    this.getOfficer();
-  }
-
-  iconClass='fi fi-rr-eye eye_icon';
-
-   // get officer 
+  // get officer
   public getOfficer() {
     this.authService.officer.subscribe((data: any) => {
       this.officer = data;
@@ -66,13 +60,13 @@ export class ProfileBarComponent implements OnInit {
 
   // setting officer details to update request officer
   setOfficer() {
-    if(this.officer){
-    this.updateOffier.firstName = this.officer.firstName;
-    this.updateOffier.lastName = this.officer.lastName;
-    this.updateOffier.email = this.officer.email;
-    this.updateOffier.phoneNumber = this.officer.phoneNumber;
-    this.updateOffier.profilePicture = this.officer.profilePicture;
-    this.imagePreview = this.updateOffier.profilePicture;
+    if (this.officer) {
+      this.updateOffier.firstName = this.officer.firstName;
+      this.updateOffier.lastName = this.officer.lastName;
+      this.updateOffier.email = this.officer.email;
+      this.updateOffier.phoneNumber = this.officer.phoneNumber;
+      this.updateOffier.profilePicture = this.officer.profilePicture;
+      this.imagePreview = this.updateOffier.profilePicture;
     }
   }
 
@@ -90,49 +84,57 @@ export class ProfileBarComponent implements OnInit {
   }
 
   // update officer
-  public updatePortalOfficer(id:string) {
+  public updatePortalOfficer(id: string) {
     this.firstTaskFormControl();
-  if(this.editForm.valid )
-    this.authService.updateOfficer(this.updateOffier).subscribe(
-      (data: any) => {
-        this.officer = data.officer;
-        this.authService.portalOfficer.next(this.officer);
-        AppUtils.modalDismiss(id);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.editForm.valid)
+      this.authService.updateOfficer(this.updateOffier).subscribe(
+        (data: any) => {
+          this.officer = data.officer;
+          this.authService.portalOfficer.next(this.officer);
+          AppUtils.modalDismiss(id);
+
+          AppUtils.openToast('success', data.message, 'Success');
+        },
+        (err: any) => {
+          console.log(err);
+
+          AppUtils.openToast('error', err.error.message, 'Error');
+        }
+      );
   }
 
   // change password
-  changePassord(){
-     if(this.changePasswordRequest.newPassword===this.confirmPassword){
-            
-      this.authService.changePassword(this.changePasswordRequest).subscribe((data:any)=>{
-        this.clearData();
-      })
-
-     }else{
-      alert("passowrd doesn't match");
-     }
+  changePassord(id: any) {
+    if (this.changePasswordRequest.newPassword === this.confirmPassword) {
+      this.authService.changePassword(this.changePasswordRequest).subscribe(
+        (data: any) => {
+          AppUtils.modalDismiss(id);
+          AppUtils.openToast('success', data.message, 'Success');
+          this.clearData();
+        },
+        (err: any) => {
+          AppUtils.openToast('error', err.error.message, 'Error');
+        }
+      );
+    } else {
+      AppUtils.openToast('error', "passowrd doesn't match", 'Error');
+    }
   }
 
-  clearData(){
+  clearData() {
     this.changePasswordRequest.currentPassword = '';
     this.changePasswordRequest.newPassword = '';
 
-    this.confirmPassword='';
-   this.setOfficer();
+    this.confirmPassword = '';
+    this.setOfficer();
   }
 
-  // logout officer 
+  // logout officer
   public logOut() {
     this.authService.logOut();
   }
 
- changePasswordIcon(element:any){
-   AppUtils.changePassowrdIcon(element);
- }
-
+  changePasswordIcon(element: any) {
+    AppUtils.changePassowrdIcon(element);
+  }
 }

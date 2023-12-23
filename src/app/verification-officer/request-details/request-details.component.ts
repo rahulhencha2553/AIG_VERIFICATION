@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Status } from 'src/app/models/status';
 import { VerificationRequestDetails } from 'src/app/payload/verification-request-details';
 import { VerificationService } from 'src/app/services/verification.service';
+import { AppUtils } from 'src/app/utils/app-utils';
 
 @Component({
   selector: 'app-request-details',
@@ -28,7 +29,7 @@ export class RequestDetailsComponent implements OnInit{
         this.verificationReqDetail = data.requestDetails
       },
       error:(err:any)=>{
-        console.log(err)
+        AppUtils.openToast('error',err.error.message,'Error')   
       }
     })
   }

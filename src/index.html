@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="assets/css/uicons-solid-rounded.css">
   <link rel="stylesheet" href="assets/css/uicons-solid-straight.css">
   <link rel="stylesheet" href="assets/css/uicons-regular-rounded.css">
+  <!-- POPUPS JS  -->
+  <link rel="stylesheet" href="assets/css/butterup.min.css" />
+<script src="assets/js/butterup.min.js"></script>
   <!-- Pie chart in verifications reports -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <title>AIG VERIFICATION</title>
@@ -26,39 +29,6 @@
 <body>
   <app-root></app-root>
 
-
-
-
-   <!-- The actual snackbar -->
-   <div id="success" class="black"><i class="fi fi-br-check mx-3 ms-0 lh-0"></i>Success <span class="fs-15 fw-400 dark2 mx-0 ms-3">Photo added successfully</span></div>
-   <div id="error" class="black"><img src="assets/images/svg_img/error.svg" class="mx-3 ms-0 lh-0"> Error <span class="fs-15 fw-400 mx-0 ms-3">Upload failed. Please try again.</span></div>
-
-   <!-- Snackbar / Toast script -->
-   <script>
-       function myFunction() {
-           // Get the snackbar DIV
-           var x = document.getElementById("success");
-
-           // Add the "show" class to DIV
-           x.className = "show";
-
-           // After 3 seconds, remove the show class from DIV
-           setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-       }
-   </script>
-   <!-- error -->
-   <script>
-       function myFunction2() {
-           // Get the snackbar DIV
-           var x = document.getElementById("error");
-
-           // Add the "show" class to DIV
-           x.className = "show";
-
-           // After 3 seconds, remove the show class from DIV
-           setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-       }
-   </script>
 
 
 
