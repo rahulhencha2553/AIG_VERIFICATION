@@ -162,7 +162,7 @@ tabindex="-1">
                     password</h1>
                 <h3 class="fs-16 fw-500 info mb-0">Set a new login password for your account</h3>
             </div>
-            <button type="button"   class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button"  id="closeBtn" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
                 <i class="fi fi-rr-cross-small lh-0"></i>
             </button>
         </div>
@@ -192,7 +192,7 @@ tabindex="-1">
             </div>
         </div>
         <div class="modal-footer p-0">
-            <button  class="btn_primary fs-16 fw-500 w-100 m-0" (click)="changePassord()">Save Password</button>
+            <button  class="btn_primary fs-16 fw-500 w-100 m-0" (click)="changePassord('closeBtn')">Save Password</button>
         </div>
     </div>
 </div>
@@ -222,3 +222,8 @@ tabindex="-1">
 </div>
 </div>
 <!-- LOGOUT MODAL END -->
+
+<!-- The actual snackbar -->
+<!-- <div id="success" class="black"><i class="fi fi-br-check mx-3 ms-0 lh-0"></i>Success <span class="fs-15 fw-400 dark2 mx-0 ms-3">{{toastMessage}}</span></div>
+<div id="error" class="black"><img src="assets/images/svg_img/error.svg" class="mx-3 ms-0 lh-0"> Error <span class="fs-15 fw-400 mx-0 ms-3">{{toastMessage}}</span></div>
+ -->

@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { AppUtils } from '../utils/app-utils';
 
 @Injectable()
 export class VerificationInterceptor implements HttpInterceptor {
@@ -28,9 +29,8 @@ export class VerificationInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError((error:any)=>{
       if(error.status==401){ 
         this.authService.logOut();
+        AppUtils.openToast('error',error.error.message,'Error')   
       }
-      console.log(error);
-      
       return throwError(error);
     }));
   }

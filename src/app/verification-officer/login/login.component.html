@@ -12,7 +12,7 @@
                     <h3 class="dark fs-22 fw-600 mb-4">Nice to see you again</h3>
                     <div class="mb-4">
                         <input type="text" formControlName="userId" name="userId" class="form-control profile_input" [(ngModel)]="authRequest.userId" placeholder="Email or phone number">
-                        <div *ngIf="isFieldInvalidForLoginForm('userId')"
+                        <div *ngIf="isFieldInvalidFormField('userId')"
                         class="text-danger ms-2"><b>Email is required</b></div>
                     </div>
                     
@@ -21,9 +21,9 @@
                         <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
                       
                     </div>
-                    <div *ngIf="isFieldInvalidForLoginForm('password')"
+                    <div *ngIf="isFieldInvalidFormField('password')"
                     class="text-danger ms-2"><b>Password is required</b></div>
-                    <h4 class="forgot mb-4" data-bs-target="#forgot-password" data-bs-toggle="modal">Forgot password?
+                    <h4 class="forgot mb-4" data-bs-target="#forgot-password" data-bs-toggle="modal" (click)="clearData()">Forgot password?
                     </h4>
                     <a class="btn btn_primary fs-15 fw-600 w-100 m-0" type="submit" (click)="loginOfficer()">Log in</a>
                   </div>
@@ -56,15 +56,16 @@
                         <div>
                             <div class="position-relative">
                                 <img src="assets/images/svg_img/user.svg" class="user_icon">
-                                <input type="email" [(ngModel)]="forgetPasswordRequest.email" class="form-control profile_input px_44"
+                                <input type="email" (keypress)="checkEmailValidation()" [(ngModel)]="forgetPasswordRequest.email" required class="form-control profile_input px_44"
                                     placeholder="Enter email address">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer p-0">
-                    <button  class="btn_primary fs-16 fw-500 w-100 m-0" data-bs-target="#send-otp"
-                        data-bs-toggle="modal"  (click)="sendEmail()">Send OTP </button>
+                    <div data-bs-target="#send-otp"
+                    data-bs-toggle="modal" id="sendOtp" ></div>
+                    <button  class="btn_primary fs-16 fw-500 w-100 m-0"  (click)="sendEmail()">Send OTP </button>
                 </div>
             </div>
         </div>
@@ -90,19 +91,22 @@
                         <i class="fi fi-rr-cross-small lh-0"></i>
                     </button>
                 </div>
-                <div class="modal-body p-0 mt-4 mb-4">
-                    <div class="d-flex gap_16" id="inputs">
+                <form [formGroup]="otpForm">
+                    <div class="modal-body p-0 mt-4 mb-4">
+                        <div class="d-flex gap_16" id="inputs">
 
-                        <input type="text" [(ngModel)]="otp1"  class="otp_number_input" placeholder="-" maxlength="1">
-                        <input type="text" [(ngModel)]="otp2" class="otp_number_input" placeholder="-" maxlength="1">
-                        <input type="text" [(ngModel)]="otp3" class="otp_number_input" placeholder="-" maxlength="1">
-                        <input type="text" [(ngModel)]="otp4" class="otp_number_input" placeholder="-" maxlength="1">
+                            <input type="text" [(ngModel)]="otp1" name="otp1" [ngClass]="{'invalid-input':submitted && otpForm.controls['otp1'].errors}" formControlName="otp1" class="otp_number_input " placeholder="-" maxlength="1">
+                            <input type="text" [(ngModel)]="otp2" name="otp2" [ngClass]="{'invalid-input':submitted && otpForm.controls['otp2'].errors}" formControlName="otp2" class="otp_number_input" placeholder="-" maxlength="1">
+                            <input type="text" [(ngModel)]="otp3" name="otp3" [ngClass]="{'invalid-input':submitted && otpForm.controls['otp3'].errors}" formControlName="otp3" class="otp_number_input" placeholder="-" maxlength="1">
+                            <input type="text" [(ngModel)]="otp4" name="otp4" [ngClass]="{'invalid-input':submitted && otpForm.controls['otp4'].errors}" formControlName="otp4" class="otp_number_input" placeholder="-" maxlength="1">
 
+                        </div>
                     </div>
-                </div>
+                </form>
+                <div data-bs-target="#new-password"
+                    data-bs-toggle="modal" id="verifyOtp" ></div>
                 <div class="modal-footer p-0">
-                    <button (click)="verifyOtp()" class="btn_primary fs-16 fw-500 w-100 m-0" data-bs-target="#new-password"
-                        data-bs-toggle="modal">Verify</button>
+                    <button  (click)="verifyOtp()" class="btn_primary fs-16 fw-500 w-100 m-0" >Verify</button>
                 </div>
             </div>
         </div>
@@ -119,22 +123,24 @@
                         <h1 class="fs-22 fw-600 text_small mb_10" id="exampleModalToggleLabel2">New password</h1>
                         <h3 class="fs-16 fw-500 info mb-0">Set a new login password for your account</h3>
                     </div>
-                    <button type="button" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" id="passwordModelClose" class="btn_close fs-20" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fi fi-rr-cross-small lh-0"></i>
                     </button>
                 </div>
                 <div class="modal-body p-0">
                     <div class="mb-4 mt-4">
+                        <form [formGroup]="passwordForm">
                             <div class="position-relative mb_20">
                                 <i class="fi fi-br-lock lock_icon info"></i>
-                                <input type="text" [(ngModel)]="forgetPasswordRequest.newPassword "  class="form-control profile_input px_44" placeholder="New Password">
-                                <i class="fi fi-rr-eye eye_icon info"></i>
+                                <input type="text" #s1 name="newPassword" formControlName="newPassword" [ngClass]="{'invalid-input':submitted && passwordForm.controls['newPassword'].errors}"  [(ngModel)]="forgetPasswordRequest.newPassword "  class="form-control profile_input px_44" placeholder="New Password">
+                                <i (click)="changePasswordIcon(s1)" [ngClass]="s1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
                             </div>
-                        <div class="position-relative">
-                            <i class="fi fi-br-lock lock_icon info"></i>
-                            <input type="text" [(ngModel)]="confimPassword" class="form-control profile_input px_44" placeholder="Confirm Password">
-                            <i class="fi fi-rr-eye-crossed eye_icon info"></i>
-                        </div>
+                            <div class="position-relative">
+                                <i class="fi fi-br-lock lock_icon info"></i>
+                                <input type="text" #s2 name="confimPassword" formControlName="confimPassword" [ngClass]="{'invalid-input':submitted && passwordForm.controls['confimPassword'].errors}"  [(ngModel)]="confimPassword" class="form-control profile_input px_44" placeholder="Confirm Password">
+                                <i (click)="changePasswordIcon(s2)" [ngClass]="s2.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer p-0">

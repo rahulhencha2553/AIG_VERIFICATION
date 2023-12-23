@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AddressOfficer } from 'src/app/models/address-officer';
 import { Status } from 'src/app/models/status';
@@ -7,62 +8,101 @@ import { VerificationRequestsDetailsWeb } from 'src/app/payload/verification-req
 import { AddressOfficerService } from 'src/app/services/address-officer.service';
 import { VerificationService } from 'src/app/services/verification.service';
 import { AppUtils } from 'src/app/utils/app-utils';
+import { FormValidator } from 'src/app/utils/form-validator';
 
 @Component({
   selector: 'app-address-officer-details',
   templateUrl: './address-officer-details.component.html',
-  styleUrls: ['./address-officer-details.component.scss']
+  styleUrls: ['./address-officer-details.component.scss'],
 })
 export class AddressOfficerDetailsComponent implements OnInit {
-
   addressOfficer: AddressOfficer = new AddressOfficer();
 
-  updateAddressOfficer:AddressOfficer = new AddressOfficer();
-  offiserAssignedRequests:OfficerAssignedRequests=new OfficerAssignedRequests();
+  updateAddressOfficer: AddressOfficer = new AddressOfficer();
+  offiserAssignedRequests: OfficerAssignedRequests =
+    new OfficerAssignedRequests();
   verificationRequests: VerificationRequestsDetailsWeb[] = [];
 
-  imagePreview: any ='assets/images/temp_img/profile-modal.png';
-  public status=Status;
-  
+  imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+  public status = Status;
+  editForm:FormGroup;
 
-  constructor(private addressOfficerServie: AddressOfficerService, private activtedRoute: ActivatedRoute,private verificationService:VerificationService) { }
+  constructor(
+    private addressOfficerServie: AddressOfficerService,
+    private activtedRoute: ActivatedRoute,
+    private verificationService: VerificationService, private fb: FormBuilder
+  ) {
+this.editForm = this.fb.group({
+  firstName :['',Validators.required],
+  lastName:['',Validators.required]
+})
 
+  }
 
   ngOnInit(): void {
     this.activtedRoute.params.subscribe((p: any) => {
       let uuid = p['uuid'];
-      this.offiserAssignedRequests.id=uuid;
+      this.offiserAssignedRequests.id = uuid;
       this.getOfficerById(uuid);
-     this.OfficerAssignedRequests();
-    })
+      this.OfficerAssignedRequests();
+    });
   }
+
+  editFormValidationCheck(fieldName:string,form:any){
+return FormValidator.formValidCheck(fieldName,form);
+  }
+
+  formSubmittionCheck(form:any){
+ FormValidator.formSubmittion(form);
+  }
+
 
   getOfficerById(uuid: any) {
-    this.addressOfficerServie.getAddressOfficerById(uuid).subscribe((data: any) => {
-      console.log(data);
-      this.addressOfficer = data.data;
-        this.imagePreview=this.addressOfficer.profilePicture;
-    })
+    this.addressOfficerServie.getAddressOfficerById(uuid).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.addressOfficer = data.data;
+        this.imagePreview = this.addressOfficer.profilePicture;
+      },
+      error: (err: any) => {
+        AppUtils.openToast('error', err.error.message, 'Error');
+      },
+    });
   }
 
- // update officer
+  // update officer
 
- updateOfficer(id:string) {
-  this.addressOfficerServie.updateOfficer(this.addressOfficer).subscribe((data: any) => {
-    this.getOfficerById(data.data.userId)
-    AppUtils.modalDismiss(id);
-  })
-}
+  updateOfficer(id: string) {
+    this.formSubmittionCheck(this.editForm);
 
-// get officer assigned requests
-public OfficerAssignedRequests(status:Status=Status.Pending){
-  this.offiserAssignedRequests.status=status;
-  this.verificationService.officerAssignedRequests(this.offiserAssignedRequests).subscribe((data:any)=>{
+    if(this.editForm.valid)
+    this.addressOfficerServie.updateOfficer(this.addressOfficer).subscribe(
+      (data: any) => {
+        this.getOfficerById(data.data.userId);
+        AppUtils.modalDismiss(id);
+
+        AppUtils.openToast('success', data.message, 'Success');
+      },
+      (err: any) => {
+        AppUtils.openToast('error', err.error.message, 'Error');
+      }
+    );
+  }
+
+  // get officer assigned requests
+  public OfficerAssignedRequests(status: Status = Status.Pending) {
+    this.offiserAssignedRequests.status = status;
+    this.verificationService
+      .officerAssignedRequests(this.offiserAssignedRequests)
+      .subscribe({
+        next: (data: any) => {
           this.verificationRequests = data.requests.content;
-          console.log(data);
-          
-  })
-}
+        },
+        error: (err: any) => {
+          AppUtils.openToast('error', err.error.message, 'Error');
+        },
+      });
+  }
 
   // setting image to officer
   setImage(event: any) {
@@ -77,16 +117,13 @@ public OfficerAssignedRequests(status:Status=Status.Pending){
     }
   }
 
-
-
-  manageEditModel(value:boolean){
-    if(value){
-      document.getElementById("btn1")!.style.display = "none";
-      document.getElementById("btn2")!.style.display = "block";
-    }else{
-      document.getElementById("btn2")!.style.display = "none";
-      document.getElementById("btn1")!.style.display = "block";
+  manageEditModel(value: boolean) {
+    if (value) {
+      document.getElementById('btn1')!.style.display = 'none';
+      document.getElementById('btn2')!.style.display = 'block';
+    } else {
+      document.getElementById('btn2')!.style.display = 'none';
+      document.getElementById('btn1')!.style.display = 'block';
     }
   }
-
 }

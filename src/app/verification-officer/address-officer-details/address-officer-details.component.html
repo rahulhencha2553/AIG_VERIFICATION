@@ -65,25 +65,29 @@
                     </label>
                 </div>
             </div>
-            <div class="row mb-2">
+            <form class="row mb-2" [formGroup]="editForm">
                 <div class="col-md-6 mb-3">
                     <label class="black fs-15 fw-400 mb-2">First Name</label>
-                    <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  placeholder="Vijay">
+                    <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName" formControlName="firstName"   placeholder="Vijay">
+                    <div *ngIf="editFormValidationCheck('firstName',editForm)"
+                    class="text-danger error-font  ms-2"><b>firstName is required</b></div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="black fs-15 fw-400 mb-2">Last Name</label>
-                    <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"   placeholder="Hencha">
+                    <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName" formControlName="lastName"    placeholder="Hencha">
+                    <div *ngIf="editFormValidationCheck('lastName',editForm)"
+                    class="text-danger error-font  ms-2"><b>lastName is required</b></div>
                 </div>
                 <div class="col-md-6 mb-3" >
                     <label class="black fs-15 fw-400 mb-2">Email Address</label>
                     <input type="text" class="form-control profile_input disableCursor"
-                        [(ngModel)]="addressOfficer.email" name="email" disabled    placeholder="vijayhencha@gmail.com">
+                     name="email" disabled    [placeholder]="addressOfficer.email">
                 </div>
                 <div class="col-md-6 mb">
                     <label class="black fs-15 fw-400 mb-2">Phone Number</label>
-                    <input type="text" class="form-control profile_input disableCursor" disabled [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber"  placeholder="9577562472">
+                    <input type="text" class="form-control profile_input disableCursor" disabled name="phoneNumber"  [placeholder]="addressOfficer.phoneNumber">
                 </div>
-            </div>
+            </form>
             <div class="gap_20 d-flex justify-content-end">
                 <button class="btn_secondary fs-16 fw-500" id="addressOfficerDetailsCancel" (click)="manageEditModel(false)"  >Cancel</button>
                 <button class="btn_primary fs-16 fw-500 right_menu_toggle" (click)="updateOfficer('addressOfficerDetailsCancel')">Save
