@@ -24,5 +24,8 @@ export class DashboardService {
     return this.httpClient.post<any>(ApiRoutes.PORTAL_OFFICER_VERIFICATION_REQUESTS+status,pageRequests);
   }
 
+  public getVerificationsStatistics(){
+    return this.httpClient.get(ApiRoutes.VERIFICATION_STATICS);
+  }
 
 }

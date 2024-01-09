@@ -21,6 +21,7 @@ import { AddressOfficerDetailsComponent } from './verification-officer/address-o
 import { HttpClientModule } from '@angular/common/http';
 import { VerificationInterceptor, authInterceptorProvider } from './interceptor/verification.interceptor';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NumberFormatPipe } from './pipes/number-format.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgApexchartsModule
     
   ],
   providers: [authInterceptorProvider],

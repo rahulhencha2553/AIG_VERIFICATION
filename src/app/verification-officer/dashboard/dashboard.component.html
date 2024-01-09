@@ -62,11 +62,22 @@
         </div>
     </div>
     <h4 class="primary fs-26 fw-600 mb_20">Verifications Graph</h4>
-    <div class="pending_request mb_29 p_50">
-        <img src="assets/images/temp_img/chart.png" class="img-fluid mb_30">
+    <div class="pending_request mb_29 p_50" id="chart">
+        <apx-chart
+            [series]="verificationOptions.series"
+            [chart]="verificationOptions.chart"
+            [dataLabels]="verificationOptions.dataLabels"
+            [plotOptions]="verificationOptions.plotOptions"
+            [responsive]="verificationOptions.responsive"
+            [xaxis]="verificationOptions.xaxis"
+            [legend]="verificationOptions.legend"
+            [fill]="verificationOptions.fill"
+            [colors]="verificationOptions.colors">
+        </apx-chart>
+        <!-- <img src="assets/images/temp_img/chart.png" class="img-fluid mb_30">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="fs-14 fw-500 grey">Total Verifications</h5>
             <h5 class="fs-14 fw-500 success">350.00 / 600</h5>
-        </div>
+        </div> -->
     </div>
 </div>

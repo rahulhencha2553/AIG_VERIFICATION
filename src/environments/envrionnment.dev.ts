@@ -1,5 +1,5 @@
 export const envrionnment= {
     
-    hostUrl : "http://192.168.1.242:9090"
+    hostUrl : "http://localhost:9090"
     
 }
