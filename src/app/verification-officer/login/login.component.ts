@@ -5,6 +5,7 @@ import { AuthRequest } from 'src/app/payload/auth-request';
 import { ForgetPasswordRequest } from 'src/app/payload/forget-password-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppUtils } from 'src/app/utils/app-utils';
+import { FormValidator } from 'src/app/utils/form-validator';
 
 @Component({
   selector: 'app-login',
@@ -66,44 +67,14 @@ export class LoginComponent implements OnInit {
   }
 
   // validation checking
-  isFieldInvalidFormField(fieldName: string): boolean {
-    const field = this.loginForm.get(fieldName);
-    return field ? field.invalid && field.touched : false;
+  isFieldInvalid(fieldName: string,form:any): boolean {
+    return FormValidator.formValidCheck(fieldName,form);
   }
 
-  public loginFormSubmition() {
-    Object.keys(this.loginForm.controls).forEach((key) => {
-      const control = this.loginForm.get(key);
-      if (control) {
-        control.markAsTouched();
-      }
-    });
-    const firstInvalidControl = document.querySelector('input.ng-invalid');
-  }
-
-  public otpFormSubmition() {
-    Object.keys(this.otpForm.controls).forEach((key) => {
-      const control = this.otpForm.get(key);
-      if (control) {
-        control.markAsTouched();
-      }
-    });
-    const firstInvalidControl = document.querySelector('input.ng-invalid');
-  }
-
-  public passwordFormSubmition() {
-    Object.keys(this.passwordForm.controls).forEach((key) => {
-      const control = this.passwordForm.get(key);
-      if (control) {
-        control.markAsTouched();
-      }
-    });
-    const firstInvalidControl = document.querySelector('input.ng-invalid');
-  }
-
+ 
   // login
   public loginOfficer() {
-    this.loginFormSubmition();
+    FormValidator.formSubmittion(this.loginForm);
     if (this.loginForm.valid) {
       this.authService.officerLogin(this.authRequest).subscribe({
         next: (data: any) => {
@@ -148,7 +119,7 @@ export class LoginComponent implements OnInit {
 
   // verify otp
   public verifyOtp() {
-    this.otpFormSubmition();
+   FormValidator.formSubmittion(this.otpForm)
     this.submitted = true
       if (this.otpForm.valid) {
         this.forgetPasswordRequest.otp =
@@ -168,7 +139,7 @@ export class LoginComponent implements OnInit {
 
   // set new password
   public setNewPassword() {
-    this.passwordFormSubmition();
+    FormValidator.formSubmittion(this.passwordForm)
     this.submitted = true;
     if(this.passwordForm.valid){
       if (this.confimPassword === this.forgetPasswordRequest.newPassword) {

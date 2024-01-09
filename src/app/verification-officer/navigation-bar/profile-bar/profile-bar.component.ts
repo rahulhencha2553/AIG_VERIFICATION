@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalOfficer } from 'src/app/models/portal-officer';
 import { ChangePasswordRequest } from 'src/app/payload/change-password-request';
 import { UpdateOfficerRequest } from 'src/app/payload/update-officer-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppUtils } from 'src/app/utils/app-utils';
+import { FormValidator } from 'src/app/utils/form-validator';
 
 @Component({
   selector: 'app-profile-bar',
@@ -21,32 +22,34 @@ export class ProfileBarComponent implements OnInit {
   @ViewChild('i1', { static: true }) icon1!: ElementRef;
   editForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {
+
+  constructor(private authService: AuthService, private router: Router,private builder:FormBuilder) {
     this.editForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
     });
+
   }
 
   ngOnInit(): void {
     this.getOfficer();
   }
 
-  public firstTaskFormControl() {
-    Object.keys(this.editForm.controls).forEach((key) => {
-      const control = this.editForm.get(key);
-      if (control) {
-        control.markAsTouched();
-      }
-    });
-    const firstInvalidControl = document.querySelector('input.ng-invalid');
-    if (firstInvalidControl) {
-      firstInvalidControl.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
-    }
-  }
+  // public firstTaskFormControl() {
+  //   Object.keys(this.editForm.controls).forEach((key) => {
+  //     const control = this.editForm.get(key);
+  //     if (control) {
+  //       control.markAsTouched();
+  //     }
+  //   });
+  //   const firstInvalidControl = document.querySelector('input.ng-invalid');
+  //   if (firstInvalidControl) {
+  //     firstInvalidControl.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'center',
+  //     });
+  //   }
+  // }
 
   iconClass = 'fi fi-rr-eye eye_icon';
 
@@ -85,7 +88,8 @@ export class ProfileBarComponent implements OnInit {
 
   // update officer
   public updatePortalOfficer(id: string) {
-    this.firstTaskFormControl();
+    //this.firstTaskFormControl();
+    FormValidator.formSubmittion(this.editForm);
     if (this.editForm.valid)
       this.authService.updateOfficer(this.updateOffier).subscribe(
         (data: any) => {
@@ -105,19 +109,23 @@ export class ProfileBarComponent implements OnInit {
 
   // change password
   changePassord(id: any) {
-    if (this.changePasswordRequest.newPassword === this.confirmPassword) {
-      this.authService.changePassword(this.changePasswordRequest).subscribe(
-        (data: any) => {
-          AppUtils.modalDismiss(id);
-          AppUtils.openToast('success', data.message, 'Success');
-          this.clearData();
-        },
-        (err: any) => {
-          AppUtils.openToast('error', err.error.message, 'Error');
-        }
-      );
-    } else {
-      AppUtils.openToast('error', "passowrd doesn't match", 'Error');
+    if(this.changePasswordRequest.currentPassword.trim() !== '' && this.changePasswordRequest.newPassword.trim() !== ''){
+      if (this.changePasswordRequest.newPassword === this.confirmPassword) {
+        this.authService.changePassword(this.changePasswordRequest).subscribe(
+          (data: any) => {
+            AppUtils.modalDismiss(id);
+            AppUtils.openToast('success', data.message, 'Success');
+            this.clearData();
+          },
+          (err: any) => {
+            AppUtils.openToast('error', err.error.message, 'Error');
+          }
+        );
+      } else {
+        AppUtils.openToast('error', "passowrd doesn't match", 'Error');
+      }
+    }else{
+      AppUtils.openToast('error', "Password required", 'Error');
     }
   }
 

@@ -22,7 +22,20 @@
                         </ul>
                     </div>
                 </div>
-                <img src="assets/images/temp_img/verification-chart.png" class="img-fluid w-100">
+                <!-- <img src="assets/images/temp_img/verification-chart.png" class="img-fluid w-100"> -->
+                <div id="chart" >
+                    <apx-chart
+                    [series]="verificationOptions.series"
+                    [chart]="verificationOptions.chart"
+                    [dataLabels]="verificationOptions.dataLabels"
+                    [plotOptions]="verificationOptions.plotOptions"
+                    [responsive]="verificationOptions.responsive"
+                    [xaxis]="verificationOptions.xaxis"
+                    [legend]="verificationOptions.legend"
+                    [fill]="verificationOptions.fill"
+                    [colors]="verificationOptions.colors"
+                ></apx-chart>
+                </div>
             </div>
         </div>
         <div class="col-md-6 mb-4">
@@ -32,12 +45,16 @@
                 <h4 class="fs-20 fw-600 primary mb-0">Verifications</h4>
             </div>
             <div class="report_card">
-                <!-- <img src="assets/images/temp_img/report-chat.png" class="img-fluid w-100"> -->
-             
-                            <div id="donutchart" style="width:700px; height:340px;">
-                                
-                            </div>
-                  
+                <div id="pie-chart">
+                    <apx-chart
+                    [series]="pieChartOptions.series"
+                    [chart]="pieChartOptions.chart"
+                    [labels]="pieChartOptions.labels"
+                    [responsive]="pieChartOptions.responsive"
+                    [stroke]="pieChartOptions.stroke"
+                    [colors]="pieChartOptions.colors"
+                ></apx-chart>
+                </div>
             </div>
         </div>
     </div>
@@ -54,7 +71,19 @@
                 <li><a class="dropdown-item" href="#">March</a></li>
             </ul>
         </div>
-        <img src="assets/images/temp_img/officerchart.png" class="img-fluid w-100">
+        <div id="area-chart">
+            <apx-chart
+                [series]="areaOptions.series"
+                [chart]="areaOptions.chart"
+                [xaxis]="areaOptions.xaxis"
+                [stroke]="areaOptions.stroke"
+                [dataLabels]="areaOptions.dataLabels"
+                [yaxis]="areaOptions.yaxis"
+                [labels]="areaOptions.labels"
+                [legend]="areaOptions.legend"
+                [colors]="areaOptions.colors"
+        ></apx-chart>
+        </div>
     </div>
     <div class="table_container">
         <div class="d-flex Officer_table justify-content-between align-items-center">

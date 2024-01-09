@@ -138,14 +138,14 @@
                 </button>
             </div>
             <div class="modal-body p-0">
-                <div class="col-md-12 voice_card mb_16">
+                <div class="col-md-12 voice_card mb_16" *ngFor="let voiceDirection of verificationReqDetail.addressData.voiceDirections">
                     <div class="gap_10 d-flex align-items-center mb_12">
                         <div class="videos_icon">
-                            <i class="fi fi-rr-play-alt white"></i>
+                            <a [href]="voiceDirection.audio" target="_blank"><i class="fi fi-rr-play-alt white"></i></a>
                         </div>
                         <div>
                             <h3 class="fs-13 fw-500 info mb-1">Duration</h3>
-                            <h4 class="fs-15 fw-500 text_small mb-0">00:21</h4>
+                            <h4 class="fs-15 fw-500 text_small mb-0">{{voiceDirection.duration}}</h4>
                         </div>
                         <div class="delete_icon d-flex justify-content-center align-items-center ms-auto mx-0 "
                             data-bs-target="#delete-modal" data-bs-toggle="modal">
@@ -154,51 +154,10 @@
                     </div>
                     <div>
                         <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
-                        <h4 class="fs-15 fw-500 text_small mb-0">Bhawarkuan Square</h4>
+                        <h4 class="fs-15 fw-500 text_small mb-0">{{voiceDirection.startPoint}}</h4>
                     </div>
 
-                </div>
-                <div class="col-md-12 voice_card mb_16">
-                    <div class="gap_10 d-flex align-items-center mb_12">
-                        <div class="videos_icon">
-                            <i class="fi fi-rr-play-alt white"></i>
-                        </div>
-                        <div>
-                            <h3 class="fs-13 fw-500 info mb-1">Duration</h3>
-                            <h4 class="fs-15 fw-500 text_small mb-0">00:21</h4>
-                        </div>
-                        <div class="delete_icon d-flex justify-content-center align-items-center ms-auto mx-0 "
-                            data-bs-target="#delete-modal" data-bs-toggle="modal">
-                            <img src="assets/images/svg_img/delete.svg" height="16" width="16">
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
-                        <h4 class="fs-15 fw-500 text_small mb-0">Bhawarkuan Square</h4>
-                    </div>
-
-                </div>
-                <div class="col-md-12 voice_card mb_16">
-                    <div class="gap_10 d-flex align-items-center mb_12">
-                        <div class="videos_icon">
-                            <i class="fi fi-rr-play-alt white"></i>
-                        </div>
-                        <div>
-                            <h3 class="fs-13 fw-500 info mb-1">Duration</h3>
-                            <h4 class="fs-15 fw-500 text_small mb-0">00:21</h4>
-                        </div>
-                        <div class="delete_icon d-flex justify-content-center align-items-center ms-auto mx-0 "
-                            data-bs-target="#delete-modal" data-bs-toggle="modal">
-                            <img src="assets/images/svg_img/delete.svg" height="16" width="16">
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
-                        <h4 class="fs-15 fw-500 text_small mb-0">Bhawarkuan Square</h4>
-                    </div>
-
-                </div>
-                
+                </div>          
             </div>
         </div>
     </div>
@@ -219,14 +178,14 @@
                 </button>
             </div>
             <div class="modal-body p-0">
-                <div class="col-md-12 voice_card mb_16">
+                <div class="col-md-12 voice_card mb_16" *ngFor="let routeVideo of verificationReqDetail.addressData.routeVideo">
                     <div class="gap_10 d-flex align-items-center mb_12">
                         <div class="videos_icon">
-                            <i class="fi fi-rr-play-alt white"></i>
+                            <a [href]="routeVideo.video" target="_blank"><i class="fi fi-rr-play-alt white"></i></a>
                         </div>
                         <div>
                             <h3 class="fs-13 fw-500 info mb-1">Duration</h3>
-                            <h4 class="fs-15 fw-500 text_small mb-0">00:21</h4>
+                            <h4 class="fs-15 fw-500 text_small mb-0">{{routeVideo.duration}}</h4>
                         </div>
                         <div class="delete_icon d-flex justify-content-center align-items-center ms-auto mx-0 "
                             data-bs-target="#delete-modal" data-bs-toggle="modal">
@@ -235,7 +194,7 @@
                     </div>
                     <div>
                         <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
-                        <h4 class="fs-15 fw-500 text_small mb-0">Bhawarkuan Square</h4>
+                        <h4 class="fs-15 fw-500 text_small mb-0">{{routeVideo.startPoint}}</h4>
                     </div>
 
                 </div>

@@ -34,13 +34,13 @@
                             <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">{{officer.firstName +" "+officer.lastName}}</h5>
                         </td>
                         <td class="fs-14 fw-400 theading">{{officer.email}}</td>
-                        <td class="fs-14 fw-400 theading " >{{ isPasswordVisible(officer.password)?officer.password:"********" }} <i
-                              [ngClass]=" isPasswordVisible(officer.password)?'fi fi-ss-eye mx-0 ms-1':'fi fi-ss-eye-crossed mx-0 ms-1'" (click)="togglePasswordVisibility(officer.password)" ></i></td>
+                        <td class="fs-14 fw-400 theading " >{{ isPasswordVisible(officer.email)?officer.password:"********" }} <i
+                              [ngClass]=" isPasswordVisible(officer.email)?'fi fi-ss-eye mx-0 ms-1':'fi fi-ss-eye-crossed mx-0 ms-1'" (click)="togglePasswordVisibility(officer.email)" ></i></td>
                         <td class="fs-14 fw-400 theading">{{officer.userName}}</td>
                         <td>
-                            <i class="fi fi-br-trash add_icons danger" (click)="setDeleteData(officer.userId)" data-bs-target="#delete-modal"
+                            <i class="fi fi-br-trash add_icons danger cur-point"  (click)="setDeleteData(officer.userId)" data-bs-target="#delete-modal"
                                 data-bs-toggle="modal"></i>
-                            <i class="fi fi-sr-pencil add_icons theading" (click)="getOfficerById(officer.userId)" data-bs-target="#EditProfile"
+                            <i class="fi fi-sr-pencil add_icons theading cur-point" (click)="getOfficerById(officer.userId)" data-bs-target="#EditProfile"
                                 data-bs-toggle="modal"></i>
                             <a [routerLink]="'/verify/address-officer-details/'+officer.userId"><i
                                     class="fi fi-br-search-alt add_icons theading "></i></a>

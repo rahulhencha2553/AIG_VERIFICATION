@@ -1,7 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChartComponent } from 'ng-apexcharts';
+import { AreaCharts } from 'src/app/charts/area-charts';
+import { PieCharts } from 'src/app/charts/pie-charts';
+import { StackedCharts } from 'src/app/charts/stacked-charts';
 import { AddressOfficerResponse } from 'src/app/payload/address-officer-response';
 import { VerificationService } from 'src/app/services/verification.service';
 import { AppUtils } from 'src/app/utils/app-utils';
+
+export type ChartOptions = {
+  series: any;
+  chart: any;
+  dataLabels: any;
+  plotOptions: any;
+  responsive: any;
+  xaxis: any;
+  legend: any;
+  fill: any;
+  colors: any;
+  stroke:any;
+  labels:any;
+  yaxis:any;
+};
 
 @Component({
   selector: 'app-reports',
@@ -9,13 +28,33 @@ import { AppUtils } from 'src/app/utils/app-utils';
   styleUrls: ['./reports.component.scss'],
 })
 export class ReportsComponent implements OnInit {
-  constructor(private verificationSerice: VerificationService) {}
+
+  @ViewChild("chart") chart: ChartComponent | undefined;
+  public verificationOptions: Partial<ChartOptions>;
+  public pieChartOptions: Partial<ChartOptions>;
+  public areaOptions: Partial<ChartOptions>;
+
+
+  public verificationGraph:StackedCharts = new StackedCharts();
+  public pieGraph:PieCharts = new PieCharts();
+  public areaGraph:AreaCharts = new AreaCharts();
+
   addressOfficers: AddressOfficerResponse[] = [];
+  passwordVisibilityMap = new Map<any, boolean>();
+
+  constructor(private verificationSerice: VerificationService) {
+    this.verificationOptions = this.verificationGraph.chartOptions
+    this.verificationOptions.plotOptions.bar.columnWidth = "15%"
+
+    this.pieChartOptions = this.pieGraph.chartOptions
+
+    this.areaOptions = this.areaGraph.chartOptions
+  }
+
   ngOnInit(): void {
     this.getTopVerificationOfficers();
   }
 
-  passwordVisibilityMap = new Map<any, boolean>();
 
   public togglePasswordVisibility(password: any): void {
     const currentVisibility = this.passwordVisibilityMap.get(password) || false;

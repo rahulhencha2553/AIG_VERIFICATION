@@ -12,7 +12,7 @@
                     <h3 class="dark fs-22 fw-600 mb-4">Nice to see you again</h3>
                     <div class="mb-4">
                         <input type="text" formControlName="userId" name="userId" class="form-control profile_input" [(ngModel)]="authRequest.userId" placeholder="Email or phone number">
-                        <div *ngIf="isFieldInvalidFormField('userId')"
+                        <div *ngIf="isFieldInvalid('userId',loginForm)"
                         class="text-danger ms-2"><b>Email is required</b></div>
                     </div>
                     
@@ -21,7 +21,7 @@
                         <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
                       
                     </div>
-                    <div *ngIf="isFieldInvalidFormField('password')"
+                    <div *ngIf="isFieldInvalid('password',loginForm)"
                     class="text-danger ms-2"><b>Password is required</b></div>
                     <h4 class="forgot mb-4" data-bs-target="#forgot-password" data-bs-toggle="modal" (click)="clearData()">Forgot password?
                     </h4>

@@ -26,59 +26,54 @@ export class AddressOfficerComponent implements OnInit {
   imagePreview: any = 'assets/images/temp_img/profile-modal.png';
   deleteOfficerId = 0;
   addForm: FormGroup;
- editForm:FormGroup;
-index = 0;
+  editForm: FormGroup;
+  index = 0;
 
-pageManager:PaginationManager = new PaginationManager();
-
+  pageManager: PaginationManager = new PaginationManager();
 
   constructor(
     private addressOfficerService: AddressOfficerService,
     private fb: FormBuilder
   ) {
-    this.pageRequests.pageNo = 0
+    this.pageRequests.pageNo = 0;
     this.pageRequests.pageSize = 8;
 
     this.addForm = this.fb.group({
-      firstName: ['',Validators.required],
-      lastName: ['',Validators.required],
-      email: ['',Validators.required],
-      userName: ['',Validators.required],
-      password: ['',Validators.required],
-      phoneNumber: ['',Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
     });
     // Validators.pattern(/^[0-9]{10}$/),
 
     this.editForm = this.fb.group({
-      firstName :['',Validators.required],
-      lastName:['',Validators.required],
-      userName:['',Validators.required]
-    })
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      userName: ['', Validators.required],
+    });
   }
   ngOnInit(): void {
     this.getAddressOfficers(this.pageRequests);
   }
 
-  addFormValidCheck(fieldName:string,form:any){
-   return FormValidator.formValidCheck(fieldName,form);
+  addFormValidCheck(fieldName: string, form: any) {
+    return FormValidator.formValidCheck(fieldName, form);
   }
 
-  public formSubmittion(form:any) {
+  public formSubmittion(form: any) {
     FormValidator.formSubmittion(form);
   }
 
-
-  
-
   // get address officers
-  public getAddressOfficers(pageRequests:PageRequests) {
+  public getAddressOfficers(pageRequests: PageRequests) {
     this.addressOfficerService.getAllOfficers(pageRequests).subscribe({
       next: (data: any) => {
         this.addressOfficers = data.data.content;
         this.pageManager.setPageData(data.data);
         this.pageRequests.pageNo = data.data.pageable.pageNumber;
         console.log(this.pageManager);
-        
       },
       error: (err: any) => {
         AppUtils.openToast('error', err.error.message, 'Error');
@@ -86,18 +81,15 @@ pageManager:PaginationManager = new PaginationManager();
     });
   }
 
-
-
-
   // add address officer
   public addOfficer(id: string) {
     this.formSubmittion(this.addForm);
-    if(this.addForm.valid){
+    if (this.addForm.valid) {
       this.addressOfficerService.addOfficer(this.addressOfficer).subscribe(
         (data: any) => {
           this.getAddressOfficers(this.pageRequests);
           AppUtils.modalDismiss(id);
-  
+
           AppUtils.openToast('success', data.message, 'Success');
         },
         (err: any) => {
@@ -132,17 +124,17 @@ pageManager:PaginationManager = new PaginationManager();
 
   public updateOfficer(id: string) {
     this.formSubmittion(this.editForm);
-    if(this.editForm.valid)
-    this.addressOfficerService.updateOfficer(this.addressOfficer).subscribe({
-      next: (data: any) => {
-        this.getAddressOfficers(this.pageRequests);
-        AppUtils.modalDismiss(id);
-        AppUtils.openToast('success', data.message, 'Success');
-      },
-      error: (err: any) => {
-        AppUtils.openToast('error', err.error.message, 'Error');
-      },
-    });
+    if (this.editForm.valid)
+      this.addressOfficerService.updateOfficer(this.addressOfficer).subscribe({
+        next: (data: any) => {
+          this.getAddressOfficers(this.pageRequests);
+          AppUtils.modalDismiss(id);
+          AppUtils.openToast('success', data.message, 'Success');
+        },
+        error: (err: any) => {
+          AppUtils.openToast('error', err.error.message, 'Error');
+        },
+      });
   }
 
   // setting image to officer
@@ -198,30 +190,20 @@ pageManager:PaginationManager = new PaginationManager();
     );
   }
 
-
-// get pages
-  public getOfficersPage(pageNumber:number){
-  if(pageNumber!==this.pageRequests.pageNo){
-    this.pageRequests.pageNo = pageNumber;
-    this.getAddressOfficers(this.pageRequests)
+  // get pages
+  public getOfficersPage(pageNumber: number) {
+    if (pageNumber !== this.pageRequests.pageNo) {
+      this.pageRequests.pageNo = pageNumber;
+      this.getAddressOfficers(this.pageRequests);
+    }
   }
 
-
-  }
-
-  manageNextPrev(isNext:boolean){
+  manageNextPrev(isNext: boolean) {
     let i = 0;
-   if(isNext)
-  i = this.pageRequests.pageNo+1;
-    else
-       i=this.pageRequests.pageNo-1;
-if(i>=0 && i<this.pageManager.totalPages)
-      this.getOfficersPage(i);
+    if (isNext) i = this.pageRequests.pageNo + 1;
+    else i = this.pageRequests.pageNo - 1;
+    if (i >= 0 && i < this.pageManager.totalPages) this.getOfficersPage(i);
   }
-
-
-
-
 
   public changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
@@ -229,12 +211,12 @@ if(i>=0 && i<this.pageManager.totalPages)
 
   passwordVisibilityMap = new Map<any, boolean>();
 
-  public togglePasswordVisibility(password: any): void {
-    const currentVisibility = this.passwordVisibilityMap.get(password) || false;
-    this.passwordVisibilityMap.set(password, !currentVisibility);
+  public togglePasswordVisibility(email: any): void {
+    const currentVisibility = this.passwordVisibilityMap.get(email) || false;
+    this.passwordVisibilityMap.set(email, !currentVisibility);
   }
 
-  public isPasswordVisible(password: any): boolean {
-    return this.passwordVisibilityMap.get(password) || false;
+  public isPasswordVisible(email: any): boolean {
+    return this.passwordVisibilityMap.get(email) || false;
   }
 }
