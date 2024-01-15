@@ -14,7 +14,7 @@ export class VerificationPortalComponent implements OnInit {
     this.getOfficer();
   }
 
-  getOfficer() {
+  public getOfficer() {
     this.authService.getLoggedInOfficer().subscribe({
       next: (data: any) => {
         this.authService.portalOfficer.next(data.officer);

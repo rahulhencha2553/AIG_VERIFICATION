@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <!-- <img src="assets/images/temp_img/verification-chart.png" class="img-fluid w-100"> -->
-                <div id="chart" >
+                <div class="col-md-12" id="chart" >
                     <apx-chart
                     [series]="verificationOptions.series"
                     [chart]="verificationOptions.chart"
@@ -44,7 +44,7 @@
                 <h4 class="fs-20 fw-600 primary mb-0">Pending</h4>
                 <h4 class="fs-20 fw-600 primary mb-0">Verifications</h4>
             </div>
-            <div class="report_card">
+            <div class="report_card2">
                 <div id="pie-chart">
                     <apx-chart
                     [series]="pieChartOptions.series"
@@ -53,6 +53,7 @@
                     [responsive]="pieChartOptions.responsive"
                     [stroke]="pieChartOptions.stroke"
                     [colors]="pieChartOptions.colors"
+                    [legend]="pieChartOptions.legend"
                 ></apx-chart>
                 </div>
             </div>

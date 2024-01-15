@@ -6,13 +6,13 @@
     </div>
     <app-profile-bar></app-profile-bar>
 </nav>
-<div class="main_content p_36">
+<div class="main_content p_36" *ngIf="verificationReqDetail">
     <div class="container">
-        <div class="row mb_20">
+        <div class="row mb_20" >
             <div class="col-md-4">
                 <div class="Address_Details h-100">
                     <h3 class="fs-18 fw-500 primary">User Details</h3>
-                    <div class="mt_60 d-flex justify-content-center align-items-center flex-column">
+                    <div class="mt_60 d-flex justify-content-center align-items-center flex-column" >
                         <img [src]="verificationReqDetail.requestorData.profilePic" class="modal_profile mb_20">
                         <h3 class="fs-16 fw-600 text_small mb-1">{{verificationReqDetail.requestorData.firstName + ' ' + verificationReqDetail.requestorData.lastName}}</h3>
                         <h4 class="fs-14 fw-500 black mb-1">NIN - <span class="info">{{verificationReqDetail.requestorData.ninNumber}}</span>
@@ -54,8 +54,8 @@
                                 <div class="col-md-6">
                                     <h4 class="fs-13 fw-500 info mb-1">Address Type</h4>
                                     <div class="d-flex align-items-center">
-                                        <img [src]="verificationReqDetail.addressData.addressTypeImage"
-                                            class="mx-1 ms-0">
+                                        <img  [src]="verificationReqDetail.addressData.addressTypeImage"
+                                            class="mx-1 ms-0 img-invert">
                                         <h5 class="text_small  fs-15 fw-500 mb-0">{{verificationReqDetail.addressData.addressType}}</h5>
                                     </div>
                                 </div>
@@ -75,10 +75,10 @@
                         </div>
                     </div>
                     <div class="address mb_20">
-                        <img [src]="img" *ngFor="let img of verificationReqDetail.addressData.propertyPhotos">
+                        <img [src]="img.image" *ngFor="let img of verificationReqDetail.addressData.propertyPhotos">
                     </div>
-                    <a routerLink="/verify/assign-officer" class="btn_primary btn fs-16 fw-600 w-100 m-0 br_12"><img
-                            src="assets/images/svg_img/assign.svg" class="mx-2 ms-0">Assign Officer</a>
+                    <a [routerLink]="'/verify/assign-officer/'+verificationReqDetail.verificationOfficerId+'/'+verificationReqDetail.uuid" class="btn_primary btn fs-16 fw-600 w-100 m-0 br_12"><img
+                            src="assets/images/svg_img/assign.svg" class="mx-2 ms-0">Re-Assign Officer</a>
                 </div>
             </div>
 
@@ -95,12 +95,13 @@
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Requestor</h4>
                 </div>
                 <div class="col-md-4">
-                    <img src="assets/images/temp_img/verification-3.png" class="verification_image mb_10">
+                    <!-- <img src="assets/images/temp_img/verification-3.png" class="verification_image mb_10"> -->
+                    <div id="map" class="verification_image mb_10"></div>
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Location map</h4>
                 </div>
             </div>
         </div>
-        <div class="Address_Details">
+        <div class="Address_Details" *ngIf="status.Verified===verificationReqDetail.verificationStatus">
             <h5 class="fs-18 fw-500 secondary mb_10">Verification Summary</h5>
             <div class="Verification_Summary">
                 <h4 class="mb-1 fs-15 fw-50 text_small">Comment</h4>

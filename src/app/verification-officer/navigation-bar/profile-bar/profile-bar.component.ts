@@ -1,12 +1,20 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { PortalOfficer } from 'src/app/models/portal-officer';
 import { ChangePasswordRequest } from 'src/app/payload/change-password-request';
 import { UpdateOfficerRequest } from 'src/app/payload/update-officer-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppUtils } from 'src/app/utils/app-utils';
-import { FormValidator } from 'src/app/utils/form-validator';
+import {
+  FormValidator,
+  passwordConfirmationValidator,
+} from 'src/app/utils/form-validator';
 
 @Component({
   selector: 'app-profile-bar',
@@ -14,21 +22,32 @@ import { FormValidator } from 'src/app/utils/form-validator';
   styleUrls: ['./profile-bar.component.scss'],
 })
 export class ProfileBarComponent implements OnInit {
-  officer: PortalOfficer = new PortalOfficer();
-  updateOffier: UpdateOfficerRequest = new UpdateOfficerRequest();
-  imagePreview: string = '';
-  changePasswordRequest: ChangePasswordRequest = new ChangePasswordRequest();
-  confirmPassword: string = '';
+  public officer: PortalOfficer = new PortalOfficer();
+  public updateOffier: UpdateOfficerRequest = new UpdateOfficerRequest();
+  public imagePreview: string = '';
+  public changePasswordRequest: ChangePasswordRequest =
+    new ChangePasswordRequest();
+  public confirmPassword: string = '';
   @ViewChild('i1', { static: true }) icon1!: ElementRef;
-  editForm!: FormGroup;
+  public editForm!: FormGroup;
+  public changePasswordForm: FormGroup;
+  public iconClass = 'fi fi-rr-eye eye_icon';
 
-
-  constructor(private authService: AuthService, private router: Router,private builder:FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private builder: FormBuilder
+  ) {
     this.editForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
     });
 
+    this.changePasswordForm = this.builder.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
@@ -51,8 +70,6 @@ export class ProfileBarComponent implements OnInit {
   //   }
   // }
 
-  iconClass = 'fi fi-rr-eye eye_icon';
-
   // get officer
   public getOfficer() {
     this.authService.officer.subscribe((data: any) => {
@@ -62,7 +79,7 @@ export class ProfileBarComponent implements OnInit {
   }
 
   // setting officer details to update request officer
-  setOfficer() {
+  public setOfficer() {
     if (this.officer) {
       this.updateOffier.firstName = this.officer.firstName;
       this.updateOffier.lastName = this.officer.lastName;
@@ -74,7 +91,7 @@ export class ProfileBarComponent implements OnInit {
   }
 
   // setting image to officer
-  setImage(event: any) {
+  public setImage(event: any) {
     this.updateOffier.profilePicture = event.target.files[0];
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -108,8 +125,9 @@ export class ProfileBarComponent implements OnInit {
   }
 
   // change password
-  changePassord(id: any) {
-    if(this.changePasswordRequest.currentPassword.trim() !== '' && this.changePasswordRequest.newPassword.trim() !== ''){
+  public changePassword(id: any) {
+    FormValidator.formSubmittion(this.changePasswordForm);
+    if (this.changePasswordForm.valid) {
       if (this.changePasswordRequest.newPassword === this.confirmPassword) {
         this.authService.changePassword(this.changePasswordRequest).subscribe(
           (data: any) => {
@@ -124,17 +142,16 @@ export class ProfileBarComponent implements OnInit {
       } else {
         AppUtils.openToast('error', "passowrd doesn't match", 'Error');
       }
-    }else{
-      AppUtils.openToast('error', "Password required", 'Error');
     }
   }
 
-  clearData() {
+  public clearData() {
     this.changePasswordRequest.currentPassword = '';
     this.changePasswordRequest.newPassword = '';
-
     this.confirmPassword = '';
     this.setOfficer();
+    this.changePasswordForm.reset();
+    this.editForm.reset();
   }
 
   // logout officer
@@ -142,7 +159,13 @@ export class ProfileBarComponent implements OnInit {
     this.authService.logOut();
   }
 
-  changePasswordIcon(element: any) {
+  public changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
   }
+
+  public isFieldInvalid(field: any, form: any) {
+    return FormValidator.formValidCheck(field, form);
+  }
+
+  public clearAllValidationFrom() {}
 }

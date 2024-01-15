@@ -17,9 +17,9 @@ export type ChartOptions = {
   legend: any;
   fill: any;
   colors: any;
-  stroke:any;
-  labels:any;
-  yaxis:any;
+  stroke: any;
+  labels: any;
+  yaxis: any;
 };
 
 @Component({
@@ -28,33 +28,30 @@ export type ChartOptions = {
   styleUrls: ['./reports.component.scss'],
 })
 export class ReportsComponent implements OnInit {
-
-  @ViewChild("chart") chart: ChartComponent | undefined;
+  @ViewChild('chart') chart: ChartComponent | undefined;
   public verificationOptions: Partial<ChartOptions>;
   public pieChartOptions: Partial<ChartOptions>;
   public areaOptions: Partial<ChartOptions>;
 
+  public verificationGraph: StackedCharts = new StackedCharts();
+  public pieGraph: PieCharts = new PieCharts();
+  public areaGraph: AreaCharts = new AreaCharts();
 
-  public verificationGraph:StackedCharts = new StackedCharts();
-  public pieGraph:PieCharts = new PieCharts();
-  public areaGraph:AreaCharts = new AreaCharts();
-
-  addressOfficers: AddressOfficerResponse[] = [];
-  passwordVisibilityMap = new Map<any, boolean>();
+  public addressOfficers: AddressOfficerResponse[] = [];
+  public passwordVisibilityMap = new Map<any, boolean>();
 
   constructor(private verificationSerice: VerificationService) {
-    this.verificationOptions = this.verificationGraph.chartOptions
-    this.verificationOptions.plotOptions.bar.columnWidth = "15%"
+    this.verificationOptions = this.verificationGraph.chartOptions;
+    this.verificationOptions.plotOptions.bar.columnWidth = '15%';
 
-    this.pieChartOptions = this.pieGraph.chartOptions
+    this.pieChartOptions = this.pieGraph.chartOptions;
 
-    this.areaOptions = this.areaGraph.chartOptions
+    this.areaOptions = this.areaGraph.chartOptions;
   }
 
   ngOnInit(): void {
     this.getTopVerificationOfficers();
   }
-
 
   public togglePasswordVisibility(password: any): void {
     const currentVisibility = this.passwordVisibilityMap.get(password) || false;

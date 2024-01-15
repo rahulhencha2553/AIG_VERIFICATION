@@ -31,7 +31,7 @@ const routes: Routes = [
     path:'verify/request-details/:uuid',component:RequestDetailsComponent,pathMatch:'full'
   },
   {
-    path:'verify/assign-officer',component:AssignOfficerComponent,pathMatch:'full'
+    path:'verify/assign-officer/:officerId/:requesId',component:AssignOfficerComponent,pathMatch:'full'
   },
   {
     path:'verify/address-officer-details/:uuid',component:AddressOfficerDetailsComponent,pathMatch:'full'

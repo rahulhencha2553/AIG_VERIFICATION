@@ -68,8 +68,8 @@ export class AddressOfficerService {
   // get address officer by id
   public getAddressOfficerById(userId: any) {
     return this.httpClient.get<any>(ApiRoutes.ADDRESS_OFFICER_GET_BY_ID + userId);
-
   }
+
 
 
 

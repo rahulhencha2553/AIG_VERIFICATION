@@ -16,27 +16,27 @@ import { FormValidator } from 'src/app/utils/form-validator';
   styleUrls: ['./address-officer-details.component.scss'],
 })
 export class AddressOfficerDetailsComponent implements OnInit {
-  addressOfficer: AddressOfficer = new AddressOfficer();
+  public addressOfficer: AddressOfficer = new AddressOfficer();
 
-  updateAddressOfficer: AddressOfficer = new AddressOfficer();
-  offiserAssignedRequests: OfficerAssignedRequests =
+  public updateAddressOfficer: AddressOfficer = new AddressOfficer();
+  public offiserAssignedRequests: OfficerAssignedRequests =
     new OfficerAssignedRequests();
-  verificationRequests: VerificationRequestsDetailsWeb[] = [];
+    public verificationRequests: VerificationRequestsDetailsWeb[] = [];
 
-  imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+    public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
   public status = Status;
-  editForm:FormGroup;
+  public editForm: FormGroup;
 
   constructor(
     private addressOfficerServie: AddressOfficerService,
     private activtedRoute: ActivatedRoute,
-    private verificationService: VerificationService, private fb: FormBuilder
+    private verificationService: VerificationService,
+    private fb: FormBuilder
   ) {
-this.editForm = this.fb.group({
-  firstName :['',Validators.required],
-  lastName:['',Validators.required]
-})
-
+    this.editForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
@@ -48,16 +48,15 @@ this.editForm = this.fb.group({
     });
   }
 
-  editFormValidationCheck(fieldName:string,form:any){
-return FormValidator.formValidCheck(fieldName,form);
+  public editFormValidationCheck(fieldName: string, form: any) {
+    return FormValidator.formValidCheck(fieldName, form);
   }
 
-  formSubmittionCheck(form:any){
- FormValidator.formSubmittion(form);
+  public formSubmittionCheck(form: any) {
+    FormValidator.formSubmittion(form);
   }
 
-
-  getOfficerById(uuid: any) {
+  public getOfficerById(uuid: any) {
     this.addressOfficerServie.getAddressOfficerById(uuid).subscribe({
       next: (data: any) => {
         console.log(data);
@@ -72,21 +71,21 @@ return FormValidator.formValidCheck(fieldName,form);
 
   // update officer
 
-  updateOfficer(id: string) {
+  public updateOfficer(id: string) {
     this.formSubmittionCheck(this.editForm);
 
-    if(this.editForm.valid)
-    this.addressOfficerServie.updateOfficer(this.addressOfficer).subscribe(
-      (data: any) => {
-        this.getOfficerById(data.data.userId);
-        AppUtils.modalDismiss(id);
+    if (this.editForm.valid)
+      this.addressOfficerServie.updateOfficer(this.addressOfficer).subscribe(
+        (data: any) => {
+          this.getOfficerById(data.data.userId);
+          AppUtils.modalDismiss(id);
 
-        AppUtils.openToast('success', data.message, 'Success');
-      },
-      (err: any) => {
-        AppUtils.openToast('error', err.error.message, 'Error');
-      }
-    );
+          AppUtils.openToast('success', data.message, 'Success');
+        },
+        (err: any) => {
+          AppUtils.openToast('error', err.error.message, 'Error');
+        }
+      );
   }
 
   // get officer assigned requests
@@ -105,7 +104,7 @@ return FormValidator.formValidCheck(fieldName,form);
   }
 
   // setting image to officer
-  setImage(event: any) {
+  public setImage(event: any) {
     this.addressOfficer.profilePicture = event.target.files[0];
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -117,7 +116,7 @@ return FormValidator.formValidCheck(fieldName,form);
     }
   }
 
-  manageEditModel(value: boolean) {
+  public manageEditModel(value: boolean) {
     if (value) {
       document.getElementById('btn1')!.style.display = 'none';
       document.getElementById('btn2')!.style.display = 'block';

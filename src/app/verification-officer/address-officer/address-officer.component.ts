@@ -20,16 +20,16 @@ import { PaginationManager } from 'src/app/utils/pagination-manager';
   styleUrls: ['./address-officer.component.scss'],
 })
 export class AddressOfficerComponent implements OnInit {
-  pageRequests: PageRequests = new PageRequests();
-  addressOfficers: AddressOfficerResponse[] = [];
-  addressOfficer: AddressOfficer = new AddressOfficer();
-  imagePreview: any = 'assets/images/temp_img/profile-modal.png';
-  deleteOfficerId = 0;
-  addForm: FormGroup;
-  editForm: FormGroup;
-  index = 0;
-
-  pageManager: PaginationManager = new PaginationManager();
+  public pageRequests: PageRequests = new PageRequests();
+  public addressOfficers: AddressOfficerResponse[] = [];
+  public addressOfficer: AddressOfficer = new AddressOfficer();
+  public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+  public deleteOfficerId = 0;
+  public addForm: FormGroup;
+  public editForm: FormGroup;
+  public index = 0;
+  public passwordVisibilityMap = new Map<any, boolean>();
+  public pageManager: PaginationManager = new PaginationManager();
 
   constructor(
     private addressOfficerService: AddressOfficerService,
@@ -54,11 +54,12 @@ export class AddressOfficerComponent implements OnInit {
       userName: ['', Validators.required],
     });
   }
+
   ngOnInit(): void {
     this.getAddressOfficers(this.pageRequests);
   }
 
-  addFormValidCheck(fieldName: string, form: any) {
+  public addFormValidCheck(fieldName: string, form: any) {
     return FormValidator.formValidCheck(fieldName, form);
   }
 
@@ -101,6 +102,8 @@ export class AddressOfficerComponent implements OnInit {
 
   public clearData() {
     this.addressOfficer = new AddressOfficer();
+    this.addForm.reset();
+    this.editForm.reset();
   }
 
   public clearDeleteData() {
@@ -198,7 +201,7 @@ export class AddressOfficerComponent implements OnInit {
     }
   }
 
-  manageNextPrev(isNext: boolean) {
+  public manageNextPrev(isNext: boolean) {
     let i = 0;
     if (isNext) i = this.pageRequests.pageNo + 1;
     else i = this.pageRequests.pageNo - 1;
@@ -208,8 +211,6 @@ export class AddressOfficerComponent implements OnInit {
   public changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
   }
-
-  passwordVisibilityMap = new Map<any, boolean>();
 
   public togglePasswordVisibility(email: any): void {
     const currentVisibility = this.passwordVisibilityMap.get(email) || false;

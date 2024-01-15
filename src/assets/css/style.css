@@ -522,6 +522,7 @@ ul li a {
   background: #FFF;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
   border: 1px solid transparent;
+  min-height: 243px;
 }
 
 .card img {
@@ -658,7 +659,7 @@ ul li a {
   color: #A7A7A7;
   font-size: 20px;
 }
-
+/* 
 .btn_close {
   width: 40px;
   height: 40px;
@@ -672,7 +673,7 @@ ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* NOTIFICATION CSS */
 .back_arrow {
@@ -1080,7 +1081,17 @@ tbody tr:last-child {
   border: 1px solid #2B417D !important;
   background: #E6E8EF !important;
 }
+.report_card2 {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
+  padding: 54px 42px;
+}
 
+.validation p{
+  font-size: 14px;
+  font-weight: 400;
+}
 
 /* MEDIA QUERY */
 @media (min-width:1300px) and (max-width: 1400px) {
@@ -1091,6 +1102,7 @@ tbody tr:last-child {
   .dashboard_card h5 {
     font-size: 25px;
   }
+ 
 }
 
 
@@ -1374,7 +1386,11 @@ td{
   font-size: 26px;
 }
 }
-
+@media (min-width:1400px) and (max-width:1600px) {
+  .dashboard_card h3{
+    font-size: 14px;
+  }
+}
 
 
 /* add css in 18/12 */
@@ -1418,7 +1434,7 @@ td{
   width: 40px;
   height: 40px;
   position: absolute;
-  top: -13%;
+  bottom: 107%;
   right: 0;
   border: 3px solid #fff;
   border-radius: 50%;
@@ -1572,6 +1588,7 @@ ul li a {
   height: 15px;
   width: 15px;
   margin-right: 6px;
+  filter: invert(100%);
 }
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {

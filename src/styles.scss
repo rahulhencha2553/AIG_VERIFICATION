@@ -14,3 +14,13 @@ input[type=password]::-ms-clear
 .cur-point{
     cursor: pointer;
 }
+
+.marker-label {
+    background-color: #2B417D;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 66px;
+    margin-left: 55px;
+  }
