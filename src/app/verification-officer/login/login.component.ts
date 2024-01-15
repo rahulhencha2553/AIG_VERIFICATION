@@ -14,15 +14,20 @@ import { FormValidator } from 'src/app/utils/form-validator';
   providers: [AppUtils],
 })
 export class LoginComponent implements OnInit {
-  authRequest: AuthRequest = new AuthRequest();
-  loginForm: FormGroup;
-  otpForm: FormGroup ;
-  passwordForm:FormGroup;
-
-  isValid = false;
-  submitted = false;
-  forgetPasswordRequest: ForgetPasswordRequest = new ForgetPasswordRequest();
-
+  public authRequest: AuthRequest = new AuthRequest();
+  public loginForm: FormGroup;
+  public otpForm: FormGroup ;
+  public passwordForm:FormGroup; 
+  public emailForm:FormGroup;
+  public isValid = false;
+  public submitted = false;
+  public forgetPasswordRequest: ForgetPasswordRequest = new ForgetPasswordRequest();
+  public otp1 = '';
+  public otp2 = '';
+  public otp3 = '';
+  public otp4 = '';
+  public confimPassword = '';
+  
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -44,21 +49,21 @@ export class LoginComponent implements OnInit {
     this.passwordForm = this.formBuilder.group({
       newPassword: ['',Validators.required],
       confimPassword: ['',Validators.required]
+    });
+
+    this.emailForm = this.formBuilder.group({
+      email : ['',Validators.required]
     })
   }
+
   ngOnInit(): void {
     this.otpModelManger();
     this.checkIsAlreadyLoggedIn();
   }
 
-  otp1 = '';
-  otp2 = '';
-  otp3 = '';
-  otp4 = '';
-  confimPassword = '';
 
   // send to dashobard if didn't logout
-  checkIsAlreadyLoggedIn() {
+  public checkIsAlreadyLoggedIn() {
     console.log(this.authService.isTokenExpired());
 
     if (!this.authService.isTokenExpired()) {
@@ -67,7 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   // validation checking
-  isFieldInvalid(fieldName: string,form:any): boolean {
+  public isFieldInvalid(fieldName: string,form:any): boolean {
     return FormValidator.formValidCheck(fieldName,form);
   }
 
@@ -94,7 +99,9 @@ export class LoginComponent implements OnInit {
   // send otp to email
   public sendEmail() {
     this.submitted = false
-    if (this.forgetPasswordRequest.email.trim() !== '') {
+    this.checkEmailValidation()
+    FormValidator.formSubmittion(this.emailForm);
+    if (this.emailForm.valid) {
       if (this.isValid) {
         this.authService.sendEmail(this.forgetPasswordRequest).subscribe({
           next: (data: any) => {
@@ -112,8 +119,6 @@ export class LoginComponent implements OnInit {
       } else {
         AppUtils.openToast('error', 'Please enter vaild email', 'Error');
       }
-    } else {
-      AppUtils.openToast('error', 'Email is required', 'Error');
     }
   }
 
@@ -153,14 +158,14 @@ export class LoginComponent implements OnInit {
           },
         });
       } else AppUtils.openToast('error', "passowrd doesn't match", 'Error');
-    }else AppUtils.openToast('error', "Password required", 'Error');
+    }
   }
 
-  changePasswordIcon(element: any) {
+  public changePasswordIcon(element: any) {
     AppUtils.changePassowrdIcon(element);
   }
 
-  otpModelManger() {
+  public otpModelManger() {
     const inputs = document.getElementById('inputs') as HTMLInputElement;
     inputs.addEventListener('keyup', function (e) {
       const target = e.target as HTMLInputElement;
@@ -196,5 +201,9 @@ export class LoginComponent implements OnInit {
 
   public clearData() {
     this.forgetPasswordRequest.email = '';
+    this.loginForm.reset();
+    this.otpForm.reset();
+    this.passwordForm.reset();
+    this.emailForm.reset();
   }
 }

@@ -167,32 +167,41 @@ tabindex="-1">
             </button>
         </div>
         <div class="modal-body p-0">
-            <div class="mb-4 mt-4">
-                <div class="col-md-12 mb-3 ps-0 px-2">
-                    <div class="position-relative">
-                        <i class="fi fi-br-lock lock_icon"></i>
-                        <input #i1 type="text" class="form-control password_input" placeholder="Current Password" [(ngModel)]="changePasswordRequest.currentPassword">
-                        <i [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i1)" ></i>
+            <form [formGroup]="changePasswordForm">
+                <div class="mb-4 mt-4">
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <div class="position-relative">
+                            <i class="fi fi-br-lock lock_icon"></i>
+                            <input #i1 type="password" name="currentPassword" formControlName="currentPassword" class="form-control password_input" placeholder="Current Password" [(ngModel)]="changePasswordRequest.currentPassword">
+                            <i [ngClass]="i1.type==='password'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i1)" ></i>
+                        </div>
+                        <div *ngIf="isFieldInvalid('currentPassword',changePasswordForm)"
+                    class="text-danger validation"><p>current password is required</p></div>
+                    </div>
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <div class="position-relative">
+                            <i class="fi fi-br-lock lock_icon"></i>
+                            <input #i2 type="password"  name="newPassword" formControlName="newPassword" class="form-control password_input" placeholder="New Password" [(ngModel)]="changePasswordRequest.newPassword">
+                            <i [ngClass]="i2.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i2)" ></i>
+                            
+                        </div>
+                        <div *ngIf="isFieldInvalid('newPassword',changePasswordForm)"
+                    class="text-danger validation"><p>new password is required</p></div>
+                    </div>
+                    <div class="col-md-12 ps-0 px-2">
+                        <div class="position-relative">
+                            <i class="fi fi-br-lock lock_icon"></i>
+                            <input #i3 type="password" name="confirmPassword" formControlName="confirmPassword" class="form-control password_input" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+                            <i [ngClass]="i3.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i3)" ></i>
+                        </div>
+                        <div *ngIf="isFieldInvalid('confirmPassword',changePasswordForm)"
+                    class="text-danger validation"><p>confirm password is required</p></div>
                     </div>
                 </div>
-                <div class="col-md-12 mb-3 ps-0 px-2">
-                    <div class="position-relative">
-                        <i class="fi fi-br-lock lock_icon"></i>
-                        <input #i2 type="text" class="form-control password_input" placeholder="New Password" [(ngModel)]="changePasswordRequest.newPassword">
-                        <i [ngClass]="i2.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i2)" ></i>
-                    </div>
-                </div>
-                <div class="col-md-12 ps-0 px-2">
-                    <div class="position-relative">
-                        <i class="fi fi-br-lock lock_icon"></i>
-                        <input #i3 type="text" class="form-control password_input" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
-                        <i [ngClass]="i3.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'" (click)="changePasswordIcon(i3)" ></i>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="modal-footer p-0">
-            <button  class="btn_primary fs-16 fw-500 w-100 m-0" (click)="changePassord('closeBtn')">Save Password</button>
+            <button  class="btn_primary fs-16 fw-500 w-100 m-0" (click)="changePassword('closeBtn')">Save Password</button>
         </div>
     </div>
 </div>

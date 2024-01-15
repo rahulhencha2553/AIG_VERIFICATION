@@ -22,7 +22,7 @@ export class ApiRoutes {
     public static OFFICER_ASSIGNED_VERIFICATION_REQUESTS = this.BASE_URL + '/addressVerification/officerAssignedRequests-web';
     public static VERIFICATION_STATICS = this.BASE_URL + '/addressVerification/verificationStatistics-web';
     
-
+    
     
     public static ADDRESS_OFFICER_GET = this.BASE_URL + '/officer/getAllOfficers-web';
     public static ADDRESS_OFFICER_ADD = this.BASE_URL + '/officer';
@@ -31,6 +31,9 @@ export class ApiRoutes {
     public static ADDRESS_OFFICER_GET_BY_ID = this.BASE_URL + '/officer/getOfficer-web?userId=';
     public static ADDRESS_OFFICER_DELETE_BY_ID = this.BASE_URL + '/officer/deleteOfficer-web?userId=';
     public static ADDRESS_OFFICER_TOP = this.BASE_URL + '/officer/getTopVerficationOfficers-web';
+    public static ACTIVE_ADDRESS_OFFICER = this.BASE_URL + '/officer/getActiveVerificationOfficer-web?officerId=';
+    public static REASSIGN_OFFICER = this.BASE_URL + '/addressVerification/re-assignOfficer-web';
+
 
 
 

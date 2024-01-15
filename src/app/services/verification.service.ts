@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiRoutes } from '../utils/api-routes';
 import { OfficerAssignedRequests } from '../payload/officer-assigned-requests';
+import { ReAssingOfficerRequest } from '../payload/re-assing-officer-request';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,24 @@ export class VerificationService {
   public officerAssignedRequests(officerAssignedRequests:OfficerAssignedRequests){
     return this.httpClient.post<any>(ApiRoutes.OFFICER_ASSIGNED_VERIFICATION_REQUESTS,officerAssignedRequests);
   }
+
+ public reAssignOfficer(reAssignOfficerRequest:ReAssingOfficerRequest){
+  return this.httpClient.put(ApiRoutes.REASSIGN_OFFICER,reAssignOfficerRequest);
+ }
+
+
  
   // top 10 verificaion officers
   public topVerificationOfficers(){
     return this.httpClient.get<any>(ApiRoutes.ADDRESS_OFFICER_TOP);
   }
+
+
+  // active officers except officer having officerId
+  public activeVerificationOfficer(officerId:any,pageRequest:any){
+    return this.httpClient.post(ApiRoutes.ACTIVE_ADDRESS_OFFICER+officerId,pageRequest);
+  }
+
+  
 
 }

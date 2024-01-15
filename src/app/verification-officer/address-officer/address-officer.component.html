@@ -8,7 +8,7 @@
         <div class="d-flex Officer_table justify-content-between align-items-center">
             <div class="d-flex">
                 <h4 class="fs-18 fw-500 primary mb-0">Recent Officers</h4>
-                <span class="Officer  mx-0 ms-2 fs-12 fw-400 primary">100 officers</span>
+                <span class="Officer  mx-0 ms-2 fs-12 fw-400 primary">{{pageManager.totalElements}} officers</span>
             </div>
             <button (click)="clearData()" class="add_officer white fs-12 fw-500" data-bs-target="#addofficer"
                 data-bs-toggle="modal">+ Add Officer</button>
@@ -117,44 +117,44 @@
                         <div class="">
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
-                                <input type="text" class="form-control profile_input" formControlName="firstName" [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Vijay">
+                                <input type="text" class="form-control profile_input" formControlName="firstName" [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Enter First Name">
                                 <div *ngIf="addFormValidCheck('firstName',addForm)"
-                                    class="text-danger error-font  ms-2"><b>firstName is required</b></div>
+                                    class="text-danger error-font  validation"><p>first name is required</p></div>
                                 
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
-                                <input type="text" class="form-control profile_input"   formControlName="lastName" [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Hencha">
+                                <input type="text" class="form-control profile_input"   formControlName="lastName" [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Enter Last Name">
                                 <div *ngIf="addFormValidCheck('lastName',addForm)"
-                                    class="text-danger error-font  ms-2"><b>lastName is required</b></div>
+                                    class="text-danger error-font  validation"><p>last name is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
-                                <input type="text" class="form-control profile_input"   formControlName="userName" [(ngModel)]="addressOfficer.userName" name="userName" placeholder="@hgfghf">
+                                <input type="text" class="form-control profile_input"   formControlName="userName" [(ngModel)]="addressOfficer.userName" name="userName" placeholder="Enter Username">
                                 <div *ngIf="addFormValidCheck('userName',addForm)"
-                                    class="text-danger error-font  ms-2"><b>userName is required</b></div>
+                                    class="text-danger error-font  validation"><p>username is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Phone Number</label>
-                                <input type="text" class="form-control profile_input"  formControlName="phoneNumber" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" placeholder="9126372748">
+                                <input type="text" class="form-control profile_input"  formControlName="phoneNumber" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" placeholder="Enter Phone Number">
                                 <div *ngIf="addFormValidCheck('phoneNumber',addForm)"
-                                    class="text-danger error-font  ms-2"><b>phoneNumber is required</b></div>
+                                    class="text-danger error-font  validation"><p>phone number is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
                                 <input type="email" class="form-control profile_input"
-                                    formControlName="email" [(ngModel)]="addressOfficer.email" name="email" placeholder="vijayhencha@gmail.com">
+                                    formControlName="email" [(ngModel)]="addressOfficer.email" name="email" placeholder="Enter Email Address">
                                     <div *ngIf="addFormValidCheck('email',addForm)"
-                                    class="text-danger error-font  ms-2"><b>email is required</b></div>
+                                    class="text-danger error-font  validation"><p>email is required</p></div>
                             </div>
                             <div class="position-relative">
                                 <label for="" class="black fs-15 fw-400 mb-2">Password</label>
 
-                                <input type="text" #i1  class="form-control  profile_input" formControlName="password" [(ngModel)]="addressOfficer.password" name="password" placeholder="Confirm Password">
+                                <input type="password" #i1  class="form-control  profile_input" formControlName="password" [(ngModel)]="addressOfficer.password" name="password" placeholder="Confirm Password">
                                 <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
                             </div>
                             <div *ngIf="addFormValidCheck('password',addForm)"
-                                    class="text-danger error-font  ms-2"><b>password is required</b></div>
+                                    class="text-danger error-font  validation"><p>password is required</p></div>
                         </div>
                     </form>
                 </div>
@@ -201,19 +201,19 @@ tabindex="-1">
                         <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
                         <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  formControlName="firstName" placeholder="Vijay">
                           <div *ngIf="addFormValidCheck('firstName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>firstName is required</b></div>
+                                    class="text-danger error-font  ms-2"><b>first name is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"  formControlName="lastName" placeholder="Hencha">
                           <div *ngIf="addFormValidCheck('lastName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>lastName is required</b></div>
+                                    class="text-danger error-font  ms-2"><b>last name is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.userName" name="userName"  formControlName="userName" placeholder="@hgfghf">
                           <div *ngIf="addFormValidCheck('userName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>userName is required</b></div>
+                                    class="text-danger error-font  ms-2"><b>username is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
