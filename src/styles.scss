@@ -24,3 +24,7 @@ input[type=password]::-ms-clear
     margin-bottom: 66px;
     margin-left: 55px;
   }
+
+  .pac-container{
+    z-index:99999 !important
+  }

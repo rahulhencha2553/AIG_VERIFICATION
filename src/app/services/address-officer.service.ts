@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageRequests } from '../payload/page-requests';
@@ -29,6 +29,10 @@ export class AddressOfficerService {
     formData.append('phoneNumber', addressOfficer.phoneNumber);
     formData.append('password', addressOfficer.password);
     formData.append('userName', addressOfficer.userName);
+    formData.append('placeId', addressOfficer.placeId);
+    formData.append('address', addressOfficer.address);
+    formData.append('latitude', addressOfficer.latitude);
+    formData.append('longitude', addressOfficer.longitude);
 
     return this.httpClient.post<any>(ApiRoutes.ADDRESS_OFFICER_ADD, formData);
   }
@@ -69,7 +73,6 @@ export class AddressOfficerService {
   public getAddressOfficerById(userId: any) {
     return this.httpClient.get<any>(ApiRoutes.ADDRESS_OFFICER_GET_BY_ID + userId);
   }
-
 
 
 

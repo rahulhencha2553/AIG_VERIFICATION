@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,12 +13,14 @@ import { AddressOfficerService } from 'src/app/services/address-officer.service'
 import { AppUtils } from 'src/app/utils/app-utils';
 import { FormValidator } from 'src/app/utils/form-validator';
 import { PaginationManager } from 'src/app/utils/pagination-manager';
+declare var google: any;
 
 @Component({
   selector: 'app-address-officer',
   templateUrl: './address-officer.component.html',
   styleUrls: ['./address-officer.component.scss'],
 })
+
 export class AddressOfficerComponent implements OnInit {
   public pageRequests: PageRequests = new PageRequests();
   public addressOfficers: AddressOfficerResponse[] = [];
@@ -30,6 +32,7 @@ export class AddressOfficerComponent implements OnInit {
   public index = 0;
   public passwordVisibilityMap = new Map<any, boolean>();
   public pageManager: PaginationManager = new PaginationManager();
+
 
   constructor(
     private addressOfficerService: AddressOfficerService,
@@ -45,6 +48,7 @@ export class AddressOfficerComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required],
       phoneNumber: ['', Validators.required],
+      address : ['',Validators.required]
     });
     // Validators.pattern(/^[0-9]{10}$/),
 
@@ -57,6 +61,7 @@ export class AddressOfficerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAddressOfficers(this.pageRequests);
+   // this.initAutocomplete()
   }
 
   public addFormValidCheck(fieldName: string, form: any) {
@@ -220,4 +225,24 @@ export class AddressOfficerComponent implements OnInit {
   public isPasswordVisible(email: any): boolean {
     return this.passwordVisibilityMap.get(email) || false;
   }
+
+  public addressAutoComplete() {
+    const inputElement = document.getElementById('input') as HTMLInputElement;
+    const autocomplete = new google.maps.places.Autocomplete(inputElement, {
+      types: ['geocode']
+    });
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        console.log("Place details not found for input: ", inputElement.value);
+        return;
+      }
+      this.addressOfficer.placeId = place.place_id;
+      this.addressOfficer.latitude = place.geometry.location.lat();
+      this.addressOfficer.longitude = place.geometry.location.lng();
+      this.addressOfficer.address = place.formatted_address;
+    });
+    
+  } 
 }

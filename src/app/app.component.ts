@@ -15,7 +15,7 @@ export class AppComponent{
 
   ngOnInit(): void {
     //this.getOfficer();
-    
+
   }
 
   getOfficer(){
@@ -25,4 +25,6 @@ export class AppComponent{
       }
     })
   }
+
+ 
 }

@@ -7,4 +7,8 @@ export class AddressOfficer {
 	public  password='';
 	public  profilePicture:any='';
 	public userId :any=0;
+	public address = '';
+	public latitude = '';
+	public longitude = '';
+	public placeId = '';
 }

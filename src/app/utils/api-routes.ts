@@ -3,6 +3,7 @@ import { envrionnment } from "src/environments/envrionnment";
 export class ApiRoutes {
 
     public static  BASE_URL = envrionnment.hostUrl;
+    
 
 
 
@@ -33,6 +34,12 @@ export class ApiRoutes {
     public static ADDRESS_OFFICER_TOP = this.BASE_URL + '/officer/getTopVerficationOfficers-web';
     public static ACTIVE_ADDRESS_OFFICER = this.BASE_URL + '/officer/getActiveVerificationOfficer-web?officerId=';
     public static REASSIGN_OFFICER = this.BASE_URL + '/addressVerification/re-assignOfficer-web';
+
+
+
+
+
+
 
 
 
