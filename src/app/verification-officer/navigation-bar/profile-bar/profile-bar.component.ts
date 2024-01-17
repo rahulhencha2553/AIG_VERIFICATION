@@ -151,7 +151,6 @@ export class ProfileBarComponent implements OnInit {
     this.confirmPassword = '';
     this.setOfficer();
     this.changePasswordForm.reset();
-    this.editForm.reset();
   }
 
   // logout officer

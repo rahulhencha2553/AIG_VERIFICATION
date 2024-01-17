@@ -113,18 +113,22 @@ tabindex="-1">
                 <div class="col-md-6 mb-3 ps-0 px-2">
                     <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
                     <input type="text" class="form-control profile_input" [placeholder]="updateOffier.firstName" formControlName="firstName" [(ngModel)]="updateOffier.firstName" name="firstName">
-                    <span class="text-danger"
+                    <!-- <p class="text-danger validation"
                        *ngIf="(editForm.get('firstName')?.touched ) && editForm.get('firstName')?.hasError('required')">
                        First Name Is Required.
-                    </span>
+                    </p> -->
+                    <div *ngIf="isFieldInvalid('firstName',editForm)"
+                    class="text-danger validation"><p> First name is required</p></div>
                 </div>
                 <div class="col-md-6 mb-3 ps-2 px-0">
                     <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
                     <input type="text" class="form-control profile_input" [placeholder]="updateOffier.lastName"  formControlName="lastName" [(ngModel)]="updateOffier.lastName"  name="lastName">
-                    <span class="text-danger"
+                    <div *ngIf="isFieldInvalid('lastName',editForm)"
+                    class="text-danger validation"><p>Last name is required</p></div>
+                    <!-- <p class="text-danger validation"
                     *ngIf="(editForm.get('lastName')?.touched ) && editForm.get('lastName')?.hasError('required')">
                     Last Name Is Required.
-                 </span>
+                </p> -->
                 </div>
                 <div class="col-md-6 mb-3 ps-0 px-2">
                     <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
