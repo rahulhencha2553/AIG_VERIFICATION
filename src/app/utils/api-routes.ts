@@ -34,6 +34,7 @@ export class ApiRoutes {
     public static ADDRESS_OFFICER_TOP = this.BASE_URL + '/officer/getTopVerficationOfficers-web';
     public static ACTIVE_ADDRESS_OFFICER = this.BASE_URL + '/officer/getActiveVerificationOfficer-web?officerId=';
     public static REASSIGN_OFFICER = this.BASE_URL + '/addressVerification/re-assignOfficer-web';
+    public static DELETE_VOICE_DIRECTION = this.BASE_URL +"/address/voiceDirections?id="
 
 
 

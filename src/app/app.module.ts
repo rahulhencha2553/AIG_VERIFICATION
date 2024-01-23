@@ -19,9 +19,10 @@ import { RequestDetailsComponent } from './verification-officer/request-details/
 import { AssignOfficerComponent } from './verification-officer/assign-officer/assign-officer.component';
 import { AddressOfficerDetailsComponent } from './verification-officer/address-officer-details/address-officer-details.component';
 import { HttpClientModule } from '@angular/common/http';
-import { VerificationInterceptor, authInterceptorProvider } from './interceptor/verification.interceptor';
+import {  authInterceptorProvider } from './interceptor/verification.interceptor';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { PlyrModule } from 'ngx-plyr';
 
 
 @NgModule({
@@ -48,8 +49,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgApexchartsModule
-    
+    NgApexchartsModule,
+
   ],
   providers: [authInterceptorProvider],
   bootstrap: [AppComponent]

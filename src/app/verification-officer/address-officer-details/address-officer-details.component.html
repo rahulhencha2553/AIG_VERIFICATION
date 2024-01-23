@@ -123,6 +123,7 @@
                 <div >
 
                     <div class="row">
+                        <div class="table-pagination page-nav empty" *ngIf="verificationRequests.length==0">  <h4 class="primary mb-0 fs-26 fw-600">No Pending Requests </h4></div>
                         <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
                             <div class="verification_card">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -162,6 +163,7 @@
                 <div c>
 
                     <div class="row">
+                        <div class="table-pagination page-nav empty" *ngIf="verificationRequests.length==0">  <h4 class="primary mb-0 fs-26 fw-600">No Verified Requests </h4></div>
                         <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
                             <div class="verification_card">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -201,6 +203,7 @@
                 <div c>
 
                     <div class="row">
+                        <div class="table-pagination page-nav empty" *ngIf="verificationRequests.length==0">  <h4 class="primary mb-0 fs-26 fw-600">No Rejected Requests </h4></div>
                         <div class="col-md-6 mb-4" *ngFor="let request of verificationRequests">
                             <div class="verification_card">
                                 <div class="d-flex justify-content-between align-items-center mb-3">

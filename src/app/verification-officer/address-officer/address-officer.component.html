@@ -119,33 +119,33 @@
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
                                 <input type="text" class="form-control profile_input" formControlName="firstName" [(ngModel)]="addressOfficer.firstName" name="firstName" placeholder="Enter First Name">
-                                <div *ngIf="addFormValidCheck('firstName',addForm)"
+                                <div *ngIf="formValidCheck('firstName',addForm)"
                                     class="text-danger error-font  validation"><p>first name is required</p></div>
                                 
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
                                 <input type="text" class="form-control profile_input"   formControlName="lastName" [(ngModel)]="addressOfficer.lastName" name="lastName" placeholder="Enter Last Name">
-                                <div *ngIf="addFormValidCheck('lastName',addForm)"
+                                <div *ngIf="formValidCheck('lastName',addForm)"
                                     class="text-danger error-font  validation"><p>last name is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
                                 <input type="text" class="form-control profile_input"   formControlName="userName" [(ngModel)]="addressOfficer.userName" name="userName" placeholder="Enter Username">
-                                <div *ngIf="addFormValidCheck('userName',addForm)"
+                                <div *ngIf="formValidCheck('userName',addForm)"
                                     class="text-danger error-font  validation"><p>username is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Phone Number</label>
                                 <input type="text" class="form-control profile_input"  formControlName="phoneNumber" [(ngModel)]="addressOfficer.phoneNumber" name="phoneNumber" placeholder="Enter Phone Number">
-                                <div *ngIf="addFormValidCheck('phoneNumber',addForm)"
+                                <div *ngIf="formValidCheck('phoneNumber',addForm)"
                                     class="text-danger error-font  validation"><p>phone number is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
                                 <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
                                 <input type="email" class="form-control profile_input"
                                     formControlName="email" [(ngModel)]="addressOfficer.email" name="email" placeholder="Enter Email Address">
-                                    <div *ngIf="addFormValidCheck('email',addForm)"
+                                    <div *ngIf="formValidCheck('email',addForm)"
                                     class="text-danger error-font  validation"><p>email is required</p></div>
                             </div>
                             <div class="col-md-12 mb-3 ps-0 px-2">
@@ -157,8 +157,8 @@
                                 </span>  
                               </div>
                                 <input type="text" class="form-control profile_input"
-                                    formControlName="address"  name="address" id="input" (focus)="addressAutoComplete()" placeholder="Enter a location">
-                                    <div *ngIf="addFormValidCheck('address',addForm)"
+                                    formControlName="address"  name="address" id="input" (focus)="addressAutoComplete('input')" placeholder="Enter a location">
+                                    <div *ngIf="formValidCheck('address',addForm)"
                                     class="text-danger error-font  validation"><p>address of operation is required</p></div>
                             </div>
                             <div class="position-relative">
@@ -167,7 +167,7 @@
                                 <input type="password" #i1  class="form-control  profile_input" formControlName="password" [(ngModel)]="addressOfficer.password" name="password" placeholder="Confirm Password">
                                 <i (click)="changePasswordIcon(i1)" [ngClass]="i1.type==='text'?'fi fi-rr-eye eye_icon':'fi fi-rr-eye-crossed eye_icon'"></i>
                             </div>
-                            <div *ngIf="addFormValidCheck('password',addForm)"
+                            <div *ngIf="formValidCheck('password',addForm)"
                                     class="text-danger error-font  validation"><p>password is required</p></div>
                         </div>
                     </form>
@@ -214,19 +214,19 @@ tabindex="-1">
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
                         <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  formControlName="firstName" placeholder="Vijay">
-                          <div *ngIf="addFormValidCheck('firstName',editForm)"
+                          <div *ngIf="formValidCheck('firstName',editForm)"
                                     class="text-danger error-font  ms-2"><b>first name is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"  formControlName="lastName" placeholder="Hencha">
-                          <div *ngIf="addFormValidCheck('lastName',editForm)"
+                          <div *ngIf="formValidCheck('lastName',editForm)"
                                     class="text-danger error-font  ms-2"><b>last name is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.userName" name="userName"  formControlName="userName" placeholder="@hgfghf">
-                          <div *ngIf="addFormValidCheck('userName',editForm)"
+                          <div *ngIf="formValidCheck('userName',editForm)"
                                     class="text-danger error-font  ms-2"><b>username is required</b></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
@@ -234,6 +234,19 @@ tabindex="-1">
                         <input type="email" class="form-control profile_input" disabled
                            name="email"  [placeholder]="addressOfficer.email">
                     </div>
+                    <div class="col-md-12 mb-3 ps-0 px-2">
+                        <div class=" mb-2 d-flex align-items-center">
+                          <label for="" class="black fs-15 fw-400">Address Of Operation</label>
+                          <span tooltip="Based on this Address requests will be assigned for area within 15 km">
+                              <i class="fi fi-sr-info primary lh-0 mx-0 ms-2 fs-14" > 
+                              </i>
+                          </span>  
+                        </div>
+                          <input type="text" class="form-control profile_input"
+                              formControlName="address"  name="address" id="edit" (focus)="addressAutoComplete('edit')" [value]="addressOfficer.address"  [placeholder]="addressOfficer.address">
+                              <div *ngIf="formValidCheck('address',editForm)"
+                              class="text-danger error-font  validation"><p>address of operation is required</p></div>
+                      </div>
                 </form>
             </div>
         </div>
