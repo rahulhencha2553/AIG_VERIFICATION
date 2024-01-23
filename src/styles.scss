@@ -28,3 +28,14 @@ input[type=password]::-ms-clear
   .pac-container{
     z-index:99999 !important
   }
+
+  .empty  h4{
+    font-size: calc(1.275rem + 0.3vw) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+        justify-content: center;
+        color: #506296;;
+}
+.empty{
+  justify-content: center !important;
+}

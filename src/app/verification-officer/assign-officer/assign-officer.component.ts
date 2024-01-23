@@ -22,7 +22,7 @@ export class AssignOfficerComponent implements OnInit {
 
   constructor(
     private verificationService: VerificationService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +74,7 @@ export class AssignOfficerComponent implements OnInit {
         next: (data: any) => {
           AppUtils.openToast('success', data.message, 'success');
           AppUtils.modalDismiss('close');
+          this.router.navigate([`verify/request-details/${this.requestId}`])
         },
         error: (err: any) => {
           AppUtils.openToast('error', err.error.message, 'Error');

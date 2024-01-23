@@ -20,6 +20,7 @@ export class VerificationPortalComponent implements OnInit {
         this.authService.portalOfficer.next(data.officer);
       },
       error: (err: any) => {
+        this.authService.logOut();
         AppUtils.openToast('error', err.error.message, 'Error');
       },
     });

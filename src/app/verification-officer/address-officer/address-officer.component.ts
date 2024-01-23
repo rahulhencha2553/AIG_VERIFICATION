@@ -56,6 +56,7 @@ export class AddressOfficerComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
+      address : ['',Validators.required]
     });
   }
 
@@ -64,7 +65,7 @@ export class AddressOfficerComponent implements OnInit {
    // this.initAutocomplete()
   }
 
-  public addFormValidCheck(fieldName: string, form: any) {
+  public formValidCheck(fieldName: string, form: any) {
     return FormValidator.formValidCheck(fieldName, form);
   }
 
@@ -109,6 +110,7 @@ export class AddressOfficerComponent implements OnInit {
     this.addressOfficer = new AddressOfficer();
     this.addForm.reset();
     this.editForm.reset();
+    this.imagePreview ='assets/images/temp_img/profile-modal.png';
   }
 
   public clearDeleteData() {
@@ -121,6 +123,7 @@ export class AddressOfficerComponent implements OnInit {
       next: (data: any) => {
         this.addressOfficer = data.data;
         this.imagePreview = this.addressOfficer.profilePicture;
+      
       },
       error: (err: any) => {
         AppUtils.openToast('error', err.error.message, 'Error');
@@ -226,11 +229,13 @@ export class AddressOfficerComponent implements OnInit {
     return this.passwordVisibilityMap.get(email) || false;
   }
 
-  public addressAutoComplete() {
-    const inputElement = document.getElementById('input') as HTMLInputElement;
-    const autocomplete = new google.maps.places.Autocomplete(inputElement, {
-      types: ['geocode']
-    });
+  public addressAutoComplete(id:any) {
+    const options = {
+      fields: ["formatted_address", "geometry", "name"],
+      strictBounds: false,
+    };
+    const inputElement = document.getElementById(id) as HTMLInputElement;
+    const autocomplete = new google.maps.places.Autocomplete(inputElement, options);
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();

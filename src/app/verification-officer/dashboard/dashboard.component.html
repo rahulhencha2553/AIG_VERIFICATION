@@ -50,6 +50,7 @@
             <h5 class="fs-14 fw-500 secondary mb_10 ms-auto">View All</h5>
         </a>
         <div class="row pending-request-cards">
+            <div class="table-pagination page-nav empty" *ngIf="officerDashboard.pendingVerifications.length==0">  <h4 class="primary mb-0 fs-26 fw-600">No Resolved Requests </h4></div>
             <div class="col-md-4 mb-4 " *ngFor = "let request of officerDashboard.pendingVerifications" >
                 <div class="card">
                     <img [src]="request.requestorData.profilePic" class="mb-2">

@@ -37,6 +37,8 @@ export class VerificationService {
     return this.httpClient.post(ApiRoutes.ACTIVE_ADDRESS_OFFICER+officerId,pageRequest);
   }
 
-  
+  public deleteVoiceDirection(id:any){
+    return this.httpClient.delete(ApiRoutes.DELETE_VOICE_DIRECTION+id);
+  }
 
 }

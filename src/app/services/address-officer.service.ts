@@ -48,6 +48,10 @@ export class AddressOfficerService {
     formData.append('email', addressOfficer.email);
     formData.append('phoneNumber', addressOfficer.phoneNumber);
     formData.append('userName', addressOfficer.userName);
+    formData.append('placeId', addressOfficer.placeId);
+    formData.append('address', addressOfficer.address);
+    formData.append('latitude', addressOfficer.latitude);
+    formData.append('longitude', addressOfficer.longitude);
 
     return this.httpClient.put<any>(ApiRoutes.ADDRESS_OFFICER_UPDATE, formData);
   }
