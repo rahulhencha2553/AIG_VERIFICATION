@@ -156,12 +156,14 @@
                             <img src="assets/images/svg_img/delete.svg" height="16" width="16">
                         </div>
                     </div>
-                    <div>
-                        <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
-                        <h4 class="fs-15 fw-500 text_small mb-0">{{voiceDirection.startPoint}}</h4>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3 class="fs-13 fw-500 info mb-1">Start Point</h3>
+                            <h4 class="fs-15 fw-500 text_small mb-0">{{voiceDirection.startPoint}}</h4>
+                        </div>
+     
+                        <audio  *ngIf="isPasswordVisible(voiceDirection.id)" controls><source [src]="voiceDirection.audio" type="audio/mpeg" /></audio> 
                     </div>
- 
-                    <audio  *ngIf="isPasswordVisible(voiceDirection.id)" controls><source [src]="voiceDirection.audio" type="audio/mpeg" /></audio> 
                 </div>          
             </div>
         </div>
@@ -195,8 +197,8 @@
                             <h4 class="fs-15 fw-500 text_small mb-0">{{routeVideo.duration}}</h4>
                         </div>
                         <div class="delete_icon d-flex justify-content-center align-items-center ms-auto mx-0 "
-                            data-bs-target="#delete-modal" data-bs-toggle="modal">
-                            <img src="assets/images/svg_img/delete.svg" height="16" width="16">
+                            data-bs-target="#delete-route-modal" data-bs-toggle="modal" (click)="deleteVoiceDirectionId=routeVideo.uuid">
+                            <img src="assets/images/svg_img/delete.svg" height="16" width="16" >
                         </div>
                     </div>
                     <div>
@@ -222,17 +224,47 @@ tabindex="-1">
                     <img class="assign_icon" src="assets/images/svg_img/delete.svg" height="80" width="80">
                 </div>
                 <h1 class="fs-22 fw-600 text_small mb_12 text-center" id="exampleModalToggleLabel2">Delete
-                    Verification Officer</h1>
+                    Voice Direction</h1>
                 <h3 class="fs-16 fw-400 info mb-0 mb-4 text-center">Are you sure you want to delete this
-                    verification officer's profile? This action is irreversible.</h3>
+                 Voice Direction? This action is irreversible.</h3>
             </div>
         </div>
 
         <div class="modal-footer p-0 justify-content-center">
             <div class="gap_20 d-flex">
-                <button class="btn_lg2 fs-16 fw-500 br_12" data-bs-dismiss="modal"
+                <button class="btn_lg2 fs-16 fw-500 br_12" id="delete-close" data-bs-dismiss="modal"
                     aria-label="Close" (click)="clearData()"  >Cancel</button>
                 <button class="btn_lg fs-16 fw-500 br_12" data-bs-dismiss="modal"  (click)="deleteVoiceDirection()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- DELETE MODAL END -->
+
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="delete-route-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+tabindex="-1">
+<div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+        <div class="modal-header p-0 justify-content-center">
+            <div class="mb-4">
+                <div class="d-flex justify-content-center mb-4">
+                    <img class="assign_icon" src="assets/images/svg_img/delete.svg" height="80" width="80">
+                </div>
+                <h1 class="fs-22 fw-600 text_small mb_12 text-center" id="exampleModalToggleLabel2">Delete
+                    Route Video</h1>
+                <h3 class="fs-16 fw-400 info mb-0 mb-4 text-center">Are you sure you want to delete this
+                   Route Video? This action is irreversible.</h3>
+            </div>
+        </div>
+
+        <div class="modal-footer p-0 justify-content-center">
+            <div class="gap_20 d-flex">
+                <button class="btn_lg2 fs-16 fw-500 br_12" id="delete-close" data-bs-dismiss="modal"
+                    aria-label="Close" (click)="clearData()"  >Cancel</button>
+                <button class="btn_lg fs-16 fw-500 br_12" data-bs-dismiss="modal"  (click)="deleteRouteVideo()">Delete</button>
             </div>
         </div>
     </div>

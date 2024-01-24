@@ -88,6 +88,7 @@ public deleteVoiceDirectionId:any=0;
         this.verificationReqDetail.addressData.voiceDirections=this.verificationReqDetail.addressData.voiceDirections.filter(f=>{
          return f.uuid!=this.deleteVoiceDirectionId;
         })
+        AppUtils.modalDismiss("delete-close");
         this.deleteVoiceDirectionId=0;
       },error:(err:any)=>{
         AppUtils.openToast('error', err.error.message, 'Error');
@@ -97,6 +98,22 @@ public deleteVoiceDirectionId:any=0;
 
   clearData(){
     this.deleteVoiceDirectionId=0
+  }
+
+  public deleteRouteVideo(){
+    if(this.deleteVoiceDirectionId!=0)
+    this.verificationService.deleteRouteVideo(this.deleteVoiceDirectionId).subscribe({
+      next:(data:any)=>{
+        AppUtils.openToast('success', data.message, 'Success');
+        this.verificationReqDetail.addressData.routeVideo=this.verificationReqDetail.addressData.routeVideo.filter(f=>{
+         return f.uuid!=this.deleteVoiceDirectionId;
+        })
+        AppUtils.modalDismiss("delete-close");
+        this.deleteVoiceDirectionId=0;
+      },error:(err:any)=>{
+        AppUtils.openToast('error', err.error.message, 'Error');
+      }
+    })
   }
 
 }

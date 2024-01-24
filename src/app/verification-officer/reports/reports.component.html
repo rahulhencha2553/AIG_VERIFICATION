@@ -9,18 +9,41 @@
             <div class="report_card">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h4 class="fs-16 fw-600 primary mb-0">Verifications</h4>
+                        <div class="d-flex gap_12">
+                            <div class="dropdown report">
+                                <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                    {{getMonth(false)}}
+                                </a>
+                                <ul class="dropdown-menu" data-popper-placement="bottom-start"
+                                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-62px, 34px);">
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(0)">Select</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(1)">January</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(2)">February</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(3)">March</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(4)">April</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(5)">May</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(6)">June</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(7)">July</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(8)">August</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(9)">September</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(10)" >October</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(11)" >November</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(12)" >December</a></li>
+                                </ul>
+                            </div>
                     <div class="dropdown report">
                         <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                            6 Month
+                            {{this.staticsRequestBar.year}}
                         </a>
-                        <ul class="dropdown-menu" data-popper-placement="bottom-start"
+                        <ul class="dropdown-menu myDropDown"  data-popper-placement="bottom-start"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-62px, 34px);">
-                            <li><a class="dropdown-item" href="#">January</a></li>
-                            <li><a class="dropdown-item" href="#">February</a></li>
-                            <li><a class="dropdown-item" href="#">March</a></li>
+                            <li *ngFor="let year of getYears()"><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsData(undefined,year)">{{year}}</a></li>
                         </ul>
                     </div>
+                    
+                        </div>
                 </div>
                 <!-- <img src="assets/images/temp_img/verification-chart.png" class="img-fluid w-100"> -->
                 <div class="col-md-12" id="chart" >
@@ -60,17 +83,42 @@
         </div>
     </div>
     <div class="report_card mb_30">
-        <div class="dropdown report mb-4">
-            <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0" href="#"
-                role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                6 Month
-            </a>
-            <ul class="dropdown-menu" data-popper-placement="bottom-start"
-                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(3px, 34px);">
-                <li><a class="dropdown-item" href="#">January</a></li>
-                <li><a class="dropdown-item" href="#">February</a></li>
-                <li><a class="dropdown-item" href="#">March</a></li>
-            </ul>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="fs-16 fw-600 primary mb-0">Pending</h4>
+            <div class="d-flex gap_12">
+                <div class="dropdown report">
+                    <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        {{getMonth(true)}}
+                    </a>
+                    <ul class="dropdown-menu" data-popper-placement="bottom-start"
+                        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-62px, 34px);">
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(0)">Select</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(1)">January</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(2)">February</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(3)">March</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(4)">April</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(5)">May</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(6)">June</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(7)">July</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(8)">August</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(9)">September</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(10)" >October</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(11)" >November</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(12)" >December</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown report">
+                    <a class="report_toggle dropdown-toggle fs-14 fw-600 grey dark show  px-3 ps-0"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        {{this.staticsRequestArea.year}}
+                    </a>
+                    <ul class="dropdown-menu myDropDown"  data-popper-placement="bottom-start"
+                        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-62px, 34px);">
+                        <li *ngFor="let year of getYears()"><a class="dropdown-item" href="javascript:void(0)" (click)="setReportStatisticsDataArea(undefined,year)">{{year}}</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div id="area-chart">
             <apx-chart
