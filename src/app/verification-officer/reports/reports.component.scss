@@ -13,4 +13,11 @@
     max-width: 1500px;
     margin: 35px auto;
 }
-  
+.myDropDown {
+    height: 326px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.myDropDown::-webkit-scrollbar {
+    display: none;
+  }

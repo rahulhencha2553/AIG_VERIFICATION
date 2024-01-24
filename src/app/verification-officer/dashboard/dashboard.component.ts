@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDashboarDetailes();
-    //this.getVerificationsStatistics();
+    this.getVerificationsStatistics();
   }
 
   public getDashboarDetailes() {
@@ -51,8 +51,28 @@ export class DashboardComponent implements OnInit {
       next: (data: any) => {
         this.verificationOptions.series[0].data = data.verified;
         this.verificationOptions.series[1].data = data.pending;
-        window.dispatchEvent(new Event('resize'));
-        console.log(data);
+        this.verificationOptions.xaxis = {
+          type: 'category',
+          categories: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '10',
+            'Nov',
+            'Dec',
+            "fasdf",
+            "sadf"
+          ],
+        };
+  
+   //     window.dispatchEvent(new Event('resize'));
+
       },
       error: (err: any) => {},
     });

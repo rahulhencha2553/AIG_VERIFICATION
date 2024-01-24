@@ -21,7 +21,7 @@ export class AreaCharts {
               ],
           }
         ],
-        colors:["#2b417d"],
+        colors:["#FFC107"],
         chart: {
           type: "area",
           height: 350,
@@ -40,23 +40,25 @@ export class AreaCharts {
         },
 
         labels: [
-            "13 Nov 2017",
-            "14 Nov 2017",
-            "15 Nov 2017",
-            "16 Nov 2017",
-            "17 Nov 2017",
-            "20 Nov 2017",
-            "21 Nov 2017",
-            "22 Nov 2017",
-            "23 Nov 2017",
-            "24 Nov 2017",
-            "27 Nov 2017",
-            "28 Nov 2017",
-            "29 Nov 2017",
-            "30 Nov 2017",
+            "13 Nov ",
+            "14 Nov ",
+            "15 Nov ",
+            "16 Nov ",
+            "17 Nov ",
+            "20 Nov ",
+            "21 Nov ",
+            "22 Nov ",
+            "23 Nov ",
+            "24 Nov ",
+            "27 Nov ",
+            "28 Nov ",
+            "29 Nov ",
+            "30 Nov ",
           ],
         xaxis: {
-          type: "datetime"
+          type: "category",
+        //  categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+
         },
         yaxis: {
           opposite: true

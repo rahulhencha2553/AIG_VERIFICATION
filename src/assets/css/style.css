@@ -285,7 +285,7 @@ a {
 }
 
 .gap_12 {
-  gap: 12px;
+  gap: 12px !important;
 }
 
 .gap_16 {
@@ -375,9 +375,9 @@ a {
   gap: 10px;
 }
 
-.gap_12 {
+/* .gap_12 {
   gap: 12px;
-}
+} */
 
 .gap_16 {
   gap: 16px;
