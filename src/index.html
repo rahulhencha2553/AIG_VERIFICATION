@@ -127,7 +127,7 @@ chart.draw(data, options);
     function btn1_controller() {
         // opening fresh box1
         if (button1 == false && button2 == false) {
-            console.log(button1);
+      
             document.getElementById("btn1").style.display = "none";
             document.getElementById("btn2").style.display = "block";
 
@@ -136,8 +136,7 @@ chart.draw(data, options);
         else if (button1 == false && button2 == true)
         //   close box2 open box1
         {
-            console.log(button1);
-            console.log(button2);
+          
             document.getElementById("btn2").style.display = "none";
             document.getElementById("btn1").style.display = "block";
             button1 = false;
@@ -146,7 +145,7 @@ chart.draw(data, options);
         else if (button1 == true && button2 == false)
         //   close box1
         {
-            console.log(button1);
+
             document.getElementById("btn2").style.transform = "block";
             document.getElementById("btn1").style.display = "none";
             button1 = true;
@@ -154,7 +153,7 @@ chart.draw(data, options);
         else if (button1 == false && button2 == false)
         //   close box1
         {
-            console.log(button1);
+ 
             document.getElementById("btn1").style.display = "none";
             button1 = false;
         }
@@ -164,15 +163,14 @@ chart.draw(data, options);
     // BOX2
     function btn2_controller() {
         if (button1 == false && button2 == false) {
-            console.log(button2);
+     
             document.getElementById("btn1").style.display = "none";
             document.getElementById("btn2").style.display = "block";
 
             button2 = true;
         }
         else if (button1 == true && button2 == false) {
-            console.log(button1);
-            console.log(button2);
+      
             document.getElementById("btn2").style.display = "none";
             document.getElementById("btn1").style.display = "block";
 
@@ -181,7 +179,6 @@ chart.draw(data, options);
 
         }
         else if (button1 == false && button2 == true) {
-            console.log(button2);
             document.getElementById("btn2").style.display = "block";
             document.getElementById("btn1").style.display = "none";
 

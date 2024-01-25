@@ -25,7 +25,7 @@ export class PaginationManager {
     this.totalElements = data.totalElements;
     this.totalPages = data.totalPages;
    
-    console.log("page Number - >",this.pageNumber);
+   
     this.showButtoons=[0];
     // total pages smaller then the default pages
     if (this.totalPages < this.ADDRESS_OFFICER_BTN_SIZE) 

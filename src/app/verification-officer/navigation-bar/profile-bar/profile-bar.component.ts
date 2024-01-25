@@ -117,8 +117,6 @@ export class ProfileBarComponent implements OnInit {
           AppUtils.openToast('success', data.message, 'Success');
         },
         (err: any) => {
-          console.log(err);
-
           AppUtils.openToast('error', err.error.message, 'Error');
         }
       );

@@ -64,7 +64,7 @@ export class ReportsComponent implements OnInit {
     this.staticsRequestBar.year = new Date().getFullYear();
     this.staticsRequestBar.month = 0;
 
-    this.staticsRequestArea.month = new Date().getMonth() + 1
+    this.staticsRequestArea.month = new Date().getMonth() + 1;
     this.staticsRequestArea.year = this.staticsRequestBar.year;
     this.getVerificationReportStatistics();
     this.getPendingReportStatistics();
@@ -98,7 +98,6 @@ export class ReportsComponent implements OnInit {
           data.totalRequest.pending,
           data.totalRequest.rejected,
         ];
-        console.log(this.pieChartOptions.series);
       },
       error: (err: any) => {},
     });
@@ -112,7 +111,6 @@ export class ReportsComponent implements OnInit {
     this.staticsRequestBar.year = year;
     this.getVerificationReportStatistics();
   }
-
 
   public setReportStatisticsDataArea(
     month: any = this.staticsRequestArea.month,
@@ -150,14 +148,13 @@ export class ReportsComponent implements OnInit {
       });
   }
 
-  getMonth(isArea:boolean) {
-    if(!isArea){
-    if (this.staticsRequestBar.month != 0)
-      return AppUtils.months[this.staticsRequestBar.month - 1];
-    }else
-    {
+  getMonth(isArea: boolean) {
+    if (!isArea) {
+      if (this.staticsRequestBar.month != 0)
+        return AppUtils.months[this.staticsRequestBar.month - 1];
+    } else {
       if (this.staticsRequestArea.month != 0)
-      return AppUtils.months[this.staticsRequestArea.month - 1];
+        return AppUtils.months[this.staticsRequestArea.month - 1];
     }
     return 'Month';
   }
@@ -165,8 +162,6 @@ export class ReportsComponent implements OnInit {
   getYears() {
     return AppUtils.getYearsArray();
   }
-
-
 
   getPendingReportStatistics() {
     this.verificationService
@@ -187,13 +182,11 @@ export class ReportsComponent implements OnInit {
       });
   }
 
-  makeLabelsArea(category:any[]){
-    let lables:any[]=[]
-    console.log(category);
-    
-           category.forEach(c=>{
-                lables.push(c+" "+this.getMonth(true).slice(0,3));
-           })
-           return lables;
+  makeLabelsArea(category: any[]) {
+    let lables: any[] = [];
+    category.forEach((c) => {
+      lables.push(c + ' ' + this.getMonth(true).slice(0, 3));
+    });
+    return lables;
   }
 }

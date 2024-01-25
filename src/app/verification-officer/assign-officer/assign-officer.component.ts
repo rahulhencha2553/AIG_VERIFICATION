@@ -22,7 +22,8 @@ export class AssignOfficerComponent implements OnInit {
 
   constructor(
     private verificationService: VerificationService,
-    private activatedRoute: ActivatedRoute,private router:Router
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +41,6 @@ export class AssignOfficerComponent implements OnInit {
           this.addressOfficers = data.data.content;
           this.pageManager.setPageData(data.data);
           this.pageRequest.pageNo = data.data.pageable.pageNumber;
-          console.log(data);
         },
         error: (err: any) => {
           AppUtils.openToast('error', err.error.message, 'Error');
@@ -74,7 +74,7 @@ export class AssignOfficerComponent implements OnInit {
         next: (data: any) => {
           AppUtils.openToast('success', data.message, 'success');
           AppUtils.modalDismiss('close');
-          this.router.navigate([`verify/request-details/${this.requestId}`])
+          this.router.navigate([`verify/request-details/${this.requestId}`]);
         },
         error: (err: any) => {
           AppUtils.openToast('error', err.error.message, 'Error');
