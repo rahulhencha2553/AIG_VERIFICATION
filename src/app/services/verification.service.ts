@@ -5,12 +5,12 @@ import { ApiRoutes } from '../utils/api-routes';
 import { OfficerAssignedRequests } from '../payload/officer-assigned-requests';
 import { ReAssingOfficerRequest } from '../payload/re-assing-officer-request';
 import { ReportStatisticsRequest } from '../payload/report-statistics-request';
+import { PageRequests } from '../payload/page-requests';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VerificationService {
- 
   
   constructor(private httpClient:HttpClient) { }
 
@@ -52,7 +52,11 @@ export class VerificationService {
     return this.httpClient.get<any>(ApiRoutes.GET_ALL_VERIFICATION_REQUESTS_COUNT);
   }
 
-  public getVerificationReportSatistics(request:ReportStatisticsRequest){
-    return this.httpClient.post(ApiRoutes.REPORT_VERIFICATION_BAR,request);
+  public getVerificationReportSatistics(request:ReportStatisticsRequest):Observable<any>{
+    return this.httpClient.post<any>(ApiRoutes.REPORT_VERIFICATION_BAR,request);
+  }
+
+  public searchAssignOfficers(search: any, pageRequest: PageRequests):Observable<any> {
+    return this.httpClient.post<any>(ApiRoutes.SEARCH_ASSIGN_OFFICERS+search,pageRequest);
   }
 }

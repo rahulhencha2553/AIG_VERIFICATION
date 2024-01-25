@@ -9,10 +9,16 @@
     cursor: default;
  }
  .active{
-    background-color: #2B417D ;
+    // background-color: #2B417D ;
     color: white !important;
     border-radius: 9px;
  }
+ .page-link.active {
+    z-index: 3;
+    color: var(--bs-pagination-active-color);
+    background-color: #2B417D;
+    border-color: var(--bs-pagination-active-border-color);
+}
  .page-nav {
     background-color: #f6f8fd;
     color: black;

@@ -7,6 +7,8 @@ import { AppUtils } from 'src/app/utils/app-utils';
 import { MapUtils } from 'src/app/utils/map-utils';
 import { PlyrComponent } from 'ngx-plyr';
 
+import { Location as LocationObj } from '@angular/common'
+
 declare var Plyr :any;
 declare var google: any;
 @Component({
@@ -32,7 +34,8 @@ public deleteVoiceDirectionId:any=0;
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private verificationService: VerificationService
+    private verificationService: VerificationService,
+    private locationSer:LocationObj
   ) {}
 
   ngOnInit(): void {
@@ -114,6 +117,10 @@ public deleteVoiceDirectionId:any=0;
         AppUtils.openToast('error', err.error.message, 'Error');
       }
     })
+  }
+
+  public gotoBack(){
+    this.locationSer.back();
   }
 
 }

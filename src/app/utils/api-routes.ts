@@ -36,9 +36,10 @@ export class ApiRoutes {
     public static REASSIGN_OFFICER = this.BASE_URL + '/addressVerification/re-assignOfficer-web';
     public static DELETE_VOICE_DIRECTION = this.BASE_URL +"/address/voiceDirections-web?id=";
     public static DELETE_ROUTE_DIRECTION = this.BASE_URL +"/address/routeVideos-web?id="
-    public static GET_ALL_VERIFICATION_REQUESTS_COUNT = this.BASE_URL +"/addressVerification//getCountOfAllRequests-web"
+    public static GET_ALL_VERIFICATION_REQUESTS_COUNT = this.BASE_URL +"/addressVerification/getCountOfAllRequests-web"
   
     public static REPORT_VERIFICATION_BAR =this.BASE_URL +"/addressVerification/getReportVerificationsStatics-web";
+    public static SEARCH_ASSIGN_OFFICERS = this.BASE_URL +"/officer/searchAssignOfficer-web?search=";
 
 
 

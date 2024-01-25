@@ -215,19 +215,19 @@ tabindex="-1">
                         <label for="" class="black fs-15 fw-400 mb-2">First Name</label>
                         <input type="text" class="form-control profile_input"  [(ngModel)]="addressOfficer.firstName" name="firstName"  formControlName="firstName" placeholder="Vijay">
                           <div *ngIf="formValidCheck('firstName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>first name is required</b></div>
+                                    class="text-danger error-font  ms-2"><p>first name is required</p></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Last Name</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.lastName" name="lastName"  formControlName="lastName" placeholder="Hencha">
                           <div *ngIf="formValidCheck('lastName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>last name is required</b></div>
+                                    class="text-danger error-font  ms-2"><p>last name is required</p></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">User ID</label>
                         <input type="text" class="form-control profile_input" [(ngModel)]="addressOfficer.userName" name="userName"  formControlName="userName" placeholder="@hgfghf">
                           <div *ngIf="formValidCheck('userName',editForm)"
-                                    class="text-danger error-font  ms-2"><b>username is required</b></div>
+                                    class="text-danger error-font  ms-2"><p>username is required</p></div>
                     </div>
                     <div class="col-md-12 mb-3 ps-0 px-2">
                         <label for="" class="black fs-15 fw-400 mb-2">Email Address</label>
@@ -243,7 +243,7 @@ tabindex="-1">
                           </span>  
                         </div>
                           <input type="text" class="form-control profile_input"
-                              formControlName="address"  name="address" id="edit" (focus)="addressAutoComplete('edit')" [value]="addressOfficer.address"  [placeholder]="addressOfficer.address">
+                              formControlName="address"  name="address" id="edit" (focus)="addressAutoComplete('edit')" [value]="addressOfficer.address"  placeholder="Enter location">
                               <div *ngIf="formValidCheck('address',editForm)"
                               class="text-danger error-font  validation"><p>address of operation is required</p></div>
                       </div>

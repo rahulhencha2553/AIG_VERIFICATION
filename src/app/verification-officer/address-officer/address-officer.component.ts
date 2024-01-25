@@ -56,7 +56,7 @@ export class AddressOfficerComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
-      address : ['',Validators.required]
+     // address : ['',Validators.required]
     });
   }
 
@@ -247,6 +247,12 @@ export class AddressOfficerComponent implements OnInit {
       this.addressOfficer.latitude = place.geometry.location.lat();
       this.addressOfficer.longitude = place.geometry.location.lng();
       this.addressOfficer.address = place.formatted_address;
+
+      console.log("lat --->> " ,place.geometry.location.lat());
+      console.log("long --->> " ,place.geometry.location.lng());
+      console.log("address --->> " ,place.formatted_address);
+      console.log(" ******************************************** ");
+      
     });
     
   } 
