@@ -16,18 +16,19 @@ import { FormValidator } from 'src/app/utils/form-validator';
 export class LoginComponent implements OnInit {
   public authRequest: AuthRequest = new AuthRequest();
   public loginForm: FormGroup;
-  public otpForm: FormGroup ;
-  public passwordForm:FormGroup; 
-  public emailForm:FormGroup;
+  public otpForm: FormGroup;
+  public passwordForm: FormGroup;
+  public emailForm: FormGroup;
   public isValid = false;
   public submitted = false;
-  public forgetPasswordRequest: ForgetPasswordRequest = new ForgetPasswordRequest();
+  public forgetPasswordRequest: ForgetPasswordRequest =
+    new ForgetPasswordRequest();
   public otp1 = '';
   public otp2 = '';
   public otp3 = '';
   public otp4 = '';
   public confimPassword = '';
-  
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -47,13 +48,13 @@ export class LoginComponent implements OnInit {
     });
 
     this.passwordForm = this.formBuilder.group({
-      newPassword: ['',Validators.required],
-      confimPassword: ['',Validators.required]
+      newPassword: ['', Validators.required],
+      confimPassword: ['', Validators.required],
     });
 
     this.emailForm = this.formBuilder.group({
-      email : ['',Validators.required]
-    })
+      email: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
@@ -61,30 +62,24 @@ export class LoginComponent implements OnInit {
     this.checkIsAlreadyLoggedIn();
   }
 
-
   // send to dashobard if didn't logout
   public checkIsAlreadyLoggedIn() {
-    console.log(this.authService.isTokenExpired());
-
     if (!this.authService.isTokenExpired()) {
       this.router.navigate(['verify']);
     }
   }
 
   // validation checking
-  public isFieldInvalid(fieldName: string,form:any): boolean {
-    return FormValidator.formValidCheck(fieldName,form);
+  public isFieldInvalid(fieldName: string, form: any): boolean {
+    return FormValidator.formValidCheck(fieldName, form);
   }
 
- 
   // login
   public loginOfficer() {
     FormValidator.formSubmittion(this.loginForm);
     if (this.loginForm.valid) {
       this.authService.officerLogin(this.authRequest).subscribe({
         next: (data: any) => {
-          console.log(data);
-
           this.authService.setToken(data.officer.accessToken);
 
           this.router.navigate(['verify']);
@@ -98,8 +93,8 @@ export class LoginComponent implements OnInit {
 
   // send otp to email
   public sendEmail() {
-    this.submitted = false
-    this.checkEmailValidation()
+    this.submitted = false;
+    this.checkEmailValidation();
     FormValidator.formSubmittion(this.emailForm);
     if (this.emailForm.valid) {
       if (this.isValid) {
@@ -124,29 +119,29 @@ export class LoginComponent implements OnInit {
 
   // verify otp
   public verifyOtp() {
-   FormValidator.formSubmittion(this.otpForm)
-    this.submitted = true
-      if (this.otpForm.valid) {
-        this.forgetPasswordRequest.otp =
-          this.otp1 + this.otp2 + this.otp3 + this.otp4;
-        this.authService.verifyOtp(this.forgetPasswordRequest).subscribe({
-          next: (data: any) => {
-            AppUtils.openToast('success', data.message, 'Success');
-            AppUtils.modalDismiss('verifyOtp');
-            this.submitted = false
-          },
-          error: (err) => {
-            AppUtils.openToast('error', err.error.message, 'Error');
-          },
-        });
-    }else AppUtils.openToast('error', "OTP required", 'Error');
+    FormValidator.formSubmittion(this.otpForm);
+    this.submitted = true;
+    if (this.otpForm.valid) {
+      this.forgetPasswordRequest.otp =
+        this.otp1 + this.otp2 + this.otp3 + this.otp4;
+      this.authService.verifyOtp(this.forgetPasswordRequest).subscribe({
+        next: (data: any) => {
+          AppUtils.openToast('success', data.message, 'Success');
+          AppUtils.modalDismiss('verifyOtp');
+          this.submitted = false;
+        },
+        error: (err) => {
+          AppUtils.openToast('error', err.error.message, 'Error');
+        },
+      });
+    } else AppUtils.openToast('error', 'OTP required', 'Error');
   }
 
   // set new password
   public setNewPassword() {
-    FormValidator.formSubmittion(this.passwordForm)
+    FormValidator.formSubmittion(this.passwordForm);
     this.submitted = true;
-    if(this.passwordForm.valid){
+    if (this.passwordForm.valid) {
       if (this.confimPassword === this.forgetPasswordRequest.newPassword) {
         this.authService.setNewPassword(this.forgetPasswordRequest).subscribe({
           next: (data: any) => {

@@ -80,7 +80,7 @@ export class AddressOfficerComponent implements OnInit {
         this.addressOfficers = data.data.content;
         this.pageManager.setPageData(data.data);
         this.pageRequests.pageNo = data.data.pageable.pageNumber;
-        console.log(this.pageManager);
+    
       },
       error: (err: any) => {
         AppUtils.openToast('error', err.error.message, 'Error');

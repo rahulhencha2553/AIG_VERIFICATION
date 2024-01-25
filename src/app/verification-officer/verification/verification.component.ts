@@ -28,7 +28,7 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((res: any) => {
       let status = res.params.status;
-      
+
       if (status === '') this.getVerificationRequests(Status.Pending);
 
       switch (status) {
@@ -59,7 +59,6 @@ export class VerificationComponent implements OnInit {
           this.verificationRequests = data.requests.content;
           this.pageManager.setPageData(data.requests);
           this.pageRequests.pageNo = data.requests.pageable.pageNumber;
-          console.log(data);
           if (isFromUi) this.clearData();
         },
         error: (err: any) => {

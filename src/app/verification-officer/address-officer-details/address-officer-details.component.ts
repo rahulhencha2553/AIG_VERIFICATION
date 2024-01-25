@@ -21,9 +21,9 @@ export class AddressOfficerDetailsComponent implements OnInit {
   public updateAddressOfficer: AddressOfficer = new AddressOfficer();
   public offiserAssignedRequests: OfficerAssignedRequests =
     new OfficerAssignedRequests();
-    public verificationRequests: VerificationRequestsDetailsWeb[] = [];
+  public verificationRequests: VerificationRequestsDetailsWeb[] = [];
 
-    public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+  public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
   public status = Status;
   public editForm: FormGroup;
 
@@ -59,7 +59,6 @@ export class AddressOfficerDetailsComponent implements OnInit {
   public getOfficerById(uuid: any) {
     this.addressOfficerServie.getAddressOfficerById(uuid).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.addressOfficer = data.data;
         this.imagePreview = this.addressOfficer.profilePicture;
       },
