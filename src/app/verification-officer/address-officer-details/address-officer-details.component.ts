@@ -9,6 +9,7 @@ import { AddressOfficerService } from 'src/app/services/address-officer.service'
 import { VerificationService } from 'src/app/services/verification.service';
 import { AppUtils } from 'src/app/utils/app-utils';
 import { FormValidator } from 'src/app/utils/form-validator';
+declare var google: any;
 
 @Component({
   selector: 'app-address-officer-details',
@@ -36,6 +37,7 @@ export class AddressOfficerDetailsComponent implements OnInit {
     this.editForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      userName: ['', Validators.required],
     });
   }
 
@@ -123,5 +125,26 @@ export class AddressOfficerDetailsComponent implements OnInit {
       document.getElementById('btn2')!.style.display = 'none';
       document.getElementById('btn1')!.style.display = 'block';
     }
+  }
+
+  public addressAutoComplete(id:any) {
+    const options = {
+      fields: ["formatted_address", "geometry", "name"],
+      strictBounds: false,
+    };
+    const inputElement = document.getElementById(id) as HTMLInputElement;
+    const autocomplete = new google.maps.places.Autocomplete(inputElement, options);
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        console.log("Place details not found for input: ", inputElement.value);
+        return;
+      }
+      this.updateAddressOfficer.placeId = place.place_id;
+      this.updateAddressOfficer.latitude = place.geometry.location.lat();
+      this.updateAddressOfficer.longitude = place.geometry.location.lng();
+      this.updateAddressOfficer.address = place.formatted_address;
+    });
   }
 }

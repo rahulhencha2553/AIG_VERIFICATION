@@ -13,7 +13,7 @@
         <div class="col-md-6">
             <div class="position-relative mb_20">
                 <i class="fi fi-br-search search_icon"></i>
-                <input type="search" class="search w-100 fs-16 fw-500" placeholder="search...">
+                <input type="search" (input)="searchAssignOfficers(search)" [(ngModel)]="search" class="search w-100 fs-16 fw-500" placeholder="search...">
             </div>
 
         </div>

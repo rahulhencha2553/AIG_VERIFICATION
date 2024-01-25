@@ -19,6 +19,7 @@ export class AssignOfficerComponent implements OnInit {
   public assignedOfficerId: any;
   public requestId: any;
   public reAssingRequest = new ReAssingOfficerRequest();
+  public search:string | undefined;
 
   constructor(
     private verificationService: VerificationService,
@@ -81,4 +82,23 @@ export class AssignOfficerComponent implements OnInit {
         },
       });
   }
+
+  public searchAssignOfficers(search:any){
+    if(search.trim() != ''){
+      this.verificationService.searchAssignOfficers(search,this.pageRequest).subscribe({
+        next:(data:any)=>{
+          this.addressOfficers = data.data.content;
+          this.addressOfficers = this.addressOfficers.filter(a=> a.userId != this.assignedOfficerId)
+          this.pageManager.setPageData(data.data);
+          this.pageRequest.pageNo = data.data.pageable.pageNumber;
+        },
+        error:(err:any)=>{
+          AppUtils.openToast('error', err.error.message, 'Error');
+        }
+      })
+    }else{
+      this.getActiveVerificationOfficers(this.assignedOfficerId);
+    }
+  }
+
 }

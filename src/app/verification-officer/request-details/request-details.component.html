@@ -1,6 +1,6 @@
 <nav class="topnavbar d-flex align-items-center justify-content-between p_40">
     <div class="d-flex align-items-center">
-        <a routerLink="/verify" class="back_arrow mx_20 "><img
+        <a (click)="gotoBack()" class="back_arrow mx_20 "><img
                 src="assets/images/svg_img/back_arrow.svg" class="img-fluid"></a>
         <h4 class="primary mb-0 fs-26 fw-600">Request Details</h4>
     </div>
@@ -78,7 +78,7 @@
                     <div class="address mb_20">
                         <img [src]="img.image" *ngFor="let img of verificationReqDetail.addressData.propertyPhotos">
                     </div>
-                    <a [routerLink]="'/verify/assign-officer/'+verificationReqDetail.verificationOfficerId+'/'+verificationReqDetail.uuid" class="btn_primary btn fs-16 fw-600 w-100 m-0 br_12"><img
+                    <a [routerLink]="'/verify/assign-officer/'+verificationReqDetail.verificationOfficerId+'/'+verificationReqDetail.uuid" *ngIf="status.Pending === verificationReqDetail.verificationStatus" class="btn_primary btn fs-16 fw-600 w-100 m-0 br_12"><img
                             src="assets/images/svg_img/assign.svg" class="mx-2 ms-0">Re-Assign Officer</a>
                 </div>
             </div>
