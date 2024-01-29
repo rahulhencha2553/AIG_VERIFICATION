@@ -24,9 +24,11 @@ export class AddressOfficerDetailsComponent implements OnInit {
     new OfficerAssignedRequests();
   public verificationRequests: VerificationRequestsDetailsWeb[] = [];
 
-  public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+  public imagePreview: any = AppUtils.DEFAULT_IMAGE;
   public status = Status;
   public editForm: FormGroup;
+ public updateImageTemp:any;
+
 
   constructor(
     private addressOfficerServie: AddressOfficerService,
@@ -38,8 +40,10 @@ export class AddressOfficerDetailsComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
+      address: ['', Validators.required]
     });
   }
+
 
   ngOnInit(): void {
     this.activtedRoute.params.subscribe((p: any) => {
@@ -62,7 +66,8 @@ export class AddressOfficerDetailsComponent implements OnInit {
     this.addressOfficerServie.getAddressOfficerById(uuid).subscribe({
       next: (data: any) => {
         this.addressOfficer = data.data;
-        this.imagePreview = this.addressOfficer.profilePicture;
+        this.imagePreview = this.addressOfficer.profilePicture  || AppUtils.DEFAULT_IMAGE;
+        this.updateImageTemp= this.addressOfficer.profilePicture  || AppUtils.DEFAULT_IMAGE;
       },
       error: (err: any) => {
         AppUtils.openToast('error', err.error.message, 'Error');
@@ -74,8 +79,9 @@ export class AddressOfficerDetailsComponent implements OnInit {
 
   public updateOfficer(id: string) {
     this.formSubmittionCheck(this.editForm);
-
-    if (this.editForm.valid)
+ 
+    if (this.editForm.valid){
+      this.addressOfficer.profilePicture = this.updateImageTemp;
       this.addressOfficerServie.updateOfficer(this.addressOfficer).subscribe(
         (data: any) => {
           this.getOfficerById(data.data.userId);
@@ -87,6 +93,7 @@ export class AddressOfficerDetailsComponent implements OnInit {
           AppUtils.openToast('error', err.error.message, 'Error');
         }
       );
+    }
   }
 
   // get officer assigned requests
@@ -106,8 +113,10 @@ export class AddressOfficerDetailsComponent implements OnInit {
 
   // setting image to officer
   public setImage(event: any) {
-    this.addressOfficer.profilePicture = event.target.files[0];
+    this.updateImageTemp= event.target.files[0];
     const selectedFile = event.target.files[0];
+ //   console.log(this.addressOfficer.profilePicture);
+    
     if (selectedFile) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -147,4 +156,16 @@ export class AddressOfficerDetailsComponent implements OnInit {
       this.updateAddressOfficer.address = place.formatted_address;
     });
   }
+
+  
+  public goBack(){
+    window.history.back()
+  }
+
+  // public isImage(){
+  //   if(this.addressOfficer.profilePicture && typeof this.addressOfficer.profilePicture !=='string'){
+  //     return AppUtils.DEFAULT_IMAGE;
+  //   }else
+  //   return typeof this.addressOfficer.profilePicture ==='string'
+  // }
 }

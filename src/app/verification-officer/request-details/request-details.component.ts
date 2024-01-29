@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Status } from 'src/app/models/status';
 import { VerificationRequestDetails } from 'src/app/payload/verification-request-details';
 import { VerificationService } from 'src/app/services/verification.service';
@@ -32,16 +32,19 @@ public deleteVoiceDirectionId:any=0;
     aigCode: '',
   };
 
+
   constructor(
     private activeRoute: ActivatedRoute,
-    private verificationService: VerificationService,
-    private locationSer:LocationObj
-  ) {}
+    private verificationService: VerificationService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getVerificationRequestDetails(
       this.activeRoute.snapshot.params['uuid']
     );
+
   }
 
   public getVerificationRequestDetails(uuid: string) {
@@ -120,7 +123,7 @@ public deleteVoiceDirectionId:any=0;
   }
 
   public gotoBack(){
-    this.locationSer.back();
+   window.history.back();
   }
 
 }

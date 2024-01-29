@@ -1,6 +1,6 @@
 <nav class="topnavbar d-flex align-items-center justify-content-between p_40">
     <div class="d-flex align-items-center">
-        <a routerLink="/verify/request-details/{{requestId}}" class="back_arrow mx_20 "><img
+        <a (click)="goBack()" class="back_arrow mx_20 "><img
                 src="assets/images/svg_img/back_arrow.svg" class="img-fluid"></a>
         <h4 class="primary mb-0 fs-26 fw-600">Re-Assign Officer</h4>
     </div>
@@ -30,7 +30,7 @@
                 <tbody class="bg_light">
                     <tr *ngFor="let officer of addressOfficers">
                         <td class="d-flex align-items-center">
-                            <img [src]="officer.profilePicture" class="assign_icon">
+                            <img [src]="officer.profilePicture?officer.profilePicture: '../../../assets/images/temp_img/default-user.jpg'" class="assign_icon">
                             <h5 class="fs-16 fw-500 mb-0 mx-0 ms-2">{{officer.firstName +" "+officer.lastName}}</h5>
                         </td>
                         <td class="fs-16 fw-500 text_small">{{officer.email}}</td>

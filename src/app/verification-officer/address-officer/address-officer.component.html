@@ -31,7 +31,7 @@
                 <tbody class="bg_light">
                     <tr  *ngFor="let officer of addressOfficers">
                         <td class="d-flex align-items-center">
-                            <img [src]="officer.profilePicture" class="address_icon">
+                            <img [src]="officer.profilePicture?officer.profilePicture:'../../../assets/images/temp_img/default-user.jpg'" class="address_icon">
                             <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">{{officer.firstName +" "+officer.lastName}}</h5>
                         </td>
                         <td class="fs-14 fw-400 theading">{{officer.email}}</td>
@@ -100,7 +100,7 @@
                     </h1>
                     <div class="mb-4 position-relative  d-flex justify-content-center">
 
-                        <input id="file1" type="file" (change)="setImage($event)"   class="d-none">
+                        <input id="file1" type="file" (change)="setImage($event)"   class="d-none" accept="image/*">
                         <img class="modal_profile" id="output1" [src]="imagePreview" >
                         <label class="-label" for="file1">
                             <a
@@ -197,8 +197,8 @@ tabindex="-1">
                 </h1>
                 <div class="mb-4 position-relative  d-flex justify-content-center">
 
-                    <input id="file2" type="file" (change)="setImage($event)" class="d-none">
-                    <img class="modal_profile" id="output1" [src]="imagePreview">
+                    <input id="file2" type="file" (change)="setImage($event)" class="d-none" accept="image/*">
+                    <img class="modal_profile" id="output1" [src]="imagePreview" >
                     <label class="-label" for="file2">
                         <a
                             class="secondary fs-16 fw-500  edit_img d-flex justify-content-center align-items-center">
@@ -243,7 +243,7 @@ tabindex="-1">
                           </span>  
                         </div>
                           <input type="text" class="form-control profile_input"
-                              formControlName="address"  name="address" id="edit" (focus)="addressAutoComplete('edit')" [value]="addressOfficer.address"  placeholder="Enter location">
+                              formControlName="address"  name="address" id="edit" (focus)="addressAutoComplete('edit')" [(ngModel)]="addressOfficer.address"  placeholder="Enter location">
                               <div *ngIf="formValidCheck('address',editForm)"
                               class="text-danger error-font  validation"><p>address of operation is required</p></div>
                       </div>

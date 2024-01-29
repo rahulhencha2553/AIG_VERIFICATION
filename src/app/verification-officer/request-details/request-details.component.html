@@ -1,6 +1,6 @@
 <nav class="topnavbar d-flex align-items-center justify-content-between p_40">
     <div class="d-flex align-items-center">
-        <a routerLink="/verify" class="back_arrow mx_20 "><img
+        <a (click)="gotoBack()" class="back_arrow mx_20 "><img
                 src="assets/images/svg_img/back_arrow.svg" class="img-fluid"></a>
         <h4 class="primary mb-0 fs-26 fw-600">Request Details</h4>
     </div>
@@ -13,7 +13,7 @@
                 <div class="Address_Details h-100">
                     <h3 class="fs-18 fw-500 primary">User Details</h3>
                     <div class="mt_60 d-flex justify-content-center align-items-center flex-column" *ngIf="verificationReqDetail.requestorData">
-                        <img [src]="verificationReqDetail.requestorData.profilePic" class="modal_profile mb_20">
+                        <img [src]="verificationReqDetail.requestorData.profilePic?verificationReqDetail.requestorData.profilePic: '../../../assets/images/temp_img/default-user.jpg'" class="modal_profile mb_20">
                         <h3 class="fs-16 fw-600 text_small mb-1">{{verificationReqDetail.requestorData.firstName + ' ' + verificationReqDetail.requestorData.lastName}}</h3>
                         <h4 class="fs-14 fw-500 black mb-1">NIN - <span class="info">{{verificationReqDetail.requestorData.ninNumber}}</span>
                         </h4>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="address mb_20">
-                        <img [src]="img.image" *ngFor="let img of verificationReqDetail.addressData.propertyPhotos">
+                        <img [src]="img.image?img.image:'../../../assets/images/svg_img/sample.svg'" *ngFor="let img of verificationReqDetail.addressData.propertyPhotos">
                     </div>
                     <a [routerLink]="'/verify/assign-officer/'+verificationReqDetail.verificationOfficerId+'/'+verificationReqDetail.uuid" *ngIf="status.Pending === verificationReqDetail.verificationStatus" class="btn_primary btn fs-16 fw-600 w-100 m-0 br_12"><img
                             src="assets/images/svg_img/assign.svg" class="mx-2 ms-0">Re-Assign Officer</a>
@@ -88,11 +88,11 @@
             <h5 class="fs-18 fw-500 secondary mb-3">Verification Details</h5>
             <div class="row">
                 <div class="col-md-4" *ngIf="verificationReqDetail.requestorData">
-                    <img [src]="verificationReqDetail.requestorData.propertyImage" class="verification_image mb_10">
+                    <img [src]="verificationReqDetail.requestorData.propertyImage?verificationReqDetail.requestorData.propertyImage:'../../../assets/images/svg_img/sample.svg'" class="verification_image mb_10">
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Property</h4>
                 </div>
                 <div class="col-md-4" *ngIf="verificationReqDetail.requestorData">
-                    <img [src]="verificationReqDetail.requestorData.requestorImage" class="verification_image mb_10">
+                    <img [src]="verificationReqDetail.requestorData.requestorImage?verificationReqDetail.requestorData.requestorImage:'../../../assets/images/svg_img/sample.svg'" class="verification_image mb_10">
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Requestor</h4>
                 </div>
                 <div class="col-md-4">
@@ -110,15 +110,15 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <img [src]="verificationReqDetail.summary.propertyImage" class="verification_image mb_10">
+                    <img [src]="verificationReqDetail.summary.propertyImage?verificationReqDetail.summary.propertyImage:'../../../assets/images/svg_img/sample.svg'" class="verification_image mb_10">
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Property</h4>
                 </div>
                 <div class="col-md-4">
-                    <img [src]="verificationReqDetail.summary.requestorImage" class="verification_image mb_10">
+                    <img [src]="verificationReqDetail.summary.requestorImage?verificationReqDetail.summary.requestorImage:'../../../assets/images/svg_img/sample.svg'" class="verification_image mb_10">
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Owner</h4>
                 </div>
                 <div class="col-md-4">
-                    <img [src]="verificationReqDetail.summary.govtIdImage" class="verification_image mb_10">
+                    <img [src]="verificationReqDetail.summary.govtIdImage?verificationReqDetail.summary.govtIdImage:'../../../assets/images/svg_img/sample.svg'" class="verification_image mb_10">
                     <h4 class="text-center fs-15 fw-500 grey mb-0">Gov id</h4>
                     
                 </div>

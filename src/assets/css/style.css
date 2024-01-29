@@ -303,6 +303,7 @@ a {
 .p_6 {
   padding: 6px 20px !important;
 }
+
 .mx_20 {
   margin-right: 20px;
 }
@@ -541,6 +542,14 @@ ul li a {
   padding: 12px 18px;
   cursor: pointer;
   border: 1px solid transparent;
+  /* position: relative;
+  bottom:0px; */
+}
+
+.view_details_btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
 }
 
 /*PROFILE  MODAL  CSS*/
@@ -659,6 +668,7 @@ ul li a {
   color: #A7A7A7;
   font-size: 20px;
 }
+
 /* 
 .btn_close {
   width: 40px;
@@ -888,7 +898,10 @@ tbody tr:last-child {
   background: rgba(255, 255, 255, 0.90);
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.07);
   backdrop-filter: blur(1.5px);
+  height: calc(100% - 0vh);
+    margin-bottom: 24px;
 }
+
 
 .verification_icon {
   width: 70px;
@@ -1081,6 +1094,7 @@ tbody tr:last-child {
   border: 1px solid #2B417D !important;
   background: #E6E8EF !important;
 }
+
 .report_card2 {
   border-radius: 10px;
   background: #FFF;
@@ -1088,7 +1102,7 @@ tbody tr:last-child {
   padding: 54px 42px;
 }
 
-.validation p{
+.validation p {
   font-size: 14px;
   font-weight: 400;
 }
@@ -1102,7 +1116,7 @@ tbody tr:last-child {
   .dashboard_card h5 {
     font-size: 25px;
   }
- 
+
 }
 
 
@@ -1253,16 +1267,19 @@ tbody tr:last-child {
   .report_heading h4 {
     font-size: 16px;
   }
+
   .add_icons {
     font-size: 13px;
     padding: 4px 4px;
   }
-  .admin-table h5{
-  font-size: 13px;
+
+  .admin-table h5 {
+    font-size: 13px;
   }
-  td{
+
+  td {
     font-size: 13px !important;
-  } 
+  }
 }
 
 @media (min-width:768px) and (max-width:992px) {
@@ -1286,9 +1303,11 @@ tbody tr:last-child {
   .table>:not(caption)>*>* {
     padding: 12px 12px !important;
   }
+
   .sidebar_navbar {
     padding: 0 16px;
-}
+  }
+
   .Officer {
     font-size: 12px !important;
     padding: 6px 12px !important;
@@ -1348,29 +1367,36 @@ tbody tr:last-child {
   .report_heading h4 {
     font-size: 14px;
   }
+
   .address_icon {
     width: 30px;
     height: 30px;
-}
-.add_icons {
-  font-size: 12px;
-  padding: 2px 2px;
-}
-.admin-table h5{
-font-size: 12px;
-}
-td{
-  font-size: 12px !important;
-}
-.topnavbar h4{
-  font-size: 20px;
-}
-.fs-26 {
-  font-size: 20px;
-}
-.fs-16 {
-  font-size: 13px;
-}
+  }
+
+  .add_icons {
+    font-size: 12px;
+    padding: 2px 2px;
+  }
+
+  .admin-table h5 {
+    font-size: 12px;
+  }
+
+  td {
+    font-size: 12px !important;
+  }
+
+  .topnavbar h4 {
+    font-size: 20px;
+  }
+
+  .fs-26 {
+    font-size: 20px;
+  }
+
+  .fs-16 {
+    font-size: 13px;
+  }
 }
 
 
@@ -1378,16 +1404,19 @@ td{
 @media (min-width:768px) and (max-width:1100px) {
   .login_form {
     padding: 0px 0px;
+  }
+
+  .login_img img {
+    width: 270px;
+  }
+
+  .login_img h2 {
+    font-size: 26px;
+  }
 }
-.login_img img{
-  width: 270px;
-}
-.login_img h2{
-  font-size: 26px;
-}
-}
+
 @media (min-width:1400px) and (max-width:1600px) {
-  .dashboard_card h3{
+  .dashboard_card h3 {
     font-size: 14px;
   }
 }
@@ -1542,22 +1571,25 @@ ul li a {
   z-index: 1;
   top: 10px;
   right: 2%;
-  height:48px;
+  height: 48px;
   padding: 12px;
   background: #A0E1B0;
   font-size: 17px;
   font-weight: 500;
-  box-shadow: 0px 0px 10px #d7d7d7; 
+  box-shadow: 0px 0px 10px #d7d7d7;
 }
-.dark2{
+
+.dark2 {
   color: #383838;
 }
+
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #success.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
 #error {
   display: flex;
   justify-content: center;
@@ -1570,7 +1602,7 @@ ul li a {
   z-index: 1;
   top: 10px;
   right: 2%;
-  height:48px;
+  height: 48px;
   padding: 12px;
   background: #FFEFEF;
   color: #FC0005;
@@ -1578,18 +1610,21 @@ ul li a {
   font-weight: 500;
   box-shadow: 0px 0px 10px #d7d7d7;
 }
+
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #error.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-.verification_btn img{
+
+.verification_btn img {
   height: 15px;
   width: 15px;
   margin-right: 6px;
   filter: invert(100%);
 }
+
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {

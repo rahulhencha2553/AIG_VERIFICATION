@@ -2,7 +2,7 @@ import { AbstractControl } from '@angular/forms';
 declare var butterup: any;
 export class AppUtils {
 
-
+public static DEFAULT_IMAGE  =  'assets/images/temp_img/default-user.jpg';
 
 // dismiss modal
 public static modalDismiss(id:string){

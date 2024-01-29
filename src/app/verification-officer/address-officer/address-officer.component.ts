@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
@@ -25,7 +26,7 @@ export class AddressOfficerComponent implements OnInit {
   public pageRequests: PageRequests = new PageRequests();
   public addressOfficers: AddressOfficerResponse[] = [];
   public addressOfficer: AddressOfficer = new AddressOfficer();
-  public imagePreview: any = 'assets/images/temp_img/profile-modal.png';
+  public imagePreview: any = AppUtils.DEFAULT_IMAGE;
   public deleteOfficerId = 0;
   public addForm: FormGroup;
   public editForm: FormGroup;
@@ -56,7 +57,7 @@ export class AddressOfficerComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
-     // address : ['',Validators.required]
+      address : ['',Validators.required]
     });
   }
 
@@ -110,7 +111,7 @@ export class AddressOfficerComponent implements OnInit {
     this.addressOfficer = new AddressOfficer();
     this.addForm.reset();
     this.editForm.reset();
-    this.imagePreview ='assets/images/temp_img/profile-modal.png';
+    this.imagePreview = AppUtils.DEFAULT_IMAGE;
   }
 
   public clearDeleteData() {
@@ -122,7 +123,7 @@ export class AddressOfficerComponent implements OnInit {
     this.addressOfficerService.getAddressOfficerById(userId).subscribe({
       next: (data: any) => {
         this.addressOfficer = data.data;
-        this.imagePreview = this.addressOfficer.profilePicture;
+        this.imagePreview = this.addressOfficer.profilePicture||AppUtils.DEFAULT_IMAGE;
       
       },
       error: (err: any) => {
@@ -231,7 +232,7 @@ export class AddressOfficerComponent implements OnInit {
 
   public addressAutoComplete(id:any) {
     const options = {
-      fields: ["formatted_address", "geometry", "name"],
+      fields: ["formatted_address", "geometry", "name" , "place_id"],
       strictBounds: false,
     };
     const inputElement = document.getElementById(id) as HTMLInputElement;
@@ -246,14 +247,11 @@ export class AddressOfficerComponent implements OnInit {
       this.addressOfficer.placeId = place.place_id;
       this.addressOfficer.latitude = place.geometry.location.lat();
       this.addressOfficer.longitude = place.geometry.location.lng();
-      this.addressOfficer.address = place.formatted_address;
-
-      console.log("lat --->> " ,place.geometry.location.lat());
-      console.log("long --->> " ,place.geometry.location.lng());
-      console.log("address --->> " ,place.formatted_address);
-      console.log(" ******************************************** ");
-      
+      this.addressOfficer.address = place.formatted_address;                                          
     });
     
   } 
+
+
+
 }

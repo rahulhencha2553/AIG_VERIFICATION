@@ -24,7 +24,7 @@ import {
 export class ProfileBarComponent implements OnInit {
   public officer: PortalOfficer = new PortalOfficer();
   public updateOffier: UpdateOfficerRequest = new UpdateOfficerRequest();
-  public imagePreview: string = '';
+  public imagePreview: string = AppUtils.DEFAULT_IMAGE;
   public changePasswordRequest: ChangePasswordRequest =
     new ChangePasswordRequest();
   public confirmPassword: string = '';
