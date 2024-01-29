@@ -40,7 +40,7 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img [src]="request.requestorData.profilePic"
+                                    <img [src]="request.requestorData.profilePic?request.requestorData.profilePic:'../../../assets/images/temp_img/default-user.jpg'"
                                         class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end view_details_btn">
                                 <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img [src]="request.requestorData.profilePic"
+                                    <img [src]="request.requestorData.profilePic?request.requestorData.profilePic:'../../../assets/images/temp_img/default-user.jpg'"
                                         class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end view_details_btn">
                                 <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                         <div class="verification_card">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center  gap_10">
-                                    <img [src]="request.requestorData.profilePic"
+                                    <img [src]="request.requestorData.profilePic?request.requestorData.profilePic:'../../../assets/images/temp_img/default-user.jpg'"
                                         class="verification_icon card_img">
                                     <div>
                                         <h4 class="black fs-16 fw-500 mb-1">{{request.requestorData.firstName +" "+ request.requestorData.lastName}}</h4>
@@ -185,7 +185,7 @@
                                 </div>
                             </div>
                             <h6 class="fs-16 f-500 grey"><span class="text_small">Address :</span>{{request.addressData.address}}</h6>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end view_details_btn">
                                 <a routerLink="/verify/request-details/{{request.uuid}}" class="view_all fs-12 fw-600 white">View Details</a>
                             </div>
                         </div>

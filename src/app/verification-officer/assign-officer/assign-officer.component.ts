@@ -101,4 +101,7 @@ export class AssignOfficerComponent implements OnInit {
     }
   }
 
+  goBack(){
+    window.history.back()
+  }
 }

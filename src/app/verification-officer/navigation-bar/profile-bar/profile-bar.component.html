@@ -7,7 +7,7 @@
             <div class="dropdown position-relative" *ngIf="officer">
                 <a class="fs-16 fw-500 black dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="true">
-                    <img class="profile_img" [src]="officer.profilePicture">
+                    <img class="profile_img" [src]="officer.profilePicture?officer.profilePicture: '../../../assets/images/temp_img/default-user.jpg'">
                     {{officer.firstName +" "+officer.lastName}}
                     <i class="fi fi-sr-angle-small-down lh-0 mt-1 mx-0 ms-1"></i>
                 </a>
@@ -15,7 +15,7 @@
                     data-popper-placement="bottom-end">
                     <div class="mb-4">
                         <li class="profile_dropdown fs-16 fw-500 black"><img class="profile_img"
-                            [src]="officer.profilePicture">{{officer.firstName +" "+officer.lastName}}</li>
+                            [src]="officer.profilePicture?officer.profilePicture: '../../../assets/images/temp_img/default-user.jpg'">{{officer.firstName +" "+officer.lastName}}</li>
                     </div>
                     <li class="profile_card fs-15 fw-500 text_small" data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal">
@@ -53,7 +53,7 @@ tabindex="-1">
         </div>
         <div class="modal-body p-0" *ngIf="officer">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <img class="modal_profile" [src]="officer.profilePicture">
+                <img class="modal_profile" [src]="officer.profilePicture?officer.profilePicture: '../../../assets/images/temp_img/default-user.jpg'">
                 <button class="edit_btn fs-16 f-500" data-bs-target="#exampleModalToggle3"
                     data-bs-toggle="modal" (click)="clearData()">
                     <i class="fi fi-sr-pencil fs-12 mx-2 ms-0"></i>Edit
@@ -97,7 +97,7 @@ tabindex="-1">
         <div class="modal-body p-0">
             <div class="d-flex  align-items-center mb-4">
 
-                <input id="file" type="file" (change)="setImage($event)" class="d-none">
+                <input id="file" type="file" (change)="setImage($event)" class="d-none" accept="image/*">
                 <img class="modal_profile" id="output"  [src]="imagePreview">
                 <label class="-label" for="file">
                     <a class="secondary fs-16 fw-500 mx-0 ms-4 change_img d-flex">

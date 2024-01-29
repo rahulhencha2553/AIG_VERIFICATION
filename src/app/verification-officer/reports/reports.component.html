@@ -154,12 +154,12 @@
             <tbody class="bg_light">
                 <tr *ngFor="let officer of addressOfficers">
                     <td class="d-flex align-items-center" >
-                        <img [src]="officer.profilePicture" class="address_icon">
+                        <img [src]="officer.profilePicture?officer.profilePicture: '../../../assets/images/temp_img/default-user.jpg'" class="address_icon">
                         <h5 class="fs-14 fw-400 black mb-0 mx-0 ms-2">{{officer.firstName +" "+officer.lastName}}</h5>
                     </td>
                     <td class="fs-14 fw-400 theading">{{officer.email}}</td>
-                    <td class="fs-14 fw-400 theading">{{isPasswordVisible(officer.password)?officer.password:"********"}} <i
-                        [ngClass]=" isPasswordVisible(officer.password)?'fi fi-ss-eye mx-0 ms-1':'fi fi-ss-eye-crossed mx-0 ms-1'" (click)="togglePasswordVisibility(officer.password)" ></i></td>
+                    <td class="fs-14 fw-400 theading">{{isPasswordVisible(officer.email)?officer.password:"********"}} <i
+                        [ngClass]=" isPasswordVisible(officer.email)?'fi fi-ss-eye mx-0 ms-1':'fi fi-ss-eye-crossed mx-0 ms-1'" (click)="togglePasswordVisibility(officer.email)" ></i></td>
                     <td class="fs-14 fw-400 theading">{{officer.userName}}</td>
                 </tr>
             
